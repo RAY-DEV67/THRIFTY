@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom";
+
 export function NavBar() {
   return (
       <div className="flex justify-around z-10 w-[100%] fixed bottom-0 nav py-4">
         {/* HOME ICON */}
 
-        <div className="flex items-center">
+       <Link to="/">
+       <div className="flex items-center">
           <svg
-            width="35px"
-            height="35px"
+            width="25px"
+            height="25px"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             // className="fill-black mt-9"
@@ -29,12 +32,13 @@ export function NavBar() {
           </svg>
           <p className="ml-[0.5rem]">Explore</p>
         </div>
+       </Link>
 
         {/* SAVE ICON */}
 
         <svg
-          width="35px"
-          height="35px"
+          width="25px"
+          height="25px"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -62,8 +66,8 @@ export function NavBar() {
           fill="#000000"
           version="1.1"
           id="Layer_1"
-          width="35px"
-          height="35px"
+          width="25px"
+          height="25px"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 256 253"
           enable-background="new 0 0 256 253"
@@ -83,11 +87,12 @@ export function NavBar() {
 
         {/* PROFILE ICON */}
 
+        <Link to="/profile">
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          width="35px"
-          height="35px"
+          width="25px"
+          height="25px"
           xmlns="http://www.w3.org/2000/svg"
           stroke="#ffffff"
         >
@@ -121,6 +126,7 @@ export function NavBar() {
             </g>{" "}
           </g>
         </svg>
+        </Link>
       </div>
   );
 }
