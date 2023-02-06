@@ -1,29 +1,182 @@
-import {auth, provider} from "../config/firebase"
-import {signInWithPopup, signOut} from "firebase/auth"
-import {useAuthState} from "react-firebase-hooks/auth"
+import { auth, provider } from "../config/firebase";
+import { signInWithPopup, signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+// import app from "../config/firebase";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import { useState } from "react";
 
 export function Profile() {
+  // const auth = getAuth();
+  const [user] = useAuthState(auth);
 
-    const [user] = useAuthState(auth)
-    const SignUserOut = async () => {
-await signOut(auth)
-    }
+  // const [email, setemail] = useState("");
+  // const [password, setpassword] = useState("");
 
-const signInWithGoogle = async () => {
-const result = await signInWithPopup(auth, provider)
-console.log(result)
+  const signUp = () => {
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in 
+    //     const user = userCredential.user;
+    //     console.log(user)
+    //     alert("succesfully created account")
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     // const errorMessage = error.message;
+    //     alert(errorCode)
+    //     // ..
+    //   });
+  }
+
+
+
+
+
+
+
+
+  const SignUserOut = async () => {
+    await signOut(auth);
+  };
+
+  const signInWithGoogle = async () => {
+    const result = await signInWithPopup(auth, provider);
+    console.log(result)
+  };
+
+  return (
+    <div>
+      {user ? (
+        <div>
+          <p>{user?.displayName}</p>
+          <button onClick={SignUserOut} className="border mt-[2rem] bg-red-400">
+            Sign Out
+          </button>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-[100vh]">
+          <div className="mt-[-1rem]">
+            <p>LOGO</p>
+            <p className="mt-[2rem] text-[2rem] mb-[0.5rem] text-bolder">Login</p>
+            <p>Hello Thrift Shopper, Kindly Login to your account.</p>
+            <div>
+              <div
+                onClick={signInWithGoogle}
+                className="border sign-in-google rounded-[20px] cursor-pointer w-[100%] py-[0.3rem] mt-[2rem] flex justify-center"
+              >
+                <svg
+                  viewBox="-0.5 0 48 48"
+                  version="1.1"
+                  height="25"
+                  width="25"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#000000"
+                  className="mx-[0.5rem]"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <title>Google-color</title>{" "}
+                    <desc>Created with Sketch.</desc> <defs> </defs>{" "}
+                    <g
+                      id="Icons"
+                      stroke="none"
+                      stroke-width="1"
+                      fill="none"
+                      fill-rule="evenodd"
+                    >
+                      {" "}
+                      <g
+                        id="Color-"
+                        transform="translate(-401.000000, -860.000000)"
+                      >
+                        {" "}
+                        <g
+                          id="Google"
+                          transform="translate(401.000000, 860.000000)"
+                        >
+                          {" "}
+                          <path
+                            d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24"
+                            id="Fill-1"
+                            fill="#FBBC05"
+                          >
+                            {" "}
+                          </path>{" "}
+                          <path
+                            d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333"
+                            id="Fill-2"
+                            fill="#EB4335"
+                          >
+                            {" "}
+                          </path>{" "}
+                          <path
+                            d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667"
+                            id="Fill-3"
+                            fill="#34A853"
+                          >
+                            {" "}
+                          </path>{" "}
+                          <path
+                            d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24"
+                            id="Fill-4"
+                            fill="#4285F4"
+                          >
+                            {" "}
+                          </path>{" "}
+                        </g>{" "}
+                      </g>{" "}
+                    </g>{" "}
+                  </g>
+                </svg>
+                <p>Sign in with Google</p>
+              </div>
+              <div className="flex justify-center items-center mt-[2rem]">
+                <div className="w-[28%] h-[1px] bg-black"></div>
+                <p className="mx-[1rem] text-[80%]">Or Sign Up Using</p>
+                <div className="w-[28%] h-[1px] bg-black"></div>
+              </div>
+              <form>
+                <div className="flex flex-col">
+                  <label for="email" className="mt-[1rem]">
+                    Email:
+                  </label>
+                  <input
+                    type="text"
+                    id="email"
+                    placeholder="Thrift@google.com"
+                    className="rounded-[20px] mt-[1rem] p-[0.5rem]"
+                    // onChange={(e) => {setemail(e.target.value)}}
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label for="password" className="mt-[1rem]">
+                    Password:
+                  </label>
+                  <input
+                    type="password"
+                    id="email"
+                    placeholder="Thrift@google.com"
+                    className="rounded-[20px] mt-[1rem] p-[0.5rem]"
+                    // onChange={(e) => {setpassword(e.target.value)}}
+                  />
+                </div>
+
+                <input type="submit" className="login-btn cursor-pointer rounded-[20px] w-[100%] py-[0.3rem] mt-[2rem] flex justify-center" value="SIGN UP" onClick={signUp}/>
+                <input type="submit" className="login-btn cursor-pointer rounded-[20px] w-[100%] py-[0.3rem] mt-[2rem] flex justify-center" value="SIGN IN"/>
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
-
-    return ( <div>
-     { user ?  ( <div>
-    <p>{user?.displayName}</p>
-    <button onClick={SignUserOut} className="border mt-[2rem] bg-red-400">Sign Out</button>
-  
-   </div>) :
-     (<div>
-       <p>Sign in with Google</p>
-        <button onClick={signInWithGoogle} className="border mt-[2rem] bg-red-400">Sign in with google</button>
-       </div>)}
-    </div> );
-}
-

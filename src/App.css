@@ -6,13 +6,13 @@ body{
   fill: aqua;
 }
 .tag{
-  background-color:  rgba(95.69%, 96.08%, 88.63%, 80%);
+  background-color:  #fffafa;
   color: rgb(170, 54, 124);
   backdrop-filter: blur(4px);
   font-weight: 800;
 }
 .nav{
-  background-color:  rgba(95.69%, 96.08%, 88.63%, 90%);
+  background-color:  #fffafa;
   backdrop-filter: blur(4px);
 }
 .heading{
@@ -21,4 +21,14 @@ body{
   backdrop-filter: blur(4px);
   font-weight: 700;
   border-radius: 20px;
+}
+.login-btn{
+  border: 1px solid rgb(170, 54, 124);
+}
+.login-btn:hover , .sign-in-google:hover{
+  background-color: rgb(170, 54, 124);
+  color: white;
+}
+.sign-in-google{
+  border: 1px solid rgb(170, 54, 124);
 }
