@@ -2,12 +2,89 @@ import { Profile } from "./profile";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState } from "react";
+import { db } from "../config/firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 export function Sell() {
   const [user] = useAuthState(auth);
+
   const [categories, setcategories] = useState(false);
   const [location, setlocation] = useState(false);
   const [condition, setcondition] = useState(false);
+  const [gender, setgender] = useState(false);
+  const [size, setsize] = useState(false);
+
+  const [values, setvalues] = useState({
+    title: "",
+    description: "",
+    price: null,
+    phone: null,
+    category:"Categories",
+    condition: "Condition",
+    gender: "Gender",
+    size: "Size",
+    location: "Location",
+    instagram: "",
+    twitter:"",
+  });
+
+  const [errors, seterrors] = useState({});
+
+  const handleChange = (event) => {
+    setvalues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const validateForm = () => {
+    let tempErrors = {};
+    if (!values.title) {
+      tempErrors.title = "title is required";
+    }
+    if (!values.description) {
+      tempErrors.description = "description is required";
+    }
+    if (!values.price) {
+      tempErrors.price = "price is required";
+    }
+    
+    if (values.category === "Categories") {
+      tempErrors.description = "Please select category";
+    }
+    if (values.condition === "Condition") {
+      tempErrors.description = "Please select condition";
+    }
+    if (values.gender === "Gender") {
+      tempErrors.description = "Please select Gender";
+    }
+    if (values.location === "Location") {
+      tempErrors.description = "Please select location";
+    }
+    if (!values.phone) {
+      tempErrors.phone = "Phone Number is required";
+    }
+    seterrors(tempErrors);
+    console.log(errors)
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  const clothsRef = collection(db, "Cloths");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      await addDoc(clothsRef, {
+        ...values,
+        username: user?.displayName,
+        userId: user?.uid,
+      });
+      console.log("form is valid");
+      console.log(values);
+    } else {
+      console.log("form is invalid");
+    }
+  };
 
   return (
     <div>
@@ -15,30 +92,42 @@ export function Sell() {
         <div>
           <p className="text-center py-[1rem] ">Post An AD</p>
           <div className="flex flex-col items-center">
-            <form className="w-[90%] bg-red-400 flex flex-col px-[1rem]">
+            <form
+              onSubmit={handleSubmit}
+              className="w-[90%] bg-red-400 flex flex-col px-[1rem] pb-[2.5rem]"
+            >
               <div
                 onClick={() => {
                   setcategories(!categories);
                 }}
                 className="flex mt-[2rem] px-[1rem] justify-between border py-[0.5rem] rounded-[10px] items-center bg-white"
               >
-                <p>Categories</p>
+                <p>{values.category}</p>
                 <p>&#8964;</p>
               </div>
 
               {categories ? (
                 <div className="flex flex-col items-center mt-[1rem] bg-blue-300 py-[1rem] rounded-[10px]">
-                  <p className="w-[100%] text-center pb-[0.5rem]">
-                    Men Clothes
+                  <p onClick={() => {
+                    setcategories(false)
+                    values.category = "Cloths"}} className="w-[100%] text-center pb-[0.5rem]">
+                    Clothes
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
-                    Women Clothes
+                  <p onClick={() => {
+                    setcategories(false)
+                    values.category = "Shoes"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                    Shoes
                   </p>
-                  <p className="w-[100%] text-center py-[0.5rem]">Shoes</p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
-                    Hair
+                  <p
+                  onClick={() => {
+                    setcategories(false)
+                    values.category = "Hair"}} className="w-[100%] border-b-[2px] text-center py-[0.5rem]">Hair</p>
+                  <p onClick={() => {
+                    setcategories(false)
+                    values.category = "Accessories"}} className="w-[100%] text-center pt-[0.5rem]">
+                    Accesories
                   </p>
-                  <p className="w-[100%] text-center pt-[0.5rem]">Accesories</p>
+                  {/* <p className="w-[100%] text-center pt-[0.5rem]">Accesories</p> */}
                 </div>
               ) : (
                 ""
@@ -69,109 +158,180 @@ export function Sell() {
                 }}
                 className="flex px-[1rem] mt-[2rem] justify-between border py-[0.5rem] rounded-[10px] items-center bg-white"
               >
-                <p>Location</p>
+                <p>{values.location}</p>
                 <p>&#8964;</p>
               </div>
               {location ? (
                 <div className="flex flex-col items-center mt-[1rem] bg-blue-300 py-[1rem] rounded-[10px]">
-                  <p className="w-[100%] text-center pb-[0.5rem]">Abia State</p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Abia State"}} className="w-[100%] text-center pb-[0.5rem]">Abia State</p>
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Adamawa State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Adamawa State
                   </p>
-                  <p className="w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "AkwaIbom State"}} className="w-[100%] text-center py-[0.5rem]">
                     Akwa Ibom State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Anambra State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Anambra State
                   </p>
-                  <p className="w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Bauchi State"}} className="w-[100%] text-center py-[0.5rem]">
                     Bauchi State
                   </p>
-                  <p className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Bayelsa State"}} className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Bayelsa State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Benue State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Benue State
                   </p>
-                  <p className="w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Borno State"}} className="w-[100%] text-center py-[0.5rem]">
                     Borno State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Cross River State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Cross River State
                   </p>
-                  <p className="w-[100%] text-center pt-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Delta State"}} className="w-[100%] text-center pt-[0.5rem]">
                     Delta State
                   </p>
-                  <p className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Ebonyi State"}} className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Ebonyi State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Edo State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Edo State
                   </p>
-                  <p className="w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Ekiti State"}} className="w-[100%] text-center py-[0.5rem]">
                     Ekiti State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Enugu State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Enugu State
                   </p>
-                  <p className="w-[100%] text-center pt-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Gombe State"}} className="w-[100%] text-center pt-[0.5rem]">
                     Gombe State
                   </p>
 
-                  <p className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Imo State"}} className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Imo state
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Jigawa State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Jigawa State
                   </p>
-                  <p className="w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Kaduna State"}} className="w-[100%] text-center py-[0.5rem]">
                     Kaduna State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Kano State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Kano State
                   </p>
-                  <p className="w-[100%] text-center pt-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Kastina State"}} className="w-[100%] text-center pt-[0.5rem] py-[0.5rem]">
                     Kastina State
                   </p>
 
-                  <p className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Kebbi State"}} className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Kebbi State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Kogi State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Kogi State
                   </p>
-                  <p className="w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Kwara State"}} className="w-[100%] border-b-[2px] text-center py-[0.5rem]">
                     Kwara State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Lagos State"}} className="w-[100%] text-center py-[0.5rem]">
+                    Lagos State
+                  </p>
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Nasarawa State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Nasarawa State
                   </p>
-                  <p className="w-[100%] text-center pt-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Niger State"}} className="w-[100%] text-center pt-[0.5rem]">
                     Niger State
                   </p>
 
-                  <p className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Ondo State"}} className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Ondo State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Osun State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Osun State
                   </p>
-                  <p className="w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Plateau State"}} className="w-[100%] text-center py-[0.5rem]">
                     Plateau State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Sokoto State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Sokoto State
                   </p>
-                  <p className="w-[100%] text-center pt-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Taraba State"}} className="w-[100%] text-center pt-[0.5rem]">
                     Taraba State
                   </p>
-                  <p className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Yobe State"}} className="border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Yobe State
                   </p>
-                  <p className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Zamfara State"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
                     Zamfara State
                   </p>
-                  <p className="w-[100%] text-center pt-[0.5rem]">
+                  <p onClick={() => {
+                    setlocation(false)
+                    values.location = "Abuja State"}} className="w-[100%] text-center pt-[0.5rem]">
                     Abuja (FCT) State
                   </p>
                 </div>
@@ -183,6 +343,10 @@ export function Sell() {
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem]"
                 type="text"
                 placeholder="TITLE*"
+                name="title"
+                onChange={handleChange}
+                value={values.title}
+                // {...register("title")}
               />
               <input
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem]"
@@ -201,16 +365,94 @@ export function Sell() {
                 }}
                 className="flex px-[1rem] mt-[1rem] justify-between border py-[0.5rem] rounded-[10px] items-center bg-white"
               >
-                <p>Condition</p>
+                <p>{values.condition}</p>
                 <p>&#8964;</p>
               </div>
 
               {condition ? (
                 <div className="flex flex-col items-center mt-[1rem] bg-blue-300 py-[1rem] rounded-[10px]">
-                  <p className="w-[100%] text-center pb-[0.5rem]">Brand New</p>
-                  <p className="w-[100%] border-t-[1.5px] text-center pt-[0.5rem]">
+                  <p onClick={() => {
+                    setcondition(false)
+                    values.condition = "Brand New"}} className="w-[100%] text-center pb-[0.5rem]">Brand New</p>
+                  <p onClick={() => {
+                    setcondition(false)
+                    values.condition = "Used"}} className="w-[100%] border-t-[1.5px] text-center pt-[0.5rem]">
                     Used
                   </p>
+                </div>
+              ) : (
+                ""
+              )}
+
+              <div
+                onClick={() => {
+                  setgender(!gender);
+                }}
+                className="flex px-[1rem] mt-[1rem] justify-between border py-[0.5rem] rounded-[10px] items-center bg-white"
+              >
+                <p>{values.gender}</p>
+                <p>&#8964;</p>
+              </div>
+
+              {gender ? (
+                <div className="flex flex-col items-center mt-[1rem] bg-blue-300 py-[1rem] rounded-[10px]">
+                  <p onClick={() => {
+                    setgender(false)
+                    values.gender = "Male"}} className="w-[100%] text-center pb-[0.5rem]">Male</p>
+                  <p onClick={() => {
+                    setgender(false)
+                    values.gender = "Female"}} className="w-[100%] border-t-[1.5px] text-center pt-[0.5rem] pb-[0.5rem]">
+                    Female
+                  </p>
+                  <p onClick={() => {
+                    setgender(false)
+                    values.gender = "Unisex"}} className="w-[100%] border-t-[1.5px] text-center pt-[0.5rem]">
+                    Unisex
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
+
+              <div
+                onClick={() => {
+                  setsize(!size);
+                }}
+                className="flex px-[1rem] mt-[1rem] justify-between border py-[0.5rem] rounded-[10px] items-center bg-white"
+              >
+                <p>{values.size}</p>
+                <p>&#8964;</p>
+              </div>
+
+              {size ? (
+                <div className="flex flex-col items-center mt-[1rem] bg-blue-300 py-[1rem] rounded-[10px]">
+                  <p onClick={() => {
+                    setsize(false)
+                    values.size = "XS"}} className="w-[100%] text-center pb-[0.5rem]">XS</p>
+                  <p onClick={() => {
+                    setsize(false)
+                    values.size = "S"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                    s
+                  </p>
+                  <p onClick={() => {
+                    setsize(false)
+                    values.size = "M"}} className="w-[100%] text-center py-[0.5rem]">M</p>
+                  <p onClick={() => {
+                    setsize(false)
+                    values.size = "L"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                    L
+                  </p>
+                  <p onClick={() => {
+                    setsize(false)
+                    values.size = "XL"}} className="w-[100%] text-center py-[0.5rem]">XL</p>
+                  <p onClick={() => {
+                    setsize(false)
+                    values.size = "XXL"}} className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]">
+                    XXL
+                  </p>
+                  <p onClick={() => {
+                    setsize(false)
+                    values.size = "3XL"}} className="w-[100%] text-center pt-[0.5rem]">3XL</p>
                 </div>
               ) : (
                 ""
@@ -254,6 +496,10 @@ export function Sell() {
                 cols="50"
                 className="mt-[1rem] p-[0.5rem] rounded-[10px]"
                 placeholder="Description*"
+                name="description"
+                onChange={handleChange}
+                value={values.description}
+                // {...register("description")}
               />
 
               <div className="relative">
@@ -261,6 +507,10 @@ export function Sell() {
                   className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[3rem] w-[100%]"
                   type="text"
                   placeholder="Price*"
+                  name="price"
+                  onChange={handleChange}
+                  value={values.price}
+                  // {...register("price")}
                 />
                 <svg
                   fill="#000000"
@@ -293,26 +543,38 @@ export function Sell() {
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem] w-[100%]"
                 type="tel"
                 placeholder="Phone Number*"
+                name="phone"
+                onChange={handleChange}
+                value={values.phone}
+                // {...register("phone")}
               />
 
               <input
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem] w-[100%]"
                 type="text"
                 placeholder="Instagram Link*"
+                
+                name="instagram"
+                onChange={handleChange}
+                value={values.instagram}
               />
 
               <input
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem] w-[100%]"
                 type="text"
                 placeholder="Twitter Link*"
+                
+                name="twitter"
+                onChange={handleChange}
+                value={values.twitter}
               />
 
-              <h3>Promote your AD</h3>
-              <p>Choose one of the following packages</p>
+              <input
+                type="submit"
+                value="POST AD"
+                className="text-center create-ad mt-[2rem] border py-[0.5rem] rounded-[10px] items-center bg-white"
+              />
 
-              <button className="text-center create-ad mt-[2rem] border py-[0.5rem] rounded-[10px] items-center bg-white">
-                POST AD
-              </button>
               <p className="text-[12px] mt-[0.5rem] mb-[2rem]">
                 By Clicking on Post Ad, you accept the Terms of Use, Confirm
                 that you will abide by the safety tips, and declare that this
