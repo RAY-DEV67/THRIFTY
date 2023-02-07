@@ -22,13 +22,25 @@ body{
   font-weight: 700;
   border-radius: 20px;
 }
-.login-btn{
-  border: 1px solid rgb(170, 54, 124);
-}
-.login-btn:hover , .sign-in-google:hover{
+.sign-in-google:hover, .create-ad{
   background-color: rgb(170, 54, 124);
   color: white;
 }
 .sign-in-google{
   border: 1px solid rgb(170, 54, 124);
+}
+.login-page{
+  border: 2px solid rgb(170, 54, 124);
+  border-radius: 20px;
+  background-color:  #fffafa;
+}
+
+.profile-details{
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 1px 1px 5px black;
+  font-weight: 400;
+}
+.profile-details:hover{
+  color: rgb(170, 54, 124);
 }
