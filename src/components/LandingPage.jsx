@@ -1,10 +1,10 @@
-import bags from "../assets/images/bags.webp";
+import bags from "../assets/images/bagclothpage.jpg";
 import store from "../assets/images/store.webp";
 import hair from "../assets/images/hair.webp";
 import sneakers from "../assets/images/sneakers.jpg";
-import mencloth from "../assets/images/men-clothes.jpg";
 import womencloth from "../assets/images/women-cloth.png";
 import accessories from "../assets/images/accessories.png";
+import { Link } from "react-router-dom";
 
 export function LandingPage() {
   return (
@@ -91,17 +91,19 @@ export function LandingPage() {
       </div>
       <div className="flex flex-col items-center">
         <div className="w-[90%] grid-cols-2 gap-x-4	 grid relative">
+          <Link to="/clothes">
           <div className="relative">
             <img src={womencloth} alt="cloths" className="rounded-[1rem]" />
-            <p className="absolute top-[62%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
-              Women Clothing
+            <p className="absolute top-[78%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
+              Clothes
             </p>
           </div>
+          </Link>
 
           <div>
-            <img src={mencloth} alt="cloths" className="rounded-[1rem]" />
-            <p className="absolute top-[82%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
-              Men's Clothing
+            <img src={accessories} alt="cloths" className="rounded-[1rem]" />
+            <p className="absolute top-[62%] left-[52%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
+              Accessories
             </p>
           </div>
 
@@ -109,9 +111,9 @@ export function LandingPage() {
             <img
               src={sneakers}
               alt="cloths"
-              className="absolute w-[48%] top-[83%] rounded-[1rem]"
+              className="absolute w-[48%] top-[105%] rounded-[1rem]"
             />
-            <p className="absolute top-[132%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
+            <p className="absolute top-[166%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
               Sneakers
             </p>
           </div>
@@ -120,9 +122,9 @@ export function LandingPage() {
             <img
               src={hair}
               alt="cloths"
-              className="absolute w-[51%] left-[-0.35rem] rounded-[1rem] top-[152%]"
+              className="absolute w-[51%] left-[-0.35rem] rounded-[1rem] top-[192%]"
             />
-            <p className="absolute top-[207%] left-0 tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px] ">
+            <p className="absolute top-[262%] left-0 tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px] ">
               Hair
             </p>
           </div>
@@ -131,21 +133,10 @@ export function LandingPage() {
             <img
               src={bags}
               alt="cloths"
-              className="absolute w-[48%] top-[175%] left-[52%] rounded-[1rem]"
+              className="absolute w-[48%] top-[90%] left-[52%] rounded-[1rem]"
             />
-            <p className="absolute top-[227%] tag left-[52%] rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
+            <p className="absolute top-[153%] tag left-[52%] rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
               Bags
-            </p>
-          </div>
-
-          <div>
-            <img
-              src={accessories}
-              alt="cloths"
-              className="absolute w-[48%] top-[104%] left-[52%] rounded-[1rem]"
-            />
-            <p className="absolute top-[154%] tag left-[52%] rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
-              Accessories
             </p>
           </div>
         </div>

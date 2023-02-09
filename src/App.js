@@ -6,6 +6,7 @@ import {BrowserRouter as Router , Route, Routes} from "react-router-dom"
 import { Profile } from "./components/profile";
 import { Sell } from "./components/sell";
 import { Saved } from "./components/saved";
+import { ClothesPage } from "./components/clothesPage";
 
 
 
@@ -20,6 +21,7 @@ function App() {
 <Route path="/profile" element={<Profile/>}/>
 <Route path="/sell" element={<Sell/>}/>
 <Route path="/saved" element={<Saved/>}/>
+<Route path="/clothes" element={<ClothesPage/>}/>
         </Routes>
       </Router>
     </div>
