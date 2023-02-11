@@ -1,10 +1,8 @@
 export function EcommerceCard (props) {
     const {post} = props
-
-    console.log(post.title)
-    return ( <div className="border">
+    return ( <div className="border w-[45%]">
 <div>
-<img src={post.images} alt="Product" className="w-[200px]"/>
+<img src={post.images} alt="Product" className="w-[300px] h-[300px]"/>
 </div>
 
 <div>

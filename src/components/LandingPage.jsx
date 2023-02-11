@@ -5,8 +5,14 @@ import sneakers from "../assets/images/sneakers.jpg";
 import womencloth from "../assets/images/women-cloth.png";
 import accessories from "../assets/images/accessories.png";
 import { Link } from "react-router-dom";
+import {  SetProduct } from "../App";
+import { useContext } from "react";
 
 export function LandingPage() {
+    
+      const setProducts = useContext(SetProduct);
+
+
   return (
     <div>
       <div className="flex justify-between px-6 py-4">
@@ -92,7 +98,9 @@ export function LandingPage() {
       <div className="flex flex-col items-center">
         <div className="w-[90%] grid-cols-2 gap-x-4	 grid relative">
           <Link to="/clothes">
-          <div className="relative">
+          <div className="relative" onClick={() => {
+            setProducts("Clothes")
+          }}>
             <img src={womencloth} alt="cloths" className="rounded-[1rem]" />
             <p className="absolute top-[78%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
               Clothes
@@ -100,14 +108,21 @@ export function LandingPage() {
           </div>
           </Link>
 
-          <div>
+         <Link to="/Clothes">
+         <div onClick={() => {
+            setProducts("Accessories")
+          }}>
             <img src={accessories} alt="cloths" className="rounded-[1rem]" />
             <p className="absolute top-[62%] left-[52%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
               Accessories
             </p>
           </div>
+         </Link>
 
-          <div>
+         <Link to="/Clothes">
+         <div onClick={() => {
+            setProducts("Shoes")
+          }}>
             <img
               src={sneakers}
               alt="cloths"
@@ -117,8 +132,12 @@ export function LandingPage() {
               Sneakers
             </p>
           </div>
+         </Link>
 
-          <div>
+        <Link to="/Clothes">
+        <div onClick={() => {
+            setProducts("Hair")
+          }}>
             <img
               src={hair}
               alt="cloths"
@@ -128,8 +147,13 @@ export function LandingPage() {
               Hair
             </p>
           </div>
+        </Link>
 
-          <div>
+         
+<Link to="/Clothes">
+<div onClick={() => {
+            setProducts("Bags")
+          }}>
             <img
               src={bags}
               alt="cloths"
@@ -139,6 +163,8 @@ export function LandingPage() {
               Bags
             </p>
           </div>
+</Link>
+
         </div>
       </div>
       <div className="mt-[100%]">
