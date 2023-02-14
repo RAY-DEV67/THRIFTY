@@ -44,3 +44,15 @@ body{
 .profile-details:hover{
   color: rgb(170, 54, 124);
 }
+.overlay{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0%;
+}
+
+.showNav{
+  transition: transform 1s ease-in-out;
+  background-color:  #fffafa;
+}

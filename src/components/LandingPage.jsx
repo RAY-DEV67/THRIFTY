@@ -7,6 +7,7 @@ import accessories from "../assets/images/accessories.png";
 import { Link } from "react-router-dom";
 import {  SetProduct } from "../App";
 import { useContext } from "react";
+import { Topnav } from "./topnav";
 
 export function LandingPage() {
     
@@ -15,54 +16,8 @@ export function LandingPage() {
 
   return (
     <div>
-      <div className="flex justify-between px-6 py-4">
-        <svg
-          width="35px"
-          height="35px"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            {" "}
-            <g id="style=linear">
-              {" "}
-              <g id="menu-strawberry">
-                {" "}
-                <path
-                  id="vector"
-                  d="M3 6H21"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                ></path>{" "}
-                <path
-                  id="vector_2"
-                  d="M5 12H19"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                ></path>{" "}
-                <path
-                  id="vector_3"
-                  d="M7 18H17"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                ></path>{" "}
-              </g>{" "}
-            </g>{" "}
-          </g>
-        </svg>
-        <p>LOGO</p>
-      </div>
-      <div className="flex flex-col items-center">
+<Topnav/>
+<div className="flex flex-col items-center">
         <div className="w-[90%]">
           <p className="text-2xl">Welcome</p>
           <p className="text-4xl my-2 font-bold">Thrift Shopper</p>
@@ -99,7 +54,7 @@ export function LandingPage() {
         <div className="w-[90%] grid-cols-2 gap-x-4	 grid relative">
           <Link to="/clothes">
           <div className="relative" onClick={() => {
-            setProducts("Clothes")
+            setProducts("Cloths")
           }}>
             <img src={womencloth} alt="cloths" className="rounded-[1rem]" />
             <p className="absolute top-[78%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">

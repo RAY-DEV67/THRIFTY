@@ -1,6 +1,13 @@
+// import { useState, useEffect } from "react";
+// import ReactPaginate from "react-paginate"
+
 export function EcommerceCard (props) {
     const {post} = props
-    return ( <div className="border w-[45%]">
+
+
+    return ( 
+    
+    <div className="border w-[45%]">
 <div>
 <img src={post.images} alt="Product" className="w-[300px] h-[300px]"/>
 </div>
@@ -20,9 +27,10 @@ export function EcommerceCard (props) {
 <div>
 <h1>{post.gender}'s</h1>
 </div>
+    
 
 
-
-    </div> );
+    </div> 
+     );
 }
 

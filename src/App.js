@@ -11,6 +11,8 @@ import { useState } from "react";
 import { FAQ } from "./components/faqpage";
 import { Invite } from "./components/invitepage";
 import { Notifications } from "./components/notificationPage";
+import { ContactUs } from "./components/contactUsPage";
+import { PrivacyPolicy } from "./components/privacyPolicy";
 
 export const Product = React.createContext();
 export const SetProduct = React.createContext();
@@ -34,6 +36,8 @@ function App() {
               <Route path="/FAQ" element={<FAQ />} />
               <Route path="/Invite Friends" element={<Invite />} />
               <Route path="/Notifications" element={<Notifications />} />
+              <Route path="/Contact Us" element={<ContactUs />} />
+              <Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
             </Routes>
           </Router>
         </SetProduct.Provider>

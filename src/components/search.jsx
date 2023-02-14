@@ -1,52 +1,9 @@
+import { Topnav } from "./topnav";
+
 export function Search() {
     return ( <div>
-        <div className="flex justify-between px-6 py-4">
-        <svg
-          width="35px"
-          height="35px"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            {" "}
-            <g id="style=linear">
-              {" "}
-              <g id="menu-strawberry">
-                {" "}
-                <path
-                  id="vector"
-                  d="M3 6H21"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                ></path>{" "}
-                <path
-                  id="vector_2"
-                  d="M5 12H19"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                ></path>{" "}
-                <path
-                  id="vector_3"
-                  d="M7 18H17"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                ></path>{" "}
-              </g>{" "}
-            </g>{" "}
-          </g>
-        </svg>
-        <p>LOGO</p>
-      </div>
+      <Topnav/>
+
       <div className="flex flex-col items-center relative">
         <input
           type="text"
@@ -73,7 +30,6 @@ export function Search() {
           </g>
         </svg>
       </div>
-      
     </div> );
 }
 
