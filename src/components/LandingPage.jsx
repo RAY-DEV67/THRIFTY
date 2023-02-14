@@ -5,19 +5,17 @@ import sneakers from "../assets/images/sneakers.jpg";
 import womencloth from "../assets/images/women-cloth.png";
 import accessories from "../assets/images/accessories.png";
 import { Link } from "react-router-dom";
-import {  SetProduct } from "../App";
+import { SetProduct } from "../App";
 import { useContext } from "react";
 import { Topnav } from "./topnav";
 
 export function LandingPage() {
-    
-      const setProducts = useContext(SetProduct);
-
+  const setProducts = useContext(SetProduct);
 
   return (
     <div>
-<Topnav/>
-<div className="flex flex-col items-center">
+      <Topnav />
+      <div className="flex flex-col items-center">
         <div className="w-[90%]">
           <p className="text-2xl">Welcome</p>
           <p className="text-4xl my-2 font-bold">Thrift Shopper</p>
@@ -53,73 +51,82 @@ export function LandingPage() {
       <div className="flex flex-col items-center">
         <div className="w-[90%] grid-cols-2 gap-x-4	 grid relative">
           <Link to="/clothes">
-          <div className="relative" onClick={() => {
-            setProducts("Cloths")
-          }}>
-            <img src={womencloth} alt="cloths" className="rounded-[1rem]" />
-            <p className="absolute top-[78%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
-              Clothes
-            </p>
-          </div>
+            <div
+              className="relative"
+              onClick={() => {
+                setProducts("Cloths");
+              }}
+            >
+              <img src={womencloth} alt="cloths" className="rounded-[1rem]" />
+              <p className="absolute top-[78%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
+                Clothes
+              </p>
+            </div>
           </Link>
 
-         <Link to="/Clothes">
-         <div onClick={() => {
-            setProducts("Accessories")
-          }}>
-            <img src={accessories} alt="cloths" className="rounded-[1rem]" />
-            <p className="absolute top-[62%] left-[52%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
-              Accessories
-            </p>
-          </div>
-         </Link>
+          <Link to="/Clothes">
+            <div
+              onClick={() => {
+                setProducts("Accessories");
+              }}
+            >
+              <img src={accessories} alt="cloths" className="rounded-[1rem]" />
+              <p className="absolute top-[62%] left-[52%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
+                Accessories
+              </p>
+            </div>
+          </Link>
 
-         <Link to="/Clothes">
-         <div onClick={() => {
-            setProducts("Shoes")
-          }}>
-            <img
-              src={sneakers}
-              alt="cloths"
-              className="absolute w-[48%] top-[105%] rounded-[1rem]"
-            />
-            <p className="absolute top-[166%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
-              Sneakers
-            </p>
-          </div>
-         </Link>
+          <Link to="/Clothes">
+            <div
+              onClick={() => {
+                setProducts("Shoes");
+              }}
+            >
+              <img
+                src={sneakers}
+                alt="cloths"
+                className="absolute w-[48%] top-[105%] rounded-[1rem]"
+              />
+              <p className="absolute top-[166%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
+                Sneakers
+              </p>
+            </div>
+          </Link>
 
-        <Link to="/Clothes">
-        <div onClick={() => {
-            setProducts("Hair")
-          }}>
-            <img
-              src={hair}
-              alt="cloths"
-              className="absolute w-[51%] left-[-0.35rem] rounded-[1rem] top-[192%]"
-            />
-            <p className="absolute top-[262%] left-0 tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px] ">
-              Hair
-            </p>
-          </div>
-        </Link>
+          <Link to="/Clothes">
+            <div
+              onClick={() => {
+                setProducts("Hair");
+              }}
+            >
+              <img
+                src={hair}
+                alt="cloths"
+                className="absolute w-[51%] left-[-0.35rem] rounded-[1rem] top-[192%]"
+              />
+              <p className="absolute top-[262%] left-0 tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px] ">
+                Hair
+              </p>
+            </div>
+          </Link>
 
-         
-<Link to="/Clothes">
-<div onClick={() => {
-            setProducts("Bags")
-          }}>
-            <img
-              src={bags}
-              alt="cloths"
-              className="absolute w-[48%] top-[90%] left-[52%] rounded-[1rem]"
-            />
-            <p className="absolute top-[153%] tag left-[52%] rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
-              Bags
-            </p>
-          </div>
-</Link>
-
+          <Link to="/Bags">
+            <div
+              onClick={() => {
+                setProducts("Bags");
+              }}
+            >
+              <img
+                src={bags}
+                alt="cloths"
+                className="absolute w-[48%] top-[90%] left-[52%] rounded-[1rem]"
+              />
+              <p className="absolute top-[153%] tag left-[52%] rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
+                Bags
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
       <div className="mt-[100%]">
@@ -141,9 +148,11 @@ export function LandingPage() {
       </div>
 
       <div>
-      <h2 className="text-center p-2 mt-[2rem] mb-[2rem] heading">TOP PRODUCTS</h2>
-      <div className="flex flex-col items-center">
-      <div className="flex flex-wrap w-[95%] ml-2 gap-2">
+        <h2 className="text-center p-2 mt-[2rem] mb-[2rem] heading">
+          TOP PRODUCTS
+        </h2>
+        <div className="flex flex-col items-center">
+          <div className="flex flex-wrap w-[95%] ml-2 gap-2">
             <img src={store} alt="store" className="w-[48%]" />
             <img src={store} alt="store" className="w-[48%]" />
             <img src={store} alt="store" className="w-[48%]" />

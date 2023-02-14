@@ -6,13 +6,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Profile } from "./components/profile";
 import { Sell } from "./components/sell";
 import { Saved } from "./components/saved";
-import { ClothesPage } from "./components/clothesPage";
+import { ClothesPage } from "./components/ProductsPage";
 import { useState } from "react";
 import { FAQ } from "./components/faqpage";
 import { Invite } from "./components/invitepage";
 import { Notifications } from "./components/notificationPage";
 import { ContactUs } from "./components/contactUsPage";
 import { PrivacyPolicy } from "./components/privacyPolicy";
+import { BagsPage } from "./components/bagsPage";
 
 export const Product = React.createContext();
 export const SetProduct = React.createContext();
@@ -38,6 +39,7 @@ function App() {
               <Route path="/Notifications" element={<Notifications />} />
               <Route path="/Contact Us" element={<ContactUs />} />
               <Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
+              <Route path="/Bags" element={<BagsPage />} />
             </Routes>
           </Router>
         </SetProduct.Provider>

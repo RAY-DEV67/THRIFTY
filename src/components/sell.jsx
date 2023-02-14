@@ -28,10 +28,11 @@ export function Sell() {
   const [file3, setfile3] = useState("");
   const [url, seturl] = useState("");
 
-  // const handleImageAsFile = (e) => {
-  //   setfile(e.target.file[0])
-  // }
+
 console.log(url)
+
+const [id, setid] = useState(0);
+
   const [values, setvalues] = useState({
     title: "",
     description: "",
@@ -115,10 +116,13 @@ console.log(url)
   };
 
   const upload = async () => {
+    setid(id + 1)
     const docRef = await addDoc(collection(db, values.category), {
       ...values,
+      id: id
     });
-
+    
+    console.log(id)
     if (isfile == null) return;
     seturl("getting link");
     storage
@@ -237,6 +241,15 @@ console.log(url)
                     className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
                   >
                     Hair
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Bags";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Bags
                   </p>
                   <p
                     onClick={() => {
