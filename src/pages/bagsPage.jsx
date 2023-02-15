@@ -1,14 +1,40 @@
 import store from "../assets/images/store.webp";
-import { useState, useEffect } from "react";
+// import { getDocs, collection } from "firebase/firestore";
+import { useState, useEffect, useContext } from "react";
 import db from "../config/firebase";
-import { EcommerceCard } from "./ecommerceCard";
+import { EcommerceCard } from "../components/ecommerceCard";
+import { useNavigate } from "react-router-dom";
+import { SetProduct } from "../App";
+import { TopCard } from "../components/topCard";
+import { Footer } from "../components/footer";
 
 export function BagsPage() {
+  const setProducts = useContext(SetProduct);
+
+  const navigate = useNavigate();
 
   const [clothsList, setclothsList] = useState([]);
+  const [topList, settopList] = useState([]);
 
+  // const topRef = collection(db, "Top-Bags");
 
-  
+  // const getTop = async () => {
+  //   const data = await getDocs(topRef);
+  //   settopList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  // };
+
+  useEffect(() => {
+    db.collection("Top-Bags")
+    .limit(10)
+    .get()
+    .then((collections) => {
+      const cloths = collections.docs.map((cloths) => {
+        return cloths.data();
+      });
+      settopList(cloths);
+    });
+  }, []);
+
   useEffect(() => {
     db.collection("Bags")
       .orderBy("id", "asc")
@@ -21,33 +47,6 @@ export function BagsPage() {
         setclothsList(cloths);
       });
   }, []);
-
-    // const fetchmore = () => {
-    //     setloading(true)
-    //     db.collection(products)
-    //       .orderBy("id", "asc")
-    //       .startAfter(lastDocuments)
-    //       .limit(3)
-    //       .get()
-    //       .then((collections) => {
-    //         const isCollectionEmpty = collections.size === 0;
-    //         if (!isCollectionEmpty) {
-    //           const newcloths = collections.docs.map((cloths) => {
-    //             return cloths.data();
-    //           });
-    //           const lastDoc = collections.docs[collections.docs.length - 1];
-    //           setclothsList((clothsList) => [...clothsList, ...newcloths]);
-    //           setlastDocuments(lastDoc);
-    //           setloading(false)
-    //           // sethasmore(true);
-    //         } else {
-    //           setisEmpty(true);
-    //           sethasmore(false);
-    //         }
-    //         // console.log(clothsList)
-    //       });
-    //   };
-
 
   return (
     <div>
@@ -75,30 +74,42 @@ export function BagsPage() {
           TOP PRODUCTS
         </h2>
         <div className="flex flex-col items-center">
-          <div className="flex flex-wrap w-[95%] ml-2 gap-2">
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
-            <img src={store} alt="store" className="w-[48%]" />
+          <div className="flex flex-wrap gap-3 justify-center">
+            {topList.map((post, index) => {
+              return (
+                <div key={index}>
+                  <TopCard post={post} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
 
       <div>
-      {clothsList.map((post, index) => {
+        <div className="flex justify-between p-2 px-[1.5rem] mt-[2rem] mb-[2rem] heading">
+          <h2>Bags</h2>
+          <p
+            onClick={() => {
+              setProducts("Bags");
+              navigate("/ThriftNg/Bags/All-Bags");
+            }}
+          >
+            See All
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3 justify-center">
+          {clothsList.map((post, index) => {
             return (
               <div key={index}>
                 <EcommerceCard post={post} />
               </div>
             );
           })}
+        </div>
       </div>
+
+      <Footer/>
     </div>
   );
 }

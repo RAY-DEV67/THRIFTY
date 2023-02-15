@@ -5,12 +5,14 @@ import sneakers from "../assets/images/sneakers.jpg";
 import womencloth from "../assets/images/women-cloth.png";
 import accessories from "../assets/images/accessories.png";
 import { Link } from "react-router-dom";
-import { SetProduct } from "../App";
+import {  SetProduct } from "../App";
 import { useContext } from "react";
-import { Topnav } from "./topnav";
+import { Topnav } from "../components/topnav";
+import { Footer } from "../components/footer";
 
 export function LandingPage() {
   const setProducts = useContext(SetProduct);
+  // const products = useContext(Product);
 
   return (
     <div>
@@ -50,7 +52,7 @@ export function LandingPage() {
       </div>
       <div className="flex flex-col items-center">
         <div className="w-[90%] grid-cols-2 gap-x-4	 grid relative">
-          <Link to="/clothes">
+          <Link to="/ThriftNg/Clothes">
             <div
               className="relative"
               onClick={() => {
@@ -64,7 +66,7 @@ export function LandingPage() {
             </div>
           </Link>
 
-          <Link to="/Clothes">
+          <Link to="/ThriftNg/Accessories">
             <div
               onClick={() => {
                 setProducts("Accessories");
@@ -77,7 +79,7 @@ export function LandingPage() {
             </div>
           </Link>
 
-          <Link to="/Clothes">
+          <Link to="/ThriftNg/Shoes">
             <div
               onClick={() => {
                 setProducts("Shoes");
@@ -89,12 +91,12 @@ export function LandingPage() {
                 className="absolute w-[48%] top-[105%] rounded-[1rem]"
               />
               <p className="absolute top-[166%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[48%] text-[12px]">
-                Sneakers
+                Shoes
               </p>
             </div>
           </Link>
 
-          <Link to="/Clothes">
+          <Link to="/ThriftNg/Hair">
             <div
               onClick={() => {
                 setProducts("Hair");
@@ -111,12 +113,8 @@ export function LandingPage() {
             </div>
           </Link>
 
-          <Link to="/Bags">
-            <div
-              onClick={() => {
-                setProducts("Bags");
-              }}
-            >
+          <Link to="/ThriftNg/Bags">
+            <div>
               <img
                 src={bags}
                 alt="cloths"
@@ -168,10 +166,7 @@ export function LandingPage() {
       </div>
 
       {/* FOOTER */}
-      <footer className="pb-[5rem] pt-[2rem] mt-[2rem] flex justify-between px-[2rem] bg-red-300">
-        <p>LOGO</p>
-        <p>BUY MORE PAY LESS!!</p>
-      </footer>
+     <Footer/>
     </div>
   );
 }

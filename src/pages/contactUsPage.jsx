@@ -1,4 +1,4 @@
-import { Topnav } from "./topnav";
+import { Topnav } from "../components/topnav";
 
 export function ContactUs() {
     return ( <div>

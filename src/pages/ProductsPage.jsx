@@ -2,13 +2,14 @@
 // import { db } from "../config/firebase";
 
 import { useState, useContext } from "react";
-import { EcommerceCard } from "./ecommerceCard";
+import { EcommerceCard } from "../components/ecommerceCard";
 import db from "../config/firebase";
-import { Search } from "./search";
+import { Search } from "../components/search";
 import { Product } from "../App";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Footer } from "../components/footer";
 
-export function ClothesPage() {
+export function ProductsPage() {
   const products = useContext(Product);
   // const setProducts = useContext(SetProduct);
 
@@ -93,6 +94,7 @@ export function ClothesPage() {
         {/* <button className="mb-[5rem] border mt-[1rem]">More</button> */}
         {loading ? <p>Chil i dey come</p> : ""}
       </div>
+      <Footer/>
     </div>
   );
 }

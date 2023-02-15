@@ -227,11 +227,47 @@ const [id, setid] = useState(0);
                   <p
                     onClick={() => {
                       setcategories(false);
+                      values.category = "Men-Cloths";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Men-Cloths
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Women-Cloths";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Women-Cloths
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
                       values.category = "Shoes";
                     }}
                     className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
                   >
                     Shoes
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Men-Shoes";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Men-Shoes
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Women-Shoes";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Women-Shoes
                   </p>
                   <p
                     onClick={() => {
@@ -251,6 +287,7 @@ const [id, setid] = useState(0);
                   >
                     Bags
                   </p>
+                  
                   <p
                     onClick={() => {
                       setcategories(false);
@@ -259,6 +296,69 @@ const [id, setid] = useState(0);
                     className="w-[100%] text-center pt-[0.5rem]"
                   >
                     Accesories
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Men-Accessories";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Men-Accessories
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "W0men-Accessories";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Women-Accessories
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Top-Bags";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Top-Bags
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Top-Cloths";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Top-Cloths
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Top-Hair";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Top-Hair
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Top-Accessories";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Top-Accessories
+                  </p>
+                  <p
+                    onClick={() => {
+                      setcategories(false);
+                      values.category = "Top-Shoes";
+                    }}
+                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
+                  >
+                    Top-Shoes
                   </p>
                   {/* <p className="w-[100%] text-center pt-[0.5rem]">Accesories</p> */}
                 </div>
