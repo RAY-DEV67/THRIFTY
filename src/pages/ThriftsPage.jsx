@@ -4,13 +4,10 @@ import db from "../config/firebase";
 import { Search } from "../components/search";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Footer } from "../components/footer";
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
-export function ProductsPage() {
-  const {product} = useParams()
-  const navigate = useNavigate();
+export function ThriftPage() {
+  
 
   const [clothsList, setclothsList] = useState([]);
   const [lastDocuments, setlastDocuments] = useState(null);
@@ -18,28 +15,30 @@ export function ProductsPage() {
   const [hasmore, sethasmore] = useState(true);
   const [loading, setloading] = useState(false);
 
+  console.log(loading)
   console.log(isEmpty)
   useEffect(() => {
     db.collection("Products")
-    .where("category", "==", product)
+    .where("condition", "==", "Thrift")
       .limit(10)
       .get()
       .then((collections) => {
         const cloths = collections.docs.map((cloths) => {
-          return { ...cloths.data(), id: cloths.id };
+          return cloths.data();
         });
         const lastDoc = collections.docs[collections.docs.length - 1];
         setclothsList(cloths);
         setlastDocuments(lastDoc);
+        console.log(lastDoc);
       });
-  }, [product]);
+  }, []);
 
 
 
   const fetchmore = () => {
     setloading(true)
     db.collection("Products")
-    .where("category", "==", product)
+    .where("condition", "==", "Thrift")
       .startAfter(lastDocuments)
       .limit(20)
       .get()
@@ -47,7 +46,7 @@ export function ProductsPage() {
         const isCollectionEmpty = collections.size === 0;
         if (!isCollectionEmpty) {
           const newcloths = collections.docs.map((cloths) => {
-            return { ...cloths.data(), id: cloths.id };
+            return cloths.data();
           });
           const lastDoc = collections.docs[collections.docs.length - 1];
           setclothsList((clothsList) => [...clothsList, ...newcloths]);
@@ -77,25 +76,16 @@ export function ProductsPage() {
               <b>Yay! You have seen it all</b>
             </p>
           }
-          className="bg-red-300 mb-[10rem] flex flex-wrap gap-3 justify-center"
+          className="bg-red-300 flex flex-wrap gap-3 justify-center"
         >
           {clothsList.map((post, index) => {
             return (
-              <div
-              key={index}
-              onClick={() => {
-                navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-              }}
-            >
+              <div key={index}>
                 <EcommerceCard post={post} />
               </div>
             );
           })}
         </InfiniteScroll>
-      </div>
-      <div className="flex flex-col items-center">
-        {/* <button className="mb-[5rem] border mt-[1rem]">More</button> */}
-        {loading ? <p>Chil i dey come</p> : ""}
       </div>
       <Footer/>
     </div>

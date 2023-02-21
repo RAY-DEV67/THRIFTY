@@ -4,19 +4,23 @@ import db from "../config/firebase";
 import { Search } from "../components/search";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Footer } from "../components/footer";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
-export function ProductsPage() {
+
+export function GenderPage() {
   const {product} = useParams()
-  const navigate = useNavigate();
+  const {gender} = useParams()
+
+  console.log(gender)
 
   const [clothsList, setclothsList] = useState([]);
   const [lastDocuments, setlastDocuments] = useState(null);
   const [isEmpty, setisEmpty] = useState(false);
   const [hasmore, sethasmore] = useState(true);
   const [loading, setloading] = useState(false);
+
+  const navigate = useNavigate();
 
   console.log(isEmpty)
   useEffect(() => {
@@ -26,11 +30,12 @@ export function ProductsPage() {
       .get()
       .then((collections) => {
         const cloths = collections.docs.map((cloths) => {
-          return { ...cloths.data(), id: cloths.id };
+            return { ...cloths.data(), id: cloths.id };
         });
         const lastDoc = collections.docs[collections.docs.length - 1];
         setclothsList(cloths);
         setlastDocuments(lastDoc);
+        console.log(lastDoc);
       });
   }, [product]);
 
@@ -80,16 +85,18 @@ export function ProductsPage() {
           className="bg-red-300 mb-[10rem] flex flex-wrap gap-3 justify-center"
         >
           {clothsList.map((post, index) => {
-            return (
-              <div
-              key={index}
-              onClick={() => {
-                navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-              }}
-            >
+            if(post.gender === gender)
+           { return (
+            <div
+            key={index}
+            onClick={() => {
+              navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
+            }}
+          >
                 <EcommerceCard post={post} />
               </div>
-            );
+            );}
+            return ""
           })}
         </InfiniteScroll>
       </div>

@@ -26,7 +26,11 @@ export function Sell() {
   const [isfile, setfile1] = useState("");
   const [file2, setfile2] = useState("");
   const [file3, setfile3] = useState("");
+  const [vendorlogo, setvendorlogo] = useState("");
   const [url, seturl] = useState("");
+  const [top, settop] = useState(false);
+
+  settop()
 
 
 console.log(url)
@@ -45,10 +49,13 @@ const [id, setid] = useState(0);
     location: "Location",
     instagram: "",
     twitter: "",
-    // photos:[],
     madeInNigeria: false,
     handmade: false,
     warranty: false,
+    Top: top,
+    brand:"",
+    color:"",
+    vendor: ""
   });
 
   const [errors, seterrors] = useState({});
@@ -117,9 +124,11 @@ const [id, setid] = useState(0);
 
   const upload = async () => {
     setid(id + 1)
-    const docRef = await addDoc(collection(db, values.category), {
+    const docRef = await addDoc(collection(db, "Products"), {
       ...values,
-      id: id
+      useid: id,
+      userId: user?.uid,
+      searchKeywords: `${values.title.toLowerCase()} ${values.description.toLowerCase()} ${values.brand.toLowerCase()} ${values.vendor?.toLowerCase()}`.split(" ")
     });
     
     console.log(id)
@@ -137,7 +146,6 @@ const [id, setid] = useState(0);
             updateDoc(docRef, {
               images: imgUrl,
               username: user?.displayName,
-              userId: user?.uid,
             });
           });
       });
@@ -163,7 +171,7 @@ const [id, setid] = useState(0);
     seturl("getting link");
     storage
       .ref("/images/" + file3.name)
-      .put(file2)
+      .put(file3)
       .on("state_changed", alert("success"), alert, () => {
         storage
           .ref("images")
@@ -172,11 +180,26 @@ const [id, setid] = useState(0);
           .then((imgUrl) => {
             updateDoc(docRef, {
               images3: imgUrl,
-              username: user?.displayName,
-              userId: user?.uid,
             });
           });
       });
+
+      if (vendorlogo == null) return;
+      seturl("getting link");
+      storage
+        .ref("/images/" + vendorlogo.name)
+        .put(vendorlogo)
+        .on("state_changed", alert("success"), alert, () => {
+          storage
+            .ref("images")
+            .child(vendorlogo.name)
+            .getDownloadURL()
+            .then((imgUrl) => {
+              updateDoc(docRef, {
+                vendorlogo: imgUrl,
+              });
+            });
+        });
   };
 
   const handleSubmit = async (event) => {
@@ -227,47 +250,11 @@ const [id, setid] = useState(0);
                   <p
                     onClick={() => {
                       setcategories(false);
-                      values.category = "Men-Cloths";
-                    }}
-                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
-                  >
-                    Men-Cloths
-                  </p>
-                  <p
-                    onClick={() => {
-                      setcategories(false);
-                      values.category = "Women-Cloths";
-                    }}
-                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
-                  >
-                    Women-Cloths
-                  </p>
-                  <p
-                    onClick={() => {
-                      setcategories(false);
                       values.category = "Shoes";
                     }}
                     className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
                   >
                     Shoes
-                  </p>
-                  <p
-                    onClick={() => {
-                      setcategories(false);
-                      values.category = "Men-Shoes";
-                    }}
-                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
-                  >
-                    Men-Shoes
-                  </p>
-                  <p
-                    onClick={() => {
-                      setcategories(false);
-                      values.category = "Women-Shoes";
-                    }}
-                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
-                  >
-                    Women-Shoes
                   </p>
                   <p
                     onClick={() => {
@@ -293,74 +280,38 @@ const [id, setid] = useState(0);
                       setcategories(false);
                       values.category = "Accessories";
                     }}
-                    className="w-[100%] text-center pt-[0.5rem]"
+                    className="w-[100%] border-b-[2px] pb-[0.5rem] text-center pt-[0.5rem]"
                   >
                     Accesories
                   </p>
                   <p
                     onClick={() => {
                       setcategories(false);
-                      values.category = "Men-Accessories";
+                      values.category = "Skin-Care";
                     }}
                     className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
                   >
-                    Men-Accessories
+                    Skin Care
                   </p>
                   <p
                     onClick={() => {
                       setcategories(false);
-                      values.category = "W0men-Accessories";
+                      values.category = "Pastries";
                     }}
                     className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
                   >
-                    Women-Accessories
+                    Pastries
                   </p>
                   <p
                     onClick={() => {
                       setcategories(false);
-                      values.category = "Top-Bags";
+                      values.category = "Fragrances";
                     }}
                     className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
                   >
-                    Top-Bags
+                    Fragrances
                   </p>
-                  <p
-                    onClick={() => {
-                      setcategories(false);
-                      values.category = "Top-Cloths";
-                    }}
-                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
-                  >
-                    Top-Cloths
-                  </p>
-                  <p
-                    onClick={() => {
-                      setcategories(false);
-                      values.category = "Top-Hair";
-                    }}
-                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
-                  >
-                    Top-Hair
-                  </p>
-                  <p
-                    onClick={() => {
-                      setcategories(false);
-                      values.category = "Top-Accessories";
-                    }}
-                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
-                  >
-                    Top-Accessories
-                  </p>
-                  <p
-                    onClick={() => {
-                      setcategories(false);
-                      values.category = "Top-Shoes";
-                    }}
-                    className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
-                  >
-                    Top-Shoes
-                  </p>
-                  {/* <p className="w-[100%] text-center pt-[0.5rem]">Accesories</p> */}
+               
                 </div>
               ) : (
                 ""
@@ -763,11 +714,17 @@ const [id, setid] = useState(0);
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem]"
                 type="text"
                 placeholder="BRAND*"
+                value={values.brand}
+                name="brand"
+                  onChange={handleChange}
               />
               <input
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem]"
                 type="text"
                 placeholder="COLOR*"
+                value={values.color}
+                name="color"
+                  onChange={handleChange}
               />
 
               <div
@@ -795,11 +752,11 @@ const [id, setid] = useState(0);
                   <p
                     onClick={() => {
                       setcondition(false);
-                      values.condition = "Used";
+                      values.condition = "Thrift";
                     }}
                     className="w-[100%] border-t-[1.5px] text-center pt-[0.5rem]"
                   >
-                    Used
+                    Thrift
                   </p>
                 </div>
               ) : (
@@ -931,6 +888,26 @@ const [id, setid] = useState(0);
                 ""
               )}
 
+<input
+                className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem]"
+                type="text"
+                placeholder="Name of Vendor*"
+                name="vendor"
+                onChange={handleChange}
+                value={values.vendor}
+                // {...register("title")}
+              />
+               <input
+                      className="mt-[1rem]"
+                      multiple
+                      type="file"
+                      accept="image/png , image/jpg"
+                      name="vendorLogo"
+                      onChange={(event) => {
+                        setvendorlogo(event.target.files[0]);
+                      }}
+                    />
+
               <h2 className="mt-[1rem]">Made in Nigeria</h2>
               <div>
                 <input
@@ -971,6 +948,24 @@ const [id, setid] = useState(0);
                   }}
                 />
                 <label for="MIN">YES</label>
+
+                
+              </div>
+
+              <h2 className="mt-[1rem]">Top Product</h2>
+              <div>
+                <input
+                  type="checkbox"
+                  id="Top"
+                  name="Top"
+                  className="mr-[0.5rem]"
+                  onChange={() => {
+                    values.Top = !values.Top;
+                  }}
+                />
+                <label for="MIN">YES</label>
+
+                
               </div>
 
               <textarea

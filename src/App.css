@@ -51,8 +51,44 @@ body{
   position: fixed;
   top: 0%;
 }
+.slider{
+  height: 250px;
+  margin: auto;
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.slide-track{
+  display:flex;
+  width: calc(250px * 10);
+  animation: scroll 40s linear infinite;
+}
+@keyframes scroll{
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(calc(-250px * 5));
+  }
+}
+.slide-track:hover{
+  animation-play-state: paused;
+}
+.slide{
+  /* height: 200px; */
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  perspective: 100px;
+}
 
 .showNav{
   transition: transform 1s ease-in-out;
   background-color:  #fffafa;
+}
+.mobile-nav{
+overflow-y: scroll;
 }

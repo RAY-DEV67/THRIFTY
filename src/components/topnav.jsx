@@ -3,6 +3,39 @@ import { Link } from "react-router-dom";
 
 export function Topnav() {
   const [showNav, setshowNav] = useState(false);
+  const [Stores, setStores] = useState(false);
+  const [accessoriesStores, setaccessoriesStores] = useState(false);
+  const [hairStores, sethairStores] = useState(false);
+  const [shoesStores, setshoesStores] = useState(false);
+  const [bagsStores, setbagsStores] = useState(false);
+  const [skinCareStores, setskinCareStores] = useState(false);
+  const [pastriesStores, setpastriesStores] = useState(false);
+  const [fragranceStores, setfragranceStores] = useState(false);
+
+  const setCloths = () => {
+    setStores(!Stores)
+  }
+  const setaccessories = () => {
+    setaccessoriesStores(!accessoriesStores)
+  }
+  const sethair = () => {
+    sethairStores(!hairStores)
+  }
+  const setshoes = () => {
+    setshoesStores(!shoesStores)
+  }
+  const setbags = () => {
+    setbagsStores(!bagsStores)
+  }
+  const setskinCare = () => {
+    setskinCareStores(!skinCareStores)
+  }
+  const setpastries = () => {
+    setpastriesStores(!pastriesStores)
+  }
+  const setfragrance = () => {
+    setfragranceStores(!fragranceStores)
+  }
 
   return (
     <div>
@@ -72,7 +105,7 @@ export function Topnav() {
       <div
         className={
           showNav
-            ? "w-[70%] h-[100vh] fixed top-0 z-[39] showNav translate-x-[0%]"
+            ? "w-[70%] mobile-nav h-[100vh] fixed top-0 z-[39] showNav translate-x-[0%]"
             : "w-[70%] fixed top-0 z-[39] h-[100vh] showNav translate-x-[-100%]"
         }
       >
@@ -157,7 +190,9 @@ export function Topnav() {
                 </g>{" "}
               </g>
             </svg>
+            <Link to="/ThriftNg/Category/Cloths/Male">
             <p>Men Clothing</p>
+            </Link>
           </div>
           <div className="mb-[1rem] flex">
             <svg
@@ -181,7 +216,9 @@ export function Topnav() {
                 <path d="M247.116,50.68l-5.156-7.169c-0.158-8.142-2.77-16.734-8.29-24.386c-6.39-8.881-19.699-18.16-32.468-19.073 c-0.288-0.016-4.986-0.033-12.237-0.049c-2.469-0.005-4.587,1.733-5.07,4.155c-3.271,16.403-17.605,28.795-34.97,28.795 c-17.366,0-31.709-12.392-34.973-28.796c-0.481-2.417-2.604-4.161-5.068-4.157c-7.196,0.013-11.875,0.037-12.237,0.052 c-12.74,0.91-26.065,10.175-32.468,19.073c-5.509,7.651-8.132,16.244-8.289,24.386l-5.146,7.169c-0.806,1.1-1.139,2.485-0.913,3.84 c0.225,1.366,0.972,2.563,2.082,3.369l31.025,22.314c2.308,1.679,5.538,1.159,7.209-1.159l4.704-6.551 c5.659,14.137,8.122,29.256,7.271,44.275c-12.198,25.747-20.33,60.831-20.33,99.506c0,15.275,9.307,51.939,16.072,75.721 c0.986,3.466,4.153,5.863,7.756,5.863h86.612c3.608,0,6.769-2.392,7.756-5.862c6.767-23.782,16.082-60.445,16.082-75.721 c0-38.647-8.121-73.709-20.302-99.451c-0.859-15.031,1.599-30.16,7.252-44.3l4.694,6.521c1.669,2.318,4.891,2.838,7.199,1.159 l31.034-22.314c1.11-0.805,1.857-2.003,2.083-3.369C248.246,53.165,247.921,51.781,247.116,50.68z"></path>{" "}
               </g>
             </svg>
+            <Link to="/ThriftNg/Category/Cloths/Female">
             <p>Women Clothing</p>
+            </Link>
           </div>
           <div className="flex">
             <svg
@@ -230,7 +267,9 @@ export function Topnav() {
                 ></path>{" "}
               </g>
             </svg>
+            <Link to="/ThriftNg/Accessories">
             <p>Accessories</p>
+            </Link>
           </div>
           <div className="my-[1rem] flex">
             <svg
@@ -289,7 +328,9 @@ export function Topnav() {
                 </g>{" "}
               </g>
             </svg>
+            <Link to="/ThriftNg/Hair">
             <p>Hair</p>
+            </Link>
           </div>
           <div className="flex">
             <svg
@@ -367,14 +408,15 @@ export function Topnav() {
                 </g>{" "}
               </g>
             </svg>
+            <Link to="/ThriftNg/Shoes">
             <p>Shoes</p>
+            </Link>
           </div>
           <div className="my-[1rem] flex">
             <svg
               viewBox="0 0 1024 1024"
               height="20px"
               width="20px"
-              className="mr-[1rem]"
               fill="#000000"
               class="icon"
               version="1.1"
@@ -401,7 +443,9 @@ export function Topnav() {
                 ></path>
               </g>
             </svg>
-            <p>Bags</p>
+            <Link to="/ThriftNg/Bags">
+            <p className="ml-[1rem]">Bags</p>
+            </Link>
           </div>
           <div className="flex">
             <svg
@@ -452,7 +496,9 @@ export function Topnav() {
                 </g>{" "}
               </g>
             </svg>
+            <Link to="/ThriftNg/Skin-Care">
             <p>Skin Care</p>
+            </Link>
           </div>
           <div className="my-[1rem] flex">
             <svg
@@ -483,7 +529,9 @@ export function Topnav() {
                 </g>{" "}
               </g>
             </svg>
+            <Link to="/ThriftNg/Pastries">
             <p>Pastries</p>
+            </Link>
           </div>
           <div className="flex">
             <svg
@@ -514,11 +562,91 @@ export function Topnav() {
                 </g>{" "}
               </g>
             </svg>
-            <p>Fragrances</p>
+            <Link to="/ThriftNg/Fragrance">
+            <p>Fragrance</p>
+            </Link>
           </div>
+          <Link to="/ThriftNg/Thrifts"> 
           <div className="my-[1rem]">
             <p>Thrift</p>
           </div>
+          </Link>
+        </div>
+        <div className="ml-[1rem] border-b">
+          <h2 className="my-[1rem]">Official Stores</h2>
+          <div onClick={setCloths} >
+            <p>Clothing</p>
+          </div>
+          {Stores ?  <div>
+            <p>Clothstore 1</p>
+            <p>Clothstore 2</p>
+            <p>Clothstore 3</p>
+            <p>Clothstore 4</p>
+          </div> : ""}
+         
+          <div className="my-[1rem]" onClick={setaccessories}>
+            <p>Accessories</p>
+          </div>
+          {accessoriesStores ?  <div>
+            <p>Accessoriesstore 1</p>
+            <p>AccessoriesStore 2</p>
+            <p>AccessoriesStore 3</p>
+            <p>AccessoriesStore 4</p>
+          </div> : ""}
+          <div onClick={sethair}>
+            <p>Hair</p>
+          </div>
+          {hairStores ?  <div>
+            <p>Hairstore 1</p>
+            <p>Hairstore 2</p>
+            <p>Hairstore 3</p>
+            <p>Hairstore 4</p>
+          </div> : ""}
+          <div className="my-[1rem]" onClick={setshoes}>
+            <p>Shoes</p>
+          </div>
+          {shoesStores ?  <div>
+            <p>Shoesstore 1</p>
+            <p>Shoesstore 2</p>
+            <p>Shoesstore 3</p>
+            <p>Shoesstore 4</p>
+          </div> : ""}
+          <div onClick={setbags}>
+            <p>Bags</p>
+          </div>
+          {bagsStores ?  <div>
+            <p>Bagsstore 1</p>
+            <p>Bagsstore 2</p>
+            <p>Bagsstore 3</p>
+            <p>Bagsstore 4</p>
+          </div> : ""}
+          <div className="my-[1rem]" onClick={setskinCare}>
+            <p>Skin Care</p>
+          </div>
+          {skinCareStores ?  <div>
+            <p>SkinCarestore 1</p>
+            <p>SkinCarestore 2</p>
+            <p>SkinCarestore 3</p>
+            <p>SkinCarestore 4</p>
+          </div> : ""}
+          <div onClick={setpastries}>
+            <p>Pastries</p>
+          </div>
+          {pastriesStores ?  <div>
+            <p>Pastriesstore 1</p>
+            <p>Pastriesstore 2</p>
+            <p>Pastriesstore 3</p>
+            <p>Pastriesstore 4</p>
+          </div> : ""}
+          <div className="my-[1rem]" onClick={setfragrance}>
+            <p>Fragrance</p>
+          </div>
+          {fragranceStores ?  <div>
+            <p>Fragrancestore 1</p>
+            <p>Fragrancestore 2</p>
+            <p>Fragrancestore 3</p>
+            <p>Fragrancestore 4</p>
+          </div> : ""}
         </div>
         <div className="ml-[1rem]">
           <Link to="/sell">

@@ -3,33 +3,30 @@ import { useState, useEffect, useContext } from "react";
 import db from "../config/firebase";
 import { EcommerceCard } from "../components/ecommerceCard";
 import { useNavigate } from "react-router-dom";
-import { SetProduct } from "../App"
+import { SetProduct , SetId} from "../App"
 import { TopCard } from "../components/topCard";
 // import { getDocs, collection } from "firebase/firestore";
 import { Footer } from "../components/footer";
+import { Topnav } from "../components/topnav";
 
 export function HairPage() {
     const setProducts = useContext(SetProduct);
+    const setProductsId = useContext(SetId);
     const navigate = useNavigate()
 
   const [clothsList, setclothsList] = useState([]);
 
   const [topList, settopList] = useState([]);
 
-  // const topRef = collection(db, "Top-Hair");
-
-  // const getTop = async () => {
-  //   const data = await getDocs(topRef);
-  //   settopList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  // };
 
   useEffect(() => {
-    db.collection("Top-Hair")
+    db.collection("Products")
+    .where("category", "==", "Hair")
       .limit(10)
       .get()
       .then((collections) => {
         const cloths = collections.docs.map((cloths) => {
-          return cloths.data();
+          return { ...cloths.data(), id: cloths.id };
         });
         settopList(cloths);
       });
@@ -37,13 +34,13 @@ export function HairPage() {
 
   
   useEffect(() => {
-    db.collection("Hair")
-      .orderBy("title", "asc")
+    db.collection("Products")
+    .where("category", "==", "Hair")
       .limit(10)
       .get()
       .then((collections) => {
         const cloths = collections.docs.map((cloths) => {
-          return cloths.data();
+          return { ...cloths.data(), id: cloths.id };
         });
         setclothsList(cloths);
       });
@@ -51,9 +48,10 @@ export function HairPage() {
 
   return (
     <div>
+      <Topnav/>
       <h1 className="p-[1rem] border-y text-center mb-[1rem]">Hair</h1>
       <div className="mt-[1rem]">
-        <h2 className="text-center heading p-2 mb-[2rem]">OFFICIAL STORES</h2>
+        <h2 className="text-center heading p-2 mb-[2rem]">OFFICIAL HAIR STORES</h2>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap w-[95%] ml-2 gap-2">
             <img src={store} alt="store" className="w-[48%]" />
@@ -77,11 +75,14 @@ export function HairPage() {
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-3 justify-center">
             {topList.map((post, index) => {
+             if(post.Top){
               return (
-                <div key={index}>
+                <div key={index} onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Top-Hair")}}>
                   <TopCard post={post} />
                 </div>
               );
+             }
+             return ""
             })}
           </div>
         </div>
@@ -99,7 +100,7 @@ navigate("/ThriftNg/Hair/All-Hairs")
 <div  className="flex flex-wrap gap-3 justify-center">
 {clothsList.map((post, index) => {
             return (
-              <div key={index}>
+              <div key={index} onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Hair")} }>
                 <EcommerceCard post={post} />
               </div>
             );

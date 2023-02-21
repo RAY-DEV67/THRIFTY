@@ -1,11 +1,9 @@
 export function TopCard(props) {
     const {post} = props
-
-
     return ( 
     
-    <div className="border">
-<div>
+    <div className="border" >
+<div className="relative">
 <img src={post.images} alt="Product" className="w-[230px] h-[150px]"/>
 </div>
 

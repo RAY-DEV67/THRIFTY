@@ -1,5 +1,4 @@
 import store from "../assets/images/store.webp";
-// import { getDocs, collection } from "firebase/firestore";
 import { useState, useEffect, useContext } from "react";
 import db from "../config/firebase";
 import { EcommerceCard } from "../components/ecommerceCard";
@@ -9,38 +8,32 @@ import { TopCard } from "../components/topCard";
 import { Footer } from "../components/footer";
 import { Topnav } from "../components/topnav";
 
-export function BagsPage() {
+export function SkinCarePage() {
   const setProducts = useContext(SetProduct);
   const setProductsId = useContext(SetId);
+  // const products = useContext(Product);
 
   const navigate = useNavigate();
 
   const [clothsList, setclothsList] = useState([]);
   const [topList, settopList] = useState([]);
 
-  // const topRef = collection(db, "Top-Bags");
-
-  // const getTop = async () => {
-  //   const data = await getDocs(topRef);
-  //   settopList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  // };
-
   useEffect(() => {
     db.collection("Products")
-    .where("category", "==", "Bags")
-    .limit(10)
-    .get()
-    .then((collections) => {
-      const cloths = collections.docs.map((cloths) => {
-         return { ...cloths.data(), id: cloths.id };
+    .where("category", "==", "Skin-Care")
+      .limit(10)
+      .get()
+      .then((collections) => {
+        const cloths = collections.docs.map((cloths) => {
+          return { ...cloths.data(), id: cloths.id };
+        });
+        settopList(cloths);
       });
-      settopList(cloths);
-    });
   }, []);
 
   useEffect(() => {
     db.collection("Products")
-    .where("category", "==", "Bags")
+      .where("category", "==", "Skin-Care")
       .limit(10)
       .get()
       .then((collections) => {
@@ -48,15 +41,18 @@ export function BagsPage() {
           return { ...cloths.data(), id: cloths.id };
         });
         setclothsList(cloths);
+        // console.log(clothsList);
       });
   }, []);
 
   return (
     <div>
-      <Topnav/>
-      <h1 className="p-[1rem] border-y text-center mb-[1rem]">Bags</h1>
+      <Topnav />
+      <h1 className="p-[1rem] border-y text-center mb-[1rem]">Skin Care</h1>
       <div className="mt-[1rem]">
-        <h2 className="text-center heading p-2 mb-[2rem]">OFFICIAL BAG STORES</h2>
+        <h2 className="text-center heading p-2 mb-[2rem]">
+          OFFICIAL SKIN CARE STORES
+        </h2>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap w-[95%] ml-2 gap-2">
             <img src={store} alt="store" className="w-[48%]" />
@@ -80,14 +76,20 @@ export function BagsPage() {
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-3 justify-center">
             {topList.map((post, index) => {
-            if(post.Top){
+             if(post.Top){
               return (
-                <div key={index} onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Top-Bags")}}>
-                  <TopCard post={post} />
+                <div
+                  key={index}
+                  onClick={() => {
+                    setProductsId(post.id);
+                    navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
+                  }}
+                >
+                  <TopCard post={post} key={index} />
                 </div>
               );
-            }
-            return ""
+             }
+             return ""
             })}
           </div>
         </div>
@@ -95,11 +97,10 @@ export function BagsPage() {
 
       <div>
         <div className="flex justify-between p-2 px-[1.5rem] mt-[2rem] mb-[2rem] heading">
-          <h2>Bags</h2>
+          <h2>Skin Care</h2>
           <p
             onClick={() => {
-              setProducts("Bags");
-              navigate("/ThriftNg/Bags/All-Bags");
+              navigate("/ThriftNg/Skin-Care/All-Skin-Care");
             }}
           >
             See All
@@ -108,15 +109,21 @@ export function BagsPage() {
         <div className="flex flex-wrap gap-3 justify-center">
           {clothsList.map((post, index) => {
             return (
-              <div key={index} onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Bags")} }>
+              <div
+                key={index}
+                onClick={() => {
+                  setProductsId(post.id);
+                  navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
+                  setProducts("Accessories");
+                }}
+              >
                 <EcommerceCard post={post} />
               </div>
             );
           })}
         </div>
       </div>
-
-      <Footer/>
+      <Footer />
     </div>
   );
 }

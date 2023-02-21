@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { EcommerceCard } from "../components/ecommerceCard";
 import db from "../config/firebase";
@@ -6,10 +7,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Footer } from "../components/footer";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
-export function ProductsPage() {
-  const {product} = useParams()
+export function SearchResult() {
+  const {search} = useParams()
   const navigate = useNavigate();
 
   const [clothsList, setclothsList] = useState([]);
@@ -17,29 +17,41 @@ export function ProductsPage() {
   const [isEmpty, setisEmpty] = useState(false);
   const [hasmore, sethasmore] = useState(true);
   const [loading, setloading] = useState(false);
+  const [results, setresults] = useState([]);
 
   console.log(isEmpty)
+  // const productsRef = db.collection("Products")
+  // const words = search.toLowerCase().split(" ")
+
   useEffect(() => {
-    db.collection("Products")
-    .where("category", "==", product)
-      .limit(10)
-      .get()
-      .then((collections) => {
-        const cloths = collections.docs.map((cloths) => {
-          return { ...cloths.data(), id: cloths.id };
-        });
-        const lastDoc = collections.docs[collections.docs.length - 1];
-        setclothsList(cloths);
-        setlastDocuments(lastDoc);
-      });
-  }, [product]);
+  
+  let unsubscribe;
+    if(search.toLowerCase().split(" ").length > 0){
+      let query = db.collection("Products")
+      query = query.where("searchKeywords", "array-contains-any", search.toLowerCase().split(" ")).limit(10)
+  query.get().then((querySnapshot) => {
+    const productDoc = []
+    querySnapshot.forEach((doc) => {
+      productDoc.push({id: doc.id, ...doc.data()})
+    })
+    setresults(productDoc)
+  })
+    }
+    return () => {
+      if (unsubscribe) {
+        unsubscribe()
+      }
+    }
+  }, [search]);
 
 
+  console.log(results)
 
   const fetchmore = () => {
     setloading(true)
     db.collection("Products")
-    .where("category", "==", product)
+    .where("searchKeywords", "array-contains-any", search.toLowerCase().split(" "))
+      .orderBy("title", "asc")
       .startAfter(lastDocuments)
       .limit(20)
       .get()
@@ -53,19 +65,20 @@ export function ProductsPage() {
           setclothsList((clothsList) => [...clothsList, ...newcloths]);
           setlastDocuments(lastDoc);
           setloading(false)
-          // sethasmore(true);
         } else {
           setisEmpty(true);
           sethasmore(false);
         }
-        // console.log(clothsList)
       });
   };
+
+  // console.log("results" , products)
 
 
   return (
     <div>
       <Search />
+      <p>Search Results</p>
       <div>
         <InfiniteScroll
           dataLength={clothsList.length}
@@ -79,7 +92,9 @@ export function ProductsPage() {
           }
           className="bg-red-300 mb-[10rem] flex flex-wrap gap-3 justify-center"
         >
-          {clothsList.map((post, index) => {
+          {results.map((post, index) => {
+            // if(post.title ?.toLowerCase().includes(search) || post.price ?.toLowerCase().includes(search) || post.category ?.toLowerCase().includes(search) || post.description ?.toLowerCase().includes(search) || post.condition ?.toLowerCase().includes(search) || post.gender ?.toLowerCase().includes(search) || post.location ?.toLowerCase().includes(search)){
+                
             return (
               <div
               key={index}
@@ -87,14 +102,20 @@ export function ProductsPage() {
                 navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
               }}
             >
-                <EcommerceCard post={post} />
-              </div>
-            );
+                  <EcommerceCard post={post} />
+                </div>
+              ); 
+            // }else{
+            //     return (
+            //         <div>
+            //          <p>No results found</p>
+            //         </div>
+            //       ); 
+            // }
           })}
         </InfiniteScroll>
       </div>
       <div className="flex flex-col items-center">
-        {/* <button className="mb-[5rem] border mt-[1rem]">More</button> */}
         {loading ? <p>Chil i dey come</p> : ""}
       </div>
       <Footer/>
