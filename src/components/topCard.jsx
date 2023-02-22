@@ -2,9 +2,9 @@ export function TopCard(props) {
     const {post} = props
     return ( 
     
-    <div className="border" >
+    <div className="topcard" >
 <div className="relative">
-<img src={post.images} alt="Product" className="w-[230px] h-[150px]"/>
+<img src={post.images} alt="Product" className="w-[165px] bg-[#c1f2c1] rounded-[10px] object-contain topimage"/>
 </div>
 
 <div className="ml-[1rem]">
@@ -21,9 +21,6 @@ export function TopCard(props) {
 <h1>{post.location}</h1>
 </div>
 
-<div>
-<h1>{post.gender}'s</h1>
-</div>
 </div>
     
 

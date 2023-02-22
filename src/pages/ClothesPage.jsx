@@ -7,7 +7,6 @@ import { SetProduct , SetId} from "../App"
 import womencloth from "../assets/images/women-cloth.png";
 import mencloth from "../assets/images/men-clothes.jpg";
 import { TopCard } from "../components/topCard";
-// import { getDocs, collection } from "firebase/firestore";
 import { Footer } from "../components/footer";
 import { Topnav } from "../components/topnav";
 
@@ -18,13 +17,14 @@ export function ClothesPage() {
     const navigate = useNavigate()
 
   const [clothsList, setclothsList] = useState([]);
-
+const [error, seterror] = useState();
   const [topList, settopList] = useState([]);
 
   
 
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
     .where("category", "==", "Cloths")
     .limit(10)
     .get()
@@ -34,9 +34,14 @@ export function ClothesPage() {
       });
       settopList(cloths);
     });
+    } catch (err) {
+      seterror(err)
+      console.log(err)
+     }
   }, []);
   
   useEffect(() => {
+   try{
     db.collection("Products")
     .where("category", "==", "Cloths")
       .limit(10)
@@ -47,12 +52,16 @@ export function ClothesPage() {
         });
         setclothsList(cloths);
       });
+   }  catch (err) {
+    seterror(err)
+    console.log(err)
+   }
   }, []);
 
   return (
     <div>
       <Topnav/>
-      <h1 className="p-[1rem] border-y text-center mb-[1rem]">Clothes</h1>
+      <h1 className="p-[1rem] border-y text-center my-[1rem]">Clothes</h1>
       <div className="flex flex-col items-center">
       <div className="flex gap-3 w-[90%]">
       <div
@@ -105,6 +114,7 @@ export function ClothesPage() {
         </h2>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-3 justify-center">
+          {error ? {error} : ""}
             {topList.map((post, index) => {
             if(post.Top){
               return (
@@ -129,6 +139,7 @@ navigate("/ThriftNg/Cloths/All-Clothes")
 
       </div>
 <div  className="flex flex-wrap gap-3 justify-center">
+{error ? {error} : ""}
 {clothsList.map((post, index) => {
             return (
               <div key={index} onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Cloths")} }>

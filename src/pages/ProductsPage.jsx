@@ -20,6 +20,7 @@ export function ProductsPage() {
 
   console.log(isEmpty)
   useEffect(() => {
+    setloading(true)
     db.collection("Products")
     .where("category", "==", product)
       .limit(10)
@@ -31,6 +32,7 @@ export function ProductsPage() {
         const lastDoc = collections.docs[collections.docs.length - 1];
         setclothsList(cloths);
         setlastDocuments(lastDoc);
+        setloading(false)
       });
   }, [product]);
 
@@ -79,6 +81,7 @@ export function ProductsPage() {
           }
           className="bg-red-300 mb-[10rem] flex flex-wrap gap-3 justify-center"
         >
+          {/* <div>{loading ? <p>Loading</p> : ""}</div> */}
           {clothsList.map((post, index) => {
             return (
               <div

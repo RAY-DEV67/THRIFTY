@@ -19,12 +19,14 @@ export function GenderPage() {
   const [isEmpty, setisEmpty] = useState(false);
   const [hasmore, sethasmore] = useState(true);
   const [loading, setloading] = useState(false);
+const [error, seterror] = useState("");
 
   const navigate = useNavigate();
 
   console.log(isEmpty)
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
     .where("category", "==", product)
       .limit(10)
       .get()
@@ -37,12 +39,17 @@ export function GenderPage() {
         setlastDocuments(lastDoc);
         console.log(lastDoc);
       });
+    }  catch (err) {
+      seterror(err)
+      console.log(err)
+     }
   }, [product]);
 
 
 
   const fetchmore = () => {
-    setloading(true)
+    try{
+      setloading(true)
     db.collection("Products")
     .where("category", "==", product)
       .startAfter(lastDocuments)
@@ -65,6 +72,10 @@ export function GenderPage() {
         }
         // console.log(clothsList)
       });
+    }  catch (err) {
+      seterror(err)
+      console.log(err)
+     }
   };
 
 
@@ -84,6 +95,7 @@ export function GenderPage() {
           }
           className="bg-red-300 mb-[10rem] flex flex-wrap gap-3 justify-center"
         >
+          {error ? {error} : ""}
           {clothsList.map((post, index) => {
             if(post.gender === gender)
            { return (

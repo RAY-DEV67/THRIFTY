@@ -26,6 +26,7 @@ export function BuyProduct() {
   const [hasmore, sethasmore] = useState(true);
   const [loading, setloading] = useState(false);
   const [saves, setsaves] = useState([]);
+  const [error, seterror] = useState();
 
   console.log(isEmpty)
   console.log(loading)
@@ -40,6 +41,7 @@ export function BuyProduct() {
   }, [id]);
 
   useEffect(() => {
+   try{
     db.collection("Products")
     .where("category", "==", product)
       .limit(10)
@@ -52,11 +54,16 @@ export function BuyProduct() {
         setclothsList(cloths);
         setlastDocuments(lastDoc);
       });
+   } catch (err) {
+    seterror(err)
+    console.log(err)
+   }
   }, [product]);
 
 
   const fetchmore = () => {
-    setloading(true)
+    try{
+      setloading(true)
     db.collection("Products")
     .where("category", "==", product)
       .startAfter(lastDocuments)
@@ -79,23 +86,16 @@ export function BuyProduct() {
         }
         // console.log(clothsList)
       });
-
+    }
+      catch (err) {
+        seterror(err)
+        console.log(err)
+       }
 
   };
 
   
   const docRef = collection(db, "Saved")
-
-//   const saveDoc = query(docRef, where("postId", "==" , id))
-
-// const getsaves = async () => {
-//   const data = await getDocs(saveDoc);
-//     setsaves(data.docs.map((saves) => ({
-//       userId: saves.data().userId, saveId: saves.id
-//     })));
-//     console.log(saves)
-  
-// }
 
 useEffect(() => {
   db.collection("Saved")
@@ -113,14 +113,6 @@ useEffect(() => {
 const hasProductBeenSaved = saves.find((save) => 
   save.userId === user.uid
 )
-
-// console.log(hasProductBeenSaved)
-
-
-
-// useEffect(() => {
-//   getsaves()
-// }, []);
 
   const addsave = async () => {
  try{
@@ -312,7 +304,7 @@ const removesave = async () => {
       <div className="border-y">
         <p className="text-center">Contact Seller</p>
         <div className="flex flex-col gap-3">
-        <a href="tel:{+2348114291075}" className="mail border">Show Contact</a>
+        <a href={`tel:${buyProduct?.phone}`} className="mail border">Show Contact</a>
         <a href="tel:{+2348114291075}" className="mail border">Instagram</a>
         <a href="tel:{+2348114291075}" className="mail border">Twitter</a>
         </div>
@@ -338,6 +330,7 @@ const removesave = async () => {
           }
           className="bg-red-300 mb-[10rem] flex flex-wrap gap-3 justify-center"
         >
+          {error ? {error} : ""}
           {clothsList.map((post, index) => {
             return (
               <div

@@ -12,43 +12,45 @@ export function SearchResult() {
   const {search} = useParams()
   const navigate = useNavigate();
 
-  const [clothsList, setclothsList] = useState([]);
   const [lastDocuments, setlastDocuments] = useState(null);
   const [isEmpty, setisEmpty] = useState(false);
   const [hasmore, sethasmore] = useState(true);
-  const [loading, setloading] = useState(false);
   const [results, setresults] = useState([]);
+  const [error, seterror] = useState("");
 
   console.log(isEmpty)
-  // const productsRef = db.collection("Products")
-  // const words = search.toLowerCase().split(" ")
 
   useEffect(() => {
-  
+  try{
+    
   let unsubscribe;
-    if(search.toLowerCase().split(" ").length > 0){
-      let query = db.collection("Products")
-      query = query.where("searchKeywords", "array-contains-any", search.toLowerCase().split(" ")).limit(10)
-  query.get().then((querySnapshot) => {
-    const productDoc = []
-    querySnapshot.forEach((doc) => {
-      productDoc.push({id: doc.id, ...doc.data()})
-    })
-    setresults(productDoc)
+  if(search.toLowerCase().split(" ").length > 0){
+    let query = db.collection("Products")
+    query = query.where("searchKeywords", "array-contains-any", search.toLowerCase().split(" ")).limit(10)
+query.get().then((querySnapshot) => {
+  const productDoc = []
+  querySnapshot.forEach((doc) => {
+    productDoc.push({id: doc.id, ...doc.data()})
   })
+  setresults(productDoc)
+})
+  }
+  return () => {
+    if (unsubscribe) {
+      unsubscribe()
     }
-    return () => {
-      if (unsubscribe) {
-        unsubscribe()
-      }
-    }
+  }
+  } catch (err) {
+    seterror(err)
+    console.log(err)
+   }
   }, [search]);
 
 
   console.log(results)
 
   const fetchmore = () => {
-    setloading(true)
+  try{
     db.collection("Products")
     .where("searchKeywords", "array-contains-any", search.toLowerCase().split(" "))
       .orderBy("title", "asc")
@@ -58,18 +60,22 @@ export function SearchResult() {
       .then((collections) => {
         const isCollectionEmpty = collections.size === 0;
         if (!isCollectionEmpty) {
-          const newcloths = collections.docs.map((cloths) => {
-            return { ...cloths.data(), id: cloths.id };
+          const productDoc = []
+          collections.docs.map((doc) => {
+          return  productDoc.push({id: doc.id, ...doc.data()})
           });
           const lastDoc = collections.docs[collections.docs.length - 1];
-          setclothsList((clothsList) => [...clothsList, ...newcloths]);
+          setresults(productDoc);
           setlastDocuments(lastDoc);
-          setloading(false)
         } else {
           setisEmpty(true);
           sethasmore(false);
         }
       });
+  } catch (err) {
+        seterror(err)
+        console.log(err)
+       }
   };
 
   // console.log("results" , products)
@@ -81,7 +87,7 @@ export function SearchResult() {
       <p>Search Results</p>
       <div>
         <InfiniteScroll
-          dataLength={clothsList.length}
+          dataLength={results.length}
           hasMore={hasmore}
           loader={<h4>Loading...</h4>}
           next={fetchmore}
@@ -92,9 +98,10 @@ export function SearchResult() {
           }
           className="bg-red-300 mb-[10rem] flex flex-wrap gap-3 justify-center"
         >
+           {error ? {error} : ""}
           {results.map((post, index) => {
             // if(post.title ?.toLowerCase().includes(search) || post.price ?.toLowerCase().includes(search) || post.category ?.toLowerCase().includes(search) || post.description ?.toLowerCase().includes(search) || post.condition ?.toLowerCase().includes(search) || post.gender ?.toLowerCase().includes(search) || post.location ?.toLowerCase().includes(search)){
-                
+                if(!results){<p>No Results Found</p>}
             return (
               <div
               key={index}
@@ -105,18 +112,9 @@ export function SearchResult() {
                   <EcommerceCard post={post} />
                 </div>
               ); 
-            // }else{
-            //     return (
-            //         <div>
-            //          <p>No results found</p>
-            //         </div>
-            //       ); 
-            // }
+            
           })}
         </InfiniteScroll>
-      </div>
-      <div className="flex flex-col items-center">
-        {loading ? <p>Chil i dey come</p> : ""}
       </div>
       <Footer/>
     </div>

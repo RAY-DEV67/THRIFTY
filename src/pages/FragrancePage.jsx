@@ -15,10 +15,12 @@ export function FragrancePage() {
   const navigate = useNavigate();
 
   const [clothsList, setclothsList] = useState([]);
+  const [error, seterror] = useState();
   const [topList, settopList] = useState([]);
 
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
     .where("category", "==", "Fragrances")
       .limit(10)
       .get()
@@ -27,26 +29,35 @@ export function FragrancePage() {
           return { ...cloths.data(), id: cloths.id };
         });
         settopList(cloths);
-      });
+      }); 
+    } catch (err) {
+        seterror(err)
+        console.log(err)
+       }
   }, []);
 
   useEffect(() => {
+   try{
     db.collection("Products")
-      .where("category", "==", "Fragrances")
-      .limit(10)
-      .get()
-      .then((collections) => {
-        const cloths = collections.docs.map((cloths) => {
-          return { ...cloths.data(), id: cloths.id };
-        });
-        setclothsList(cloths);
+    .where("category", "==", "Fragrances")
+    .limit(10)
+    .get()
+    .then((collections) => {
+      const cloths = collections.docs.map((cloths) => {
+        return { ...cloths.data(), id: cloths.id };
       });
+      setclothsList(cloths);
+    });
+   } catch (err) {
+    seterror(err)
+    console.log(err)
+   }
   }, []);
 
   return (
     <div>
       <Topnav />
-      <h1 className="p-[1rem] border-y text-center mb-[1rem]">FRAGRANCE</h1>
+      <h1 className="p-[1rem] border-y text-center my-[1rem]">FRAGRANCE</h1>
       <div className="mt-[1rem]">
         <h2 className="text-center heading p-2 mb-[2rem]">
           OFFICIAL FRAGRANCE STORES
@@ -73,6 +84,7 @@ export function FragrancePage() {
         </h2>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-3 justify-center">
+          {error ? {error} : ""}
             {topList.map((post, index) => {
              if(post.Top){
               return (
@@ -98,13 +110,14 @@ export function FragrancePage() {
           <h2>FRAGRANCE</h2>
           <p
             onClick={() => {
-              navigate("/ThriftNg/Fragrance/All-Fragrance");
+              navigate("/ThriftNg/Fragrances/All-Fragrance");
             }}
           >
             See All
           </p>
         </div>
         <div className="flex flex-wrap gap-3 justify-center">
+        {error ? {error} : ""}
           {clothsList.map((post, index) => {
             return (
               <div

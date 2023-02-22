@@ -7,9 +7,9 @@ export function EcommerceCard (props) {
 
     return ( 
     
-    <div className="border w-[90vw] flex">
+    <div className="border ecommerceCard w-[90vw] flex rounded-[10px]">
 <div className="relative">
-<img src={post.images} alt="Product" className="w-[200px] h-[150px]"/>
+<img src={post.images} alt="Product" className="w-[200px] object-contain rounded-[10px] h-[150px]"/>
 </div>
 
 <div className="ml-[1rem]">

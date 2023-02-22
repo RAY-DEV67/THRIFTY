@@ -19,10 +19,12 @@ export function ShoesPage() {
 
   const [clothsList, setclothsList] = useState([]);
   const [topList, settopList] = useState([]);
+  const [error, seterror] = useState();
 
 
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
     .where("category", "==", "Shoes")
     .limit(10)
     .get()
@@ -32,12 +34,17 @@ export function ShoesPage() {
       });
       settopList(cloths);
     });
+    } catch (err) {
+      seterror(err)
+      console.log(err)
+     }
   }, []);
 
 
   
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
     .where("category", "==", "Shoes")
       .limit(10)
       .get()
@@ -47,12 +54,16 @@ export function ShoesPage() {
         });
         setclothsList(cloths);
       });
+    } catch (err) {
+        seterror(err)
+        console.log(err)
+       }
   }, []);
 
   return (
     <div>
       <Topnav/>
-      <h1 className="p-[1rem] border-y text-center mb-[1rem]">Shoes</h1>
+      <h1 className="p-[1rem] border-y text-center my-[1rem]">Shoes</h1>
       <div className="flex flex-col items-center">
       <div className="flex gap-3 w-[90%]">
       <div
@@ -105,6 +116,7 @@ export function ShoesPage() {
         </h2>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-3 justify-center">
+          {error ? {error} : ""}
             {topList.map((post, index) => {
             if(post.Top){
               return (
@@ -129,6 +141,7 @@ navigate("/ThriftNg/Shoes/All-Shoes")
 
       </div>
 <div  className="flex flex-wrap gap-3 justify-center">
+{error ? {error} : ""}
 {clothsList.map((post, index) => {
             return (
               <div key={index} onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Shoes")} }>

@@ -1,16 +1,22 @@
 import { Topnav } from "./topnav";
-// import { useNavigate, useState } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function Search() {
+
+  const navigate = useNavigate();
+
+  const [search, setsearch] = useState("");
  
 
     return ( <div>
       <Topnav/>
 
-      <form className="flex flex-col items-center relative">
+      <form className="flex flex-col items-center relative" onSubmit={() => { navigate(`/ThriftNg/Search/Cloths/${search}`)}}>
         <input
           type="text"
           placeholder="What are you looking for..."
+          onChange={(e) => {setsearch(e.target.value)}}
           className="border w-[90%] my-[2rem] rounded-xl pl-[5rem] py-[0.5rem]"
         />
        <div>
@@ -22,6 +28,7 @@ export function Search() {
           xmlns="http://www.w3.org/2000/svg"
           stroke="#000000"
           className="absolute left-[7%] top-[35%]"
+          onClick={() => { navigate(`/ThriftNg/Search/Cloths/${search}`)}}
         >
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g

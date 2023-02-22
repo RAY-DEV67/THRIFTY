@@ -11,15 +11,16 @@ import { Topnav } from "../components/topnav";
 export function PastriesPage() {
   const setProducts = useContext(SetProduct);
   const setProductsId = useContext(SetId);
-  // const products = useContext(Product);
 
   const navigate = useNavigate();
 
   const [clothsList, setclothsList] = useState([]);
   const [topList, settopList] = useState([]);
+  const [error, seterror] = useState("");
 
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
     .where("category", "==", "Pastries")
       .limit(10)
       .get()
@@ -29,10 +30,15 @@ export function PastriesPage() {
         });
         settopList(cloths);
       });
+    } catch (err) {
+        seterror(err)
+        console.log(err)
+       }
   }, []);
 
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
       .where("category", "==", "Pastries")
       .limit(10)
       .get()
@@ -41,13 +47,17 @@ export function PastriesPage() {
           return { ...cloths.data(), id: cloths.id };
         });
         setclothsList(cloths);
-      });
+      }); 
+    }catch (err) {
+        seterror(err)
+        console.log(err)
+       }
   }, []);
 
   return (
     <div>
       <Topnav />
-      <h1 className="p-[1rem] border-y text-center mb-[1rem]">Pastries</h1>
+      <h1 className="p-[1rem] border-y text-center my-[1rem]">Pastries</h1>
       <div className="mt-[1rem]">
         <h2 className="text-center heading p-2 mb-[2rem]">
           OFFICIAL PASTRIES STORES
@@ -74,6 +84,7 @@ export function PastriesPage() {
         </h2>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-3 justify-center">
+          {error ? {error} : ""}
             {topList.map((post, index) => {
              if(post.Top){
               return (
@@ -106,6 +117,7 @@ export function PastriesPage() {
           </p>
         </div>
         <div className="flex flex-wrap gap-3 justify-center">
+        {error ? {error} : ""}
           {clothsList.map((post, index) => {
             return (
               <div

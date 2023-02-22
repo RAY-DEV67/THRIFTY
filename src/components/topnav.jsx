@@ -39,7 +39,7 @@ export function Topnav() {
 
   return (
     <div>
-      <div className="flex justify-between px-6 py-4">
+      <div className="flex justify-between px-6 py-4 topnav">
         <div
           onClick={() => {
             setshowNav(true);
@@ -105,23 +105,19 @@ export function Topnav() {
       <div
         className={
           showNav
-            ? "w-[70%] mobile-nav h-[100vh] fixed top-0 z-[39] showNav translate-x-[0%]"
+            ? "w-[70%] bg-white mobile-nav h-[100vh] fixed top-0 z-[39] showNav translate-x-[0%]"
             : "w-[70%] fixed top-0 z-[39] h-[100vh] showNav translate-x-[-100%]"
         }
       >
-        <div className="flex border-b py-[1rem]">
-          <p
-            className="mx-[1rem]"
+        <div className="flex border-b justify-between py-[1rem]">
+          <svg viewBox="0 0 24 24" className="mx-[1rem]"
             onClick={() => {
               setshowNav(false);
-            }}
-          >
-            X
-          </p>
-          <p>Logo</p>
+            }} width="20px" height="20px" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.16998 14.83L14.83 9.17004" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14.83 14.83L9.16998 9.17004" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+          <p className="mx-[1rem]">Logo</p>
         </div>
         <div className="ml-[1rem] border-b">
-          <p className="mt-[1rem] font-bold">Our Categories</p>
+          <p className="mt-[1rem] font-bold border-b pb-[1rem]">Our Categories</p>
           <div className="my-[1rem] flex">
             <svg
               viewBox="0 -11.71 113.169 113.169"
@@ -573,75 +569,83 @@ export function Topnav() {
           </Link>
         </div>
         <div className="ml-[1rem] border-b">
-          <h2 className="my-[1rem]">Official Stores</h2>
-          <div onClick={setCloths} >
+          <h2 className="my-[1rem] border-b pb-[1rem] font-bold">Official Stores</h2>
+          <div onClick={setCloths} className="flex justify-between mr-[1rem]" >
             <p>Clothing</p>
+            <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
           </div>
-          {Stores ?  <div>
+          {Stores ?  <div className="mt-[1rem] border-t border-b py-[1rem]">
             <p>Clothstore 1</p>
             <p>Clothstore 2</p>
             <p>Clothstore 3</p>
             <p>Clothstore 4</p>
           </div> : ""}
          
-          <div className="my-[1rem]" onClick={setaccessories}>
+          <div className="flex justify-between mr-[1rem] my-[1rem]" onClick={setaccessories}>
             <p>Accessories</p>
+            <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
           </div>
-          {accessoriesStores ?  <div>
+          {accessoriesStores ?  <div className="mt-[1rem] border-t border-b py-[1rem]">
             <p>Accessoriesstore 1</p>
             <p>AccessoriesStore 2</p>
             <p>AccessoriesStore 3</p>
             <p>AccessoriesStore 4</p>
           </div> : ""}
-          <div onClick={sethair}>
+          <div onClick={sethair} className="flex justify-between mr-[1rem]">
             <p>Hair</p>
+            <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
           </div>
-          {hairStores ?  <div>
+          {hairStores ?  <div className="mt-[1rem] border-t border-b py-[1rem]">
             <p>Hairstore 1</p>
             <p>Hairstore 2</p>
             <p>Hairstore 3</p>
             <p>Hairstore 4</p>
           </div> : ""}
-          <div className="my-[1rem]" onClick={setshoes}>
+          <div className="flex justify-between mr-[1rem] my-[1rem]" onClick={setshoes}>
             <p>Shoes</p>
+            <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
           </div>
-          {shoesStores ?  <div>
+          {shoesStores ?  <div className="mt-[1rem] border-t border-b py-[1rem]">
             <p>Shoesstore 1</p>
             <p>Shoesstore 2</p>
             <p>Shoesstore 3</p>
             <p>Shoesstore 4</p>
           </div> : ""}
-          <div onClick={setbags}>
+          <div onClick={setbags} className="flex justify-between mr-[1rem]">
             <p>Bags</p>
+            <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
           </div>
-          {bagsStores ?  <div>
+          {bagsStores ?  <div className="mt-[1rem] border-t border-b py-[1rem]">
             <p>Bagsstore 1</p>
             <p>Bagsstore 2</p>
             <p>Bagsstore 3</p>
             <p>Bagsstore 4</p>
           </div> : ""}
-          <div className="my-[1rem]" onClick={setskinCare}>
+          <div className="flex justify-between mr-[1rem] my-[1rem]" onClick={setskinCare}>
             <p>Skin Care</p>
+            <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
           </div>
-          {skinCareStores ?  <div>
+          {skinCareStores ?  <div className="mt-[1rem] border-t border-b py-[1rem]">
             <p>SkinCarestore 1</p>
             <p>SkinCarestore 2</p>
             <p>SkinCarestore 3</p>
             <p>SkinCarestore 4</p>
           </div> : ""}
-          <div onClick={setpastries}>
+          <div onClick={setpastries} className="flex justify-between mr-[1rem]">
             <p>Pastries</p>
+            <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
           </div>
-          {pastriesStores ?  <div>
+          {pastriesStores ?  <div className="mt-[1rem] border-t border-b py-[1rem]">
             <p>Pastriesstore 1</p>
             <p>Pastriesstore 2</p>
             <p>Pastriesstore 3</p>
             <p>Pastriesstore 4</p>
           </div> : ""}
-          <div className="my-[1rem]" onClick={setfragrance}>
+          <div className="flex justify-between mr-[1rem] my-[1rem]" onClick={setfragrance}>
             <p>Fragrance</p>
+            <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
           </div>
-          {fragranceStores ?  <div>
+          {fragranceStores ?  <div className="mt-[1rem] border-t border-b py-[1rem]">
             <p>Fragrancestore 1</p>
             <p>Fragrancestore 2</p>
             <p>Fragrancestore 3</p>

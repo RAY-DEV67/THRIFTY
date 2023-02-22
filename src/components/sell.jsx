@@ -1,19 +1,10 @@
 import { Profile } from "./profile";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useState} from "react";
+import { useState } from "react";
 import db from "../config/firebase";
 import { storage } from "../config/firebase";
 import { updateDoc, addDoc, collection } from "firebase/firestore";
-// import firebase from "firebase/compat/app";
-// import { db } from "../config/firebase";
-// import { addDoc, collection } from "firebase/firestore";
-// import {
-//   getStorage,
-//   ref,
-//   uploadBytesResumable,
-//   getDownloadURL,
-// } from "firebase/storage";
 
 export function Sell() {
   const [user] = useAuthState(auth);
@@ -29,13 +20,13 @@ export function Sell() {
   const [vendorlogo, setvendorlogo] = useState("");
   const [url, seturl] = useState("");
   const [top, settop] = useState(false);
+  const [id, setid] = useState(0);
 
-  settop()
+  // settop()
 
+  console.log(url);
 
-console.log(url)
-
-const [id, setid] = useState(0);
+  
 
   const [values, setvalues] = useState({
     title: "",
@@ -53,9 +44,9 @@ const [id, setid] = useState(0);
     handmade: false,
     warranty: false,
     Top: top,
-    brand:"",
-    color:"",
-    vendor: ""
+    brand: "",
+    color: "",
+    vendor: "",
   });
 
   const [errors, seterrors] = useState({});
@@ -123,15 +114,18 @@ const [id, setid] = useState(0);
   };
 
   const upload = async () => {
-    setid(id + 1)
+    setid(id + 1);
     const docRef = await addDoc(collection(db, "Products"), {
       ...values,
       useid: id,
       userId: user?.uid,
-      searchKeywords: `${values.title.toLowerCase()} ${values.description.toLowerCase()} ${values.brand.toLowerCase()} ${values.vendor?.toLowerCase()}`.split(" ")
+      searchKeywords:
+        `${values.title.toLowerCase()} ${values.description.toLowerCase()} ${values.brand.toLowerCase()} ${values.vendor?.toLowerCase()}`.split(
+          " "
+        ),
     });
-    
-    console.log(id)
+
+    console.log(id);
     if (isfile == null) return;
     seturl("getting link");
     storage
@@ -184,22 +178,22 @@ const [id, setid] = useState(0);
           });
       });
 
-      if (vendorlogo == null) return;
-      seturl("getting link");
-      storage
-        .ref("/images/" + vendorlogo.name)
-        .put(vendorlogo)
-        .on("state_changed", alert("success"), alert, () => {
-          storage
-            .ref("images")
-            .child(vendorlogo.name)
-            .getDownloadURL()
-            .then((imgUrl) => {
-              updateDoc(docRef, {
-                vendorlogo: imgUrl,
-              });
+    if (vendorlogo == null) return;
+    seturl("getting link");
+    storage
+      .ref("/images/" + vendorlogo.name)
+      .put(vendorlogo)
+      .on("state_changed", alert("success"), alert, () => {
+        storage
+          .ref("images")
+          .child(vendorlogo.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              vendorlogo: imgUrl,
             });
-        });
+          });
+      });
   };
 
   const handleSubmit = async (event) => {
@@ -274,7 +268,7 @@ const [id, setid] = useState(0);
                   >
                     Bags
                   </p>
-                  
+
                   <p
                     onClick={() => {
                       setcategories(false);
@@ -311,7 +305,6 @@ const [id, setid] = useState(0);
                   >
                     Fragrances
                   </p>
-               
                 </div>
               ) : (
                 ""
@@ -346,7 +339,7 @@ const [id, setid] = useState(0);
                       name="photos2"
                       onChange={(event) => {
                         setfile2(event.target.files[0]);
-                        console.log(event.target.files[0])
+                        console.log(event.target.files[0]);
                       }}
                     />
                     {errors.file2 && <p>{errors.file2}</p>}
@@ -716,7 +709,7 @@ const [id, setid] = useState(0);
                 placeholder="BRAND*"
                 value={values.brand}
                 name="brand"
-                  onChange={handleChange}
+                onChange={handleChange}
               />
               <input
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem]"
@@ -724,7 +717,7 @@ const [id, setid] = useState(0);
                 placeholder="COLOR*"
                 value={values.color}
                 name="color"
-                  onChange={handleChange}
+                onChange={handleChange}
               />
 
               <div
@@ -888,7 +881,7 @@ const [id, setid] = useState(0);
                 ""
               )}
 
-<input
+              <input
                 className="mt-[1rem] py-[0.5rem] rounded-[10px] px-[1rem]"
                 type="text"
                 placeholder="Name of Vendor*"
@@ -897,16 +890,16 @@ const [id, setid] = useState(0);
                 value={values.vendor}
                 // {...register("title")}
               />
-               <input
-                      className="mt-[1rem]"
-                      multiple
-                      type="file"
-                      accept="image/png , image/jpg"
-                      name="vendorLogo"
-                      onChange={(event) => {
-                        setvendorlogo(event.target.files[0]);
-                      }}
-                    />
+              <input
+                className="mt-[1rem]"
+                multiple
+                type="file"
+                accept="image/png , image/jpg"
+                name="vendorLogo"
+                onChange={(event) => {
+                  setvendorlogo(event.target.files[0]);
+                }}
+              />
 
               <h2 className="mt-[1rem]">Made in Nigeria</h2>
               <div>
@@ -948,8 +941,6 @@ const [id, setid] = useState(0);
                   }}
                 />
                 <label for="MIN">YES</label>
-
-                
               </div>
 
               <h2 className="mt-[1rem]">Top Product</h2>
@@ -960,12 +951,10 @@ const [id, setid] = useState(0);
                   name="Top"
                   className="mr-[0.5rem]"
                   onChange={() => {
-                    values.Top = !values.Top;
+                    settop(!top);
                   }}
                 />
                 <label for="MIN">YES</label>
-
-                
               </div>
 
               <textarea

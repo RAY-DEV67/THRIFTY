@@ -17,16 +17,11 @@ export function BagsPage() {
 
   const [clothsList, setclothsList] = useState([]);
   const [topList, settopList] = useState([]);
-
-  // const topRef = collection(db, "Top-Bags");
-
-  // const getTop = async () => {
-  //   const data = await getDocs(topRef);
-  //   settopList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  // };
+  const [error, seterror] = useState();
 
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
     .where("category", "==", "Bags")
     .limit(10)
     .get()
@@ -36,10 +31,15 @@ export function BagsPage() {
       });
       settopList(cloths);
     });
+    } catch (err) {
+      seterror(err)
+      console.log(err)
+     }
   }, []);
 
   useEffect(() => {
-    db.collection("Products")
+    try{
+      db.collection("Products")
     .where("category", "==", "Bags")
       .limit(10)
       .get()
@@ -49,12 +49,16 @@ export function BagsPage() {
         });
         setclothsList(cloths);
       });
+    }  catch (err) {
+      seterror(err)
+      console.log(err)
+     }
   }, []);
 
   return (
     <div>
       <Topnav/>
-      <h1 className="p-[1rem] border-y text-center mb-[1rem]">Bags</h1>
+      <h1 className="p-[1rem] border-y text-center my-[1rem]">Bags</h1>
       <div className="mt-[1rem]">
         <h2 className="text-center heading p-2 mb-[2rem]">OFFICIAL BAG STORES</h2>
         <div className="flex flex-col items-center">
@@ -79,6 +83,7 @@ export function BagsPage() {
         </h2>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-3 justify-center">
+          {error ? {error} : ""}
             {topList.map((post, index) => {
             if(post.Top){
               return (
@@ -106,6 +111,7 @@ export function BagsPage() {
           </p>
         </div>
         <div className="flex flex-wrap gap-3 justify-center">
+        {error ? {error} : ""}
           {clothsList.map((post, index) => {
             return (
               <div key={index} onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Bags")} }>

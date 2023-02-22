@@ -51,7 +51,7 @@ export function AccessoriesPage() {
   return (
     <div>
       <Topnav />
-      <h1 className="p-[1rem] border-y text-center mb-[1rem]">Accessories</h1>
+      <h1 className="p-[1rem] border-y text-center my-[1rem]">Accessories</h1>
       <div className="flex flex-col items-center">
         <div className="flex gap-3 w-[90%]">
           <div

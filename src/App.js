@@ -27,6 +27,7 @@ import { SkinCarePage } from "./pages/SkinCarePage";
 import { PastriesPage } from "./pages/PastriesPage";
 import { FragrancePage } from "./pages/FragrancePage";
 import { GenderPage } from "./pages/genderpage";
+import { Page404 } from "./pages/404Page";
 
 export const Product = React.createContext();
 export const SetProduct = React.createContext();
@@ -130,6 +131,10 @@ function App() {
                   <Route
                     path="/ThriftNg/Buy/:product/:id"
                     element={<BuyProduct />}
+                  />
+                  <Route
+                    path="/*"
+                    element={<Page404 />}
                   />
                 </Routes>
                 </ScrollToTop>
