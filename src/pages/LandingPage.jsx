@@ -43,7 +43,7 @@ export function LandingPage() {
       <div className="flex flex-col items-center">
         <div className="w-[90%]">
           <p className="text-2xl mt-[1rem]">Welcome Back</p>
-          <p className="text-4xl my-2 font-bold thriftng">Thrift Shopper</p>
+          <p className="text-4xl my-2 font-bold thriftng">THRIFT SHOPPER</p>
         </div>
       </div>
       <form className="flex flex-col items-center relative" 
@@ -56,12 +56,12 @@ export function LandingPage() {
           className="border w-[90%] my-[2rem] rounded-xl pl-[5rem] landingSearch py-[0.5rem]"
         />
         <svg
-          fill="#22543d"
+          fill="#00CC00"
           width="30px"
           height="30px"
           viewBox="0 0 16 16"
           xmlns="http://www.w3.org/2000/svg"
-          stroke="#22543d"
+          stroke="#00CC00"
           className="absolute left-[7%] top-[35%]"
           onClick={() => { navigate(`/ThriftNg/Search/Cloths/${search}`)}}
         >

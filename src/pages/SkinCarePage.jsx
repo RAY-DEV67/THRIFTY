@@ -48,7 +48,7 @@ export function SkinCarePage() {
   return (
     <div>
       <Topnav />
-      <h1 className="p-[1rem] border-y text-center my-[1rem]">Skin Care</h1>
+      <h1 className="p-[1rem] productBorder text-center my-[1rem]">Skin Care</h1>
       <div className="mt-[1rem]">
         <h2 className="text-center heading p-2 mb-[2rem]">
           OFFICIAL SKIN CARE STORES

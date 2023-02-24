@@ -109,15 +109,15 @@ export function Topnav() {
             : "w-[70%] fixed top-0 z-[39] h-[100vh] showNav translate-x-[-100%]"
         }
       >
-        <div className="flex border-b justify-between py-[1rem]">
+        <div className="flex categories justify-between py-[1rem]">
           <svg viewBox="0 0 24 24" className="mx-[1rem]"
             onClick={() => {
               setshowNav(false);
             }} width="20px" height="20px" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.16998 14.83L14.83 9.17004" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14.83 14.83L9.16998 9.17004" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
           <p className="mx-[1rem]">Logo</p>
         </div>
-        <div className="ml-[1rem] border-b">
-          <p className="mt-[1rem] font-bold border-b pb-[1rem]">Our Categories</p>
+        <div className="ml-[1rem] categories">
+          <p className="mt-[1rem] font-bold categories pb-[1rem]">Our Categories</p>
           <div className="my-[1rem] flex">
             <svg
               viewBox="0 -11.71 113.169 113.169"
@@ -568,8 +568,8 @@ export function Topnav() {
           </div>
           </Link>
         </div>
-        <div className="ml-[1rem] border-b">
-          <h2 className="my-[1rem] border-b pb-[1rem] font-bold">Official Stores</h2>
+        <div className="ml-[1rem] officialStore">
+          <h2 className="my-[1rem] officialStore pb-[1rem] font-bold">Official Stores</h2>
           <div onClick={setCloths} className="flex justify-between mr-[1rem]" >
             <p>Clothing</p>
             <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>

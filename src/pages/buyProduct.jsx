@@ -4,7 +4,6 @@ import db from "../config/firebase";
 import { useState, useEffect} from "react";
 import { Topnav } from "../components/topnav";
 import { Footer } from "../components/footer";
-import womencloth from "../assets/images/women-cloth.png";
 import { EcommerceCard } from "../components/ecommerceCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams, useNavigate } from "react-router-dom";
@@ -159,8 +158,8 @@ const removesave = async () => {
   return (
     <div>
       <Topnav />
-      <div className="flex justify-center relative">
-      <img src={buyProduct?.images} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+      <div className="flex justify-center relative mt-[1rem]">
+      <img src={buyProduct?.images} alt="Product" className="rounded-[1rem] w-[90%] h-[90%]" />
       <svg viewBox="0 0 24 24" onClick={() => {!user ? navigate("/profile") : hasProductBeenSaved ? removesave() : addsave()}} className="absolute top-2 left-[80%]" width="25px" fill={hasProductBeenSaved ? "#000000" : "none"} xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.89 5.87988H5.10999C3.39999 5.87988 2 7.27987 2 8.98987V20.3499C2 21.7999 3.04 22.4199 4.31 21.7099L8.23999 19.5199C8.65999 19.2899 9.34 19.2899 9.75 19.5199L13.68 21.7099C14.95 22.4199 15.99 21.7999 15.99 20.3499V8.98987C16 7.27987 14.6 5.87988 12.89 5.87988Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16 8.98987V20.3499C16 21.7999 14.96 22.4099 13.69 21.7099L9.76001 19.5199C9.34001 19.2899 8.65999 19.2899 8.23999 19.5199L4.31 21.7099C3.04 22.4099 2 21.7999 2 20.3499V8.98987C2 7.27987 3.39999 5.87988 5.10999 5.87988H12.89C14.6 5.87988 16 7.27987 16 8.98987Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="0.4" d="M22 5.10999V16.47C22 17.92 20.96 18.53 19.69 17.83L16 15.77V8.98999C16 7.27999 14.6 5.88 12.89 5.88H8V5.10999C8 3.39999 9.39999 2 11.11 2H18.89C20.6 2 22 3.39999 22 5.10999Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
       <p className="absolute top-2 left-[88%]">{saves.length}</p>
         </div>   
@@ -171,27 +170,27 @@ const removesave = async () => {
                   {/* SLIDES///// */}
 
                   <div className="slide softtools">
-                  <img src={buyProduct?.images} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images2} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images3} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images4} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images5} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
@@ -199,27 +198,27 @@ const removesave = async () => {
 
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images2} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images3} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images4} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
 
                   <div className="slide softtools">
-                  <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[90%] h-[90%]" />
+                  <img src={buyProduct?.images5} alt="Product" className="buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
                 </div>
@@ -230,12 +229,12 @@ const removesave = async () => {
 
 
 
-      <div className="border-b text-center">
-        <p>ThriftNg</p>
-        <p>{buyProduct?.title}</p>
+      <div className="border-b mb-[1rem] pb-[1rem] text-center">
+        <p className="text-2xl mb-[1rem]">THRIFT NG</p>
+        <p className="text-xl font-bold mb-[0.5rem]">{buyProduct?.title}</p>
         <div className="flex justify-center">
           <svg
-            fill="#000000"
+            fill="#00cc00"
             width="20"
             height="20"
             version="1.1"
@@ -258,43 +257,43 @@ const removesave = async () => {
               </g>{" "}
             </g>
           </svg>
-          <p>{buyProduct?.price} NGN</p>
+          <p className="ml-[0.2rem] text-[#00cc00]"> {buyProduct?.price} NGN</p>
         </div>
       </div>
 
-      <div>
-        <h1>Product Details:</h1>
-        <div>
-          <p>Description:</p>
+      <div className="ml-[1rem]">
+        <h1 className="text-2xl mb-[2rem]">Product Details:</h1>
+        <div className="mb-[1rem]">
+          <p className="text-xl mb-[0.5rem]">Description:</p>
           <p> {buyProduct?.description}</p>
         </div>
-        <div>
-          <p>Condition:</p>
+        <div className="mb-[1rem]">
+          <p className="text-xl mb-[0.5rem]">Condition:</p>
           <p> {buyProduct?.condition}</p>
         </div>
-        <div>
-          <p>Gender:</p>
+        <div className="mb-[1rem]">
+          <p className="text-xl mb-[0.5rem]">Gender:</p>
           <p> {buyProduct?.gender}</p>
         </div>
-        <div>
-          <p>HandMade:</p>
+        <div className="mb-[1rem]">
+          <p className="text-xl mb-[0.5rem]">HandMade:</p>
           <p> {buyProduct?.handmade ? "yes" : "No"}</p>
         </div>
-        <div>
-          <p>Location:</p>
+        <div className="mb-[1rem]">
+          <p className="text-xl mb-[0.5rem]">Location:</p>
           <p> {buyProduct?.location}</p>
         </div>
         {buyProduct?.brand ? (
-          <div>
-            <p>Brand:</p>
+          <div className="mb-[1rem]">
+            <p className="text-xl mb-[0.5rem]">Brand:</p>
             <p> {buyProduct?.brand}</p>
           </div>
         ) : (
           ""
         )}
         {buyProduct?.color ? (
-          <div>
-            <p>Color:</p>
+          <div className="mb-[1rem]">
+            <p className="text-xl mb-[0.5rem]">Color:</p>
             <p> {buyProduct?.color}</p>
           </div>
         ) : (

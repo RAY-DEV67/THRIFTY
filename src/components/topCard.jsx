@@ -4,12 +4,12 @@ export function TopCard(props) {
     
     <div className="topcard" >
 <div className="relative">
-<img src={post.images} alt="Product" className="w-[165px] bg-[#c1f2c1] rounded-[10px] object-contain topimage"/>
+<img src={post.images} alt="Product" className="w-[44vw] bg-white rounded-[10px] object-contain topimage"/>
 </div>
 
 <div className="ml-[1rem]">
 <div>
-<h1>#{post.price}</h1>
+<h1 className="text-[#00CC00]">#{post.price}</h1>
 </div>
 
 <div>

@@ -4,8 +4,6 @@ import db from "../config/firebase";
 import { EcommerceCard } from "../components/ecommerceCard";
 import { useNavigate } from "react-router-dom";
 import { SetProduct, SetId} from "../App"
-import womencloth from "../assets/images/women-shoes.webp";
-import mencloth from "../assets/images/men-shoes.jpg";
 import { TopCard } from "../components/topCard";
 import { Topnav } from "../components/topnav";
 // import { getDocs, collection } from "firebase/firestore";
@@ -63,30 +61,28 @@ export function ShoesPage() {
   return (
     <div>
       <Topnav/>
-      <h1 className="p-[1rem] border-y text-center my-[1rem]">Shoes</h1>
+      <h1 className="p-[1rem] productBorder text-center my-[1rem]">Shoes</h1>
       <div className="flex flex-col items-center">
       <div className="flex gap-3 w-[90%]">
       <div
-              className="relative"
+              className="relative womenShoe"
               onClick={() => {
                 setProducts("Women-Cloths");
                 navigate("/ThriftNg/Category/Shoes/Female")
               }}
             >
-              <img src={womencloth} alt="cloths" className="rounded-[1rem] w-[100%] h-[90%]" />
-              <p className="absolute z-10 top-[20%] left-[5%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[90%] text-[12px]">
+              <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[10px]">
                 Women's Shoes
               </p>
             </div>
             <div
-              className="relative"
+              className="relative menShoe"
               onClick={() => {
                 setProducts("Men-Cloths");
                 navigate("/ThriftNg/Category/Shoes/Male")
               }}
             >
-              <img src={mencloth} alt="cloths" className="rounded-[1rem] w-[100%] h-[90%]" />
-              <p className="absolute top-[20%] z-10 left-[5%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[90%] text-[12px]">
+              <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[10px]">
               Men's Shoes
               </p>
             </div>

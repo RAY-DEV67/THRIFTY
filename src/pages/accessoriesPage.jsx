@@ -5,8 +5,6 @@ import db from "../config/firebase";
 import { EcommerceCard } from "../components/ecommerceCard";
 import { useNavigate } from "react-router-dom";
 import { SetProduct, SetId } from "../App";
-import womencloth from "../assets/images/women-accessories.webp";
-import mencloth from "../assets/images/men-accessories.jpg";
 import { TopCard } from "../components/topCard";
 import { Footer } from "../components/footer";
 import { Topnav } from "../components/topnav";
@@ -51,38 +49,28 @@ export function AccessoriesPage() {
   return (
     <div>
       <Topnav />
-      <h1 className="p-[1rem] border-y text-center my-[1rem]">Accessories</h1>
+      <h1 className="p-[1rem] productBorder text-center my-[1rem]">Accessories</h1>
       <div className="flex flex-col items-center">
         <div className="flex gap-3 w-[90%]">
           <div
-            className="relative"
+            className="relative womenAccessories"
             onClick={() => {
               setProducts("Women-Cloths");
               navigate("/ThriftNg/Category/Accessories/Female")
             }}
           >
-            <img
-              src={womencloth}
-              alt="cloths"
-              className="rounded-[1rem] w-[100%] h-[100%]"
-            />
-            <p className="absolute z-10 top-[40%] left-[5%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[90%] text-[12px]">
+            <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[10px]">
               Women's Accessories
             </p>
           </div>
           <div
-            className="relative"
+            className="relative menAccessories"
             onClick={() => {
               setProducts("Men-Cloths");
               navigate("/ThriftNg/Category/Accessories/Male")
             }}
           >
-            <img
-              src={mencloth}
-              alt="cloths"
-              className="rounded-[1rem] w-[100%] h-[100%]"
-            />
-            <p className="absolute top-[40%] z-10 left-[5%] tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[90%] text-[12px]">
+            <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[10px]">
               Men's Accessories
             </p>
           </div>

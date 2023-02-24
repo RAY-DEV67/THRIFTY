@@ -58,7 +58,7 @@ export function BagsPage() {
   return (
     <div>
       <Topnav/>
-      <h1 className="p-[1rem] border-y text-center my-[1rem]">Bags</h1>
+      <h1 className="p-[1rem] productBorder text-center my-[1rem]">Bags</h1>
       <div className="mt-[1rem]">
         <h2 className="text-center heading p-2 mb-[2rem]">OFFICIAL BAG STORES</h2>
         <div className="flex flex-col items-center">

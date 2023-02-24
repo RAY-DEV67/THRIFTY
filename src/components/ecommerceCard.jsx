@@ -14,7 +14,7 @@ export function EcommerceCard (props) {
 
 <div className="ml-[1rem]">
 <div>
-<h1>#{post.price}</h1>
+<h1 className="text-[#00CC00]">#{post.price}</h1>
 </div>
 
 <div>
