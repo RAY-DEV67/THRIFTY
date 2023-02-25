@@ -17,9 +17,13 @@ export function ClothesPage() {
   const [clothsList, setclothsList] = useState([]);
   const [error, seterror] = useState();
   const [topList, settopList] = useState([]);
+  const [loading, setloading] = useState(false);
+  const [empty, setempty] = useState(false);
 
   useEffect(() => {
     try {
+      setloading(true)
+      setempty(false)
       db.collection("Products")
         .where("category", "==", "Cloths")
         .limit(10)
@@ -29,6 +33,8 @@ export function ClothesPage() {
             return { ...cloths.data(), id: cloths.id };
           });
           settopList(cloths);
+          setloading(false)
+     if(cloths.length === 0){setempty(true)}
         });
     } catch (err) {
       seterror(err);
@@ -37,6 +43,9 @@ export function ClothesPage() {
   }, []);
 
   useEffect(() => {
+    setloading(true)
+    setempty(false)
+
     try {
       db.collection("Products")
         .where("category", "==", "Cloths")
@@ -47,6 +56,8 @@ export function ClothesPage() {
             return { ...cloths.data(), id: cloths.id };
           });
           setclothsList(cloths);
+          setloading(false)
+     if(cloths.length === 0){setempty(true)}
         });
     } catch (err) {
       seterror(err);
@@ -107,12 +118,15 @@ export function ClothesPage() {
       </div>
 
       <div>
-        <h2 className="text-center p-2 mt-[2rem] mb-[2rem] heading">
+        <h2 className="text-center p-2 mt-[2rem] heading">
           TOP PRODUCTS
         </h2>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-3 justify-center">
             {error ? { error } : ""}
+            <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">{loading ? <svg width="400px" className="loader " fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.828,5.758,1.415-1.415a1,1,0,1,1,1.414,1.414L16.242,9.172a1,1,0,0,1-1.414-1.414ZM4,12a1,1,0,0,1,1-1H7a1,1,0,0,1,0,2H5A1,1,0,0,1,4,12Zm5.172,4.242L7.757,17.657a1,1,0,0,1-1.414-1.414l1.415-1.415a1,1,0,0,1,1.414,1.414Zm0-7.07a1,1,0,0,1-1.414,0L6.343,7.757A1,1,0,0,1,7.757,6.343L9.172,7.758A1,1,0,0,1,9.172,9.172ZM13,19a1,1,0,0,1-2,0V17a1,1,0,0,1,2,0ZM13,7a1,1,0,0,1-2,0V5a1,1,0,0,1,2,0Zm4.657,10.657a1,1,0,0,1-1.414,0l-1.415-1.415a1,1,0,0,1,1.414-1.414l1.415,1.415A1,1,0,0,1,17.657,17.657ZM20,12a1,1,0,0,1-1,1H17a1,1,0,0,1,0-2h2A1,1,0,0,1,20,12Z"></path></g></svg> : ""}</p>
+            <p className="w-[100%] text-center">{empty && "Please Check Your Network Connection"}</p>
+      
             {topList.map((post, index) => {
               if (post.Top) {
                 return (
@@ -135,7 +149,7 @@ export function ClothesPage() {
       </div>
 
       <div>
-        <div className="flex justify-between p-2 px-[1.5rem] mt-[2rem] mb-[2rem] heading">
+        <div className="flex justify-between p-2 px-[1.5rem] mt-[2rem] heading">
           <h2>Cloths</h2>
           <p
             onClick={() => {
@@ -148,6 +162,9 @@ export function ClothesPage() {
         </div>
         <div className="flex flex-wrap gap-3 justify-center">
           {error ? { error } : ""}
+          <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">{loading ? <svg width="20px" className="loader " fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.828,5.758,1.415-1.415a1,1,0,1,1,1.414,1.414L16.242,9.172a1,1,0,0,1-1.414-1.414ZM4,12a1,1,0,0,1,1-1H7a1,1,0,0,1,0,2H5A1,1,0,0,1,4,12Zm5.172,4.242L7.757,17.657a1,1,0,0,1-1.414-1.414l1.415-1.415a1,1,0,0,1,1.414,1.414Zm0-7.07a1,1,0,0,1-1.414,0L6.343,7.757A1,1,0,0,1,7.757,6.343L9.172,7.758A1,1,0,0,1,9.172,9.172ZM13,19a1,1,0,0,1-2,0V17a1,1,0,0,1,2,0ZM13,7a1,1,0,0,1-2,0V5a1,1,0,0,1,2,0Zm4.657,10.657a1,1,0,0,1-1.414,0l-1.415-1.415a1,1,0,0,1,1.414-1.414l1.415,1.415A1,1,0,0,1,17.657,17.657ZM20,12a1,1,0,0,1-1,1H17a1,1,0,0,1,0-2h2A1,1,0,0,1,20,12Z"></path></g></svg> : ""}</p>
+          <p className="w-[100%] text-center">{empty && "Please Check Your Network Connection"}</p>
+      
           {clothsList.map((post, index) => {
             return (
               <div

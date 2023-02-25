@@ -78,7 +78,7 @@ export function Profile() {
         </div>
       ) : (
        <div className="overflow-hidden">
-        <div className="flex justify-between px-6 py-4">
+        <div className="flex justify-between px-6 py-4 topnav">
         <svg
           width="35px"
           height="35px"
@@ -127,8 +127,8 @@ export function Profile() {
       </div>
       <div className="flex flex-col items-center">
         <div className="w-[90%]">
-          <p className="text-2xl">Welcome</p>
-          <p className="text-4xl my-2 font-bold">Thrift Shopper</p>
+          <p className="text-2xl mt-[1rem]">Welcome</p>
+          <p className="text-4xl my-2 font-bold thriftng">Thrift Shopper</p>
           <p>Buy More ..... Pay Less</p>
         </div>
       </div>
@@ -161,7 +161,7 @@ export function Profile() {
 
       <div className="overlay"></div>
       
-         <div className="flex flex-col items-center justify-center absolute top-[43%] left-[5%] w-[90%]">
+         <div className="flex flex-col items-center justify-center absolute top-[30%] left-[5%] w-[90%]">
           <div className="mt-[-1rem] border login-page p-[2rem]">
             <p>LOGO</p>
             <p className="mt-[2rem] text-[2rem] mb-[0.5rem] text-bolder">
@@ -247,7 +247,7 @@ export function Profile() {
               </div>
               <div className="flex justify-center items-center mt-[2rem]">
                 <div className="w-[28%] h-[1px] bg-black"></div>
-                <p className="mx-[1rem] text-[80%]">Buy more, Pay less</p>
+                <p className="mx-[1rem] text-[80%] motto text-xl">Buy more, Pay less</p>
                 <div className="w-[28%] h-[1px] bg-black"></div>
               </div>
               {/* <EmailAndPassword /> */}

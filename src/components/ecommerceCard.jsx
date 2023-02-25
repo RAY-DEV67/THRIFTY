@@ -14,13 +14,13 @@ export function EcommerceCard (props) {
 
 <div className="ml-[1rem]">
 <div>
-<h1 className="text-[#00CC00]">#{post.price}</h1>
+<h1 className="text-[#00CC00] mt-[1rem]">#{post.price}</h1>
 </div>
 
 <div>
     <h1>{post.title}</h1>
 </div>
-<div className="flex justify-between w-[40vw] mt-[30%]">
+<div className="flex justify-between w-[40vw] mt-[30%] mb-[1rem]">
     
 <div>
 <h1>{post.location}</h1>

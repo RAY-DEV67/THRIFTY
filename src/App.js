@@ -28,6 +28,7 @@ import { PastriesPage } from "./pages/PastriesPage";
 import { FragrancePage } from "./pages/FragrancePage";
 import { GenderPage } from "./pages/genderpage";
 import { Page404 } from "./pages/404Page";
+import { VendorPage } from "./pages/vendorpage";
 
 export const Product = React.createContext();
 export const SetProduct = React.createContext();
@@ -105,6 +106,10 @@ function App() {
                   <Route
                     path="/ThriftNg/Search/:product/:search"
                     element={<SearchResult />}
+                  />
+                  <Route
+                    path="/:vendor"
+                    element={<VendorPage />}
                   />
                   <Route path="/FAQ" element={<FAQ />} />
                   <Route path="/Invite Friends" element={<Invite />} />

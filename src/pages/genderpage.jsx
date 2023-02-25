@@ -19,12 +19,12 @@ export function GenderPage() {
   const [isEmpty, setisEmpty] = useState(false);
   const [hasmore, sethasmore] = useState(true);
   const [loading, setloading] = useState(false);
-const [error, seterror] = useState("");
 
   const navigate = useNavigate();
 
   console.log(isEmpty)
   useEffect(() => {
+    setloading(true)
     try{
       db.collection("Products")
     .where("category", "==", product)
@@ -37,10 +37,11 @@ const [error, seterror] = useState("");
         const lastDoc = collections.docs[collections.docs.length - 1];
         setclothsList(cloths);
         setlastDocuments(lastDoc);
-        console.log(lastDoc);
+        setTimeout(() => {
+          setloading(false)
+        }, 1000)
       });
     }  catch (err) {
-      seterror(err)
       console.log(err)
      }
   }, [product]);
@@ -73,7 +74,6 @@ const [error, seterror] = useState("");
         // console.log(clothsList)
       });
     }  catch (err) {
-      seterror(err)
       console.log(err)
      }
   };
@@ -86,16 +86,18 @@ const [error, seterror] = useState("");
         <InfiniteScroll
           dataLength={clothsList.length}
           hasMore={hasmore}
-          loader={<h4>Loading...</h4>}
+          loader={<p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">{<svg width="400px" className="loader " fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.828,5.758,1.415-1.415a1,1,0,1,1,1.414,1.414L16.242,9.172a1,1,0,0,1-1.414-1.414ZM4,12a1,1,0,0,1,1-1H7a1,1,0,0,1,0,2H5A1,1,0,0,1,4,12Zm5.172,4.242L7.757,17.657a1,1,0,0,1-1.414-1.414l1.415-1.415a1,1,0,0,1,1.414,1.414Zm0-7.07a1,1,0,0,1-1.414,0L6.343,7.757A1,1,0,0,1,7.757,6.343L9.172,7.758A1,1,0,0,1,9.172,9.172ZM13,19a1,1,0,0,1-2,0V17a1,1,0,0,1,2,0ZM13,7a1,1,0,0,1-2,0V5a1,1,0,0,1,2,0Zm4.657,10.657a1,1,0,0,1-1.414,0l-1.415-1.415a1,1,0,0,1,1.414-1.414l1.415,1.415A1,1,0,0,1,17.657,17.657ZM20,12a1,1,0,0,1-1,1H17a1,1,0,0,1,0-2h2A1,1,0,0,1,20,12Z"></path></g></svg>}</p>
+        }
           next={fetchmore}
           endMessage={
             <p style={{ textAlign: 'center' }}>
               <b>Yay! You have seen it all</b>
             </p>
           }
-          className="bg-red-300 mb-[10rem] flex flex-wrap gap-3 justify-center"
+          className="mb-[10rem] flex flex-wrap gap-3 justify-center"
         >
-          {error ? {error} : ""}
+          <p className="w-[100%] flex flex-col items-center mb-[1rem] loaderContainer">{loading ? <svg width="40px" className="loader " fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.828,5.758,1.415-1.415a1,1,0,1,1,1.414,1.414L16.242,9.172a1,1,0,0,1-1.414-1.414ZM4,12a1,1,0,0,1,1-1H7a1,1,0,0,1,0,2H5A1,1,0,0,1,4,12Zm5.172,4.242L7.757,17.657a1,1,0,0,1-1.414-1.414l1.415-1.415a1,1,0,0,1,1.414,1.414Zm0-7.07a1,1,0,0,1-1.414,0L6.343,7.757A1,1,0,0,1,7.757,6.343L9.172,7.758A1,1,0,0,1,9.172,9.172ZM13,19a1,1,0,0,1-2,0V17a1,1,0,0,1,2,0ZM13,7a1,1,0,0,1-2,0V5a1,1,0,0,1,2,0Zm4.657,10.657a1,1,0,0,1-1.414,0l-1.415-1.415a1,1,0,0,1,1.414-1.414l1.415,1.415A1,1,0,0,1,17.657,17.657ZM20,12a1,1,0,0,1-1,1H17a1,1,0,0,1,0-2h2A1,1,0,0,1,20,12Z"></path></g></svg> : ""}</p>
+     
           {clothsList.map((post, index) => {
             if(post.gender === gender)
            { return (
@@ -111,10 +113,6 @@ const [error, seterror] = useState("");
             return ""
           })}
         </InfiniteScroll>
-      </div>
-      <div className="flex flex-col items-center">
-        {/* <button className="mb-[5rem] border mt-[1rem]">More</button> */}
-        {loading ? <p>Chil i dey come</p> : ""}
       </div>
       <Footer/>
     </div>

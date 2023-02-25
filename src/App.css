@@ -29,6 +29,8 @@ body{
 .nav{
   background-color:  white;
   backdrop-filter: blur(4px);
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
 }
 .heading{
   background-color: #00cc00;
@@ -42,10 +44,10 @@ body{
   color: white;
 }
 .sign-in-google{
-  border: 1px solid rgb(170, 54, 124);
+  border: 1px solid #00cc00;
 }
 .login-page{
-  border: 2px solid rgb(170, 54, 124);
+  border: 2px solid #00cc00;
   border-radius: 20px;
   background-color:  #fffafa;
 }
@@ -270,6 +272,9 @@ input[type=text]{
 input[type=text]:focus{
   border: 2px solid #00cc00;
 }
+.buyProductBorder{
+  border-bottom:  1px solid #00cc00;
+}
 .topnav{
   background-color: #00cc00;
   border-end-end-radius: 20px;
@@ -277,8 +282,8 @@ input[type=text]:focus{
 }
 .footer{
   background-color: #00cc00;
-  border-top-right-radius: 20px ;
-  border-top-left-radius: 20px ;
+  border-top-right-radius: 30px ;
+  border-top-left-radius: 30px ;
 }
 .officialStore, .categories{
   border-bottom: 1px solid #00cc00; ;
@@ -286,6 +291,28 @@ input[type=text]:focus{
 .buyProduct{
   border: 1px solid #00cc00; ;
 }
+.loaderContainer{
+  perspective: 150px;
+}
+.loader{
+  animation: front 1s linear infinite;
+  width: 15%;
+}
+@keyframes front {
+  0% {
+      transform: translateZ(-10px);
+  }
+  50% {
+      transform: translateZ(10px);
+  }
+  100% {
+      transform: translateZ(-10px);
+  }
+}
+.landingpageLoader{
+  background-color: #00cc00;
+}
+
 /* @media screen and (min-width : 500px){
   .topimage{
     width: 220px;

@@ -1,28 +1,31 @@
 import { useState } from "react";
 import { EcommerceCard } from "../components/ecommerceCard";
 import db from "../config/firebase";
-import { Search } from "../components/search";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Footer } from "../components/footer";
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Topnav } from "../components/topnav";
 
-export function ProductsPage() {
-  const {product} = useParams()
+export function VendorPage() {
+  
   const navigate = useNavigate();
+  const {vendor} = useParams()
 
   const [clothsList, setclothsList] = useState([]);
   const [lastDocuments, setlastDocuments] = useState(null);
   const [isEmpty, setisEmpty] = useState(false);
   const [hasmore, sethasmore] = useState(true);
   const [loading, setloading] = useState(false);
+  const [error, seterror] = useState("");
 
+  console.log(loading)
   console.log(isEmpty)
   useEffect(() => {
-    setloading(true)
+   try{
     db.collection("Products")
-    .where("category", "==", product)
+    .where("vendor", "==", vendor)
       .limit(10)
       .get()
       .then((collections) => {
@@ -32,16 +35,20 @@ export function ProductsPage() {
         const lastDoc = collections.docs[collections.docs.length - 1];
         setclothsList(cloths);
         setlastDocuments(lastDoc);
-        setloading(false)
+        console.log(lastDoc);
       });
-  }, [product]);
+   } catch (err) {
+        seterror(err)
+        console.log(err)
+       }
+  }, [vendor]);
 
 
 
   const fetchmore = () => {
     setloading(true)
     db.collection("Products")
-    .where("category", "==", product)
+    .where("vendor", "==", vendor)
       .startAfter(lastDocuments)
       .limit(20)
       .get()
@@ -49,7 +56,7 @@ export function ProductsPage() {
         const isCollectionEmpty = collections.size === 0;
         if (!isCollectionEmpty) {
           const newcloths = collections.docs.map((cloths) => {
-            return { ...cloths.data(), id: cloths.id };
+            return { ...cloths.data(), id: cloths.id };;
           });
           const lastDoc = collections.docs[collections.docs.length - 1];
           setclothsList((clothsList) => [...clothsList, ...newcloths]);
@@ -67,7 +74,8 @@ export function ProductsPage() {
 
   return (
     <div>
-      <Search />
+   <Topnav/>
+   <h1 className="p-[1rem] productBorder text-center my-[1rem]">{vendor}</h1>
       <div>
         <InfiniteScroll
           dataLength={clothsList.length}
@@ -80,9 +88,9 @@ export function ProductsPage() {
               <b>Yay! You have seen it all</b>
             </p>
           }
-          className="mb-[5rem] flex flex-wrap gap-3 justify-center"
+          className="flex flex-wrap gap-3 justify-center"
         >
-          {/* <div>{loading ? <p>Loading</p> : ""}</div> */}
+          {error ? {error} : ""}
           {clothsList.map((post, index) => {
             return (
               <div
@@ -96,10 +104,6 @@ export function ProductsPage() {
             );
           })}
         </InfiniteScroll>
-      </div>
-      <div className="flex flex-col items-center">
-        {/* <button className="mb-[5rem] border mt-[1rem]">More</button> */}
-        {loading ? <p>Chil i dey come</p> : ""}
       </div>
       <Footer/>
     </div>
