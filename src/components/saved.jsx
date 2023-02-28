@@ -1,7 +1,7 @@
 import { Profile } from "./profile";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-// import { getDocs, collection, query, where } from "firebase/firestore";
+import logo1 from "../assets/images/thriftlogo1.webp"
 import { useEffect, useState, useContext } from "react";
 import db from "../config/firebase";
 import { EcommerceCard } from "./ecommerceCard";
@@ -14,9 +14,12 @@ export function Saved() {
 
   const [user] = useAuthState(auth);
   const [saved, setsaved] = useState([]);
+  const [loading, setloading] = useState(false);
+  const [empty, setempty] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setloading(true)
     db.collection("Saved")
       .get()
       .then((collections) => {
@@ -24,6 +27,11 @@ export function Saved() {
           return { ...cloths.data(), id: cloths.id };
         });
         setsaved(cloths);
+        setTimeout(() => {
+          setloading(false)
+        }, 1000)
+        console.log(cloths.length)
+        if(cloths.length === 1){setempty(true)}
       });
   }, []);
 
@@ -35,6 +43,8 @@ export function Saved() {
         <div>
           <p className="p-[1rem] border-y text-center mb-[1rem]">Saved Items</p>
           <div className="flex flex-wrap gap-3 justify-center">
+          <p className="w-[100%] flex flex-col items-center loaderContainer">{loading ? <img alt="logo" className="loader mb-[-1rem]" src={logo1} /> : ""}</p>
+          <p className="w-[100%] text-center font-bold">{empty && "YOU HAVE NO SAVED ITEMS"}</p>
             {saved?.map((post, index) => {
               if (post.userId === user.uid) {
                 return (

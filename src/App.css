@@ -258,9 +258,12 @@ background-color: white;
   /* grid-template-rows: repeat(20, 200px); */
   gap: 1rem;
 }
-.topcard, .ecommerceCard{
+.topcard{
   border: 1px solid #00cc00;
   border-radius: 10px;
+}
+.ecommerceCard{
+  box-shadow: 0px 0px 7px #00cc00;
 }
 input[type=text]{
   border: 2px solid ;
@@ -288,7 +291,7 @@ input[type=text]:focus{
 .officialStore, .categories{
   border-bottom: 1px solid #00cc00; ;
 }
-.buyProduct{
+.buyProduct, .productgender{
   border: 1px solid #00cc00; ;
 }
 .loaderContainer{
@@ -297,6 +300,10 @@ input[type=text]:focus{
 .loader{
   animation: front 1s linear infinite;
   width: 15%;
+}
+.landingloader{
+  animation: front 1s linear infinite;
+  width: 35%;
 }
 @keyframes front {
   0% {
@@ -310,7 +317,7 @@ input[type=text]:focus{
   }
 }
 .landingpageLoader{
-  background-color: #00cc00;
+  background-color:#00cc00
 }
 
 /* @media screen and (min-width : 500px){

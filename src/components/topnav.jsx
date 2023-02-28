@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo1 from "../assets/images/thriftlogo1.webp"
 
 export function Topnav() {
   const [showNav, setshowNav] = useState(false);
@@ -563,7 +564,8 @@ export function Topnav() {
             </Link>
           </div>
           <Link to="/ThriftNg/Thrifts"> 
-          <div className="my-[1rem]">
+          <div className="my-[1rem] flex">
+          <img alt="logo" className="w-[10%] h-[10%] mb-[-1rem] mr-[0.5rem] ml-[-0.3rem] " src={logo1} />
             <p>Thrift</p>
           </div>
           </Link>
