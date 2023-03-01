@@ -16,8 +16,11 @@ const [faq12, setfaq12] = useState(false);
 
 
     return ( <div>
-       <p className="border text-center p-[1rem] mb-[1rem]">Frequently Asked Questions?</p>
-       <h2 className="border-y bor p-[1rem]" onClick={() => {setfaq1(!faq1)}}>How do i contact Support Team</h2>
+       <p className="faq text-center p-[1rem] mb-[1rem]">Frequently Asked Questions?</p>
+       <div className="faq faq1 px-[1rem] flex justify-between">
+       <h2 className="py-[1rem]" onClick={() => {setfaq1(!faq1)}}>How do i contact Support Team</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+       </div>
     {faq1 ? <div className="p-[1rem] border-b">
     <p>To contact our Support Team, choose the most convenient channel for yourself: Whatsapp chat or email.
 
@@ -41,9 +44,12 @@ const [faq12, setfaq12] = useState(false);
 </p>
     </div>
  : ""}
-           <h2 className="p-[1rem]" onClick={() => {
+         <div className="flex faq px-[1rem] justify-between">
+         <h2 className="py-[1rem]" onClick={() => {
             setfaq2(!faq2)
            }}>How can i sell on Thrift Ng</h2>
+           <svg viewBox="0 0 1024 1024"  width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+         </div>
        {faq2 ? <div className="p-[1rem] border-t">
        <p className="mb-[1rem]">Post your ads on Jiji effortlessly by following the steps below:</p>
 
@@ -53,9 +59,14 @@ const [faq12, setfaq12] = useState(false);
 
 <p>3. You would be redirected to a customer care representative who would guide you through the process and verify you.</p>
        </div> : ""}
-       <h2 className="border-y p-[1rem]" onClick={() => {
+       <div className="faq px-[1rem] flex justify-between">
+       <h2 className="py-[1rem]" onClick={() => {
         setfaq3(!faq3)
        }}>How to buy something on Thrift Ng</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+       
+       </div>
+       
        {faq3 ? <div className="p-[1rem] border-b">
        <p className="mb-[1rem]">To fully enjoy shopping on Jiji, follow our simple guide:</p>
 
@@ -67,19 +78,49 @@ const [faq12, setfaq12] = useState(false);
 <p>You may chat on Jiji or call a seller via phone and set up a meeting face to face, discuss some details or negotiate about the price.</p>
 <p className="mt-[1rem]">3. Take your item or order a delivery</p>
        </div> : ""}
-       <h2 className="border-y p-[1rem]" onClick={() => {
+       <div className="faq px-[1rem] flex justify-between">
+       <h2 className="py-[1rem]" onClick={() => {
         setfaq4(!faq4)
        }}>What is Thrift Market Place</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+       
+       </div>
        {faq4 ? <p className="p-[1rem] border-b">An online marketplace is a place where people buy from people. It’s like a local market, but with one difference: you can buy and sell online without even leaving a room. More than that, here you can also find a job or order services from Nigerians that are close to you.
 
 Basically, whatever you need is here. Just type it in search</p> : ""}
-       <h2 className=" p-[1rem]" onClick={() => {
+
+
+
+<div className="px-[1rem] faq flex justify-between">
+<h2 className="py-[1rem]" onClick={() => {
         setfaq5(!faq5)
        }}>Do you have any stores</h2>
+         <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+</div>
+
+
+     
        {faq5 ? <p className="p-[1rem] border-t">No, as we are not a shop. Jiji is the marketplace — here you can sell your stuff, buy goods from real people, find a job or services you need. Any deal you make, you make with people. And we exist just to help you find each other.</p> : "" }
-       <h2 className="border-y p-[1rem]" onClick={() => {setfaq6(!faq6)}}>Do you have a delivery</h2>
+      
+
+
+
+       <div className="px-[1rem] faq flex justify-between">
+       <h2 className=" py-[1rem]" onClick={() => {setfaq6(!faq6)}}>Do you have a delivery</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+       </div>
+     
        {faq6 ? <p className="p-[1rem] border-b">No, we don’t. But you can always discuss with the seller a comfortable way of delivering.</p> : ""}
-       <h2 className=" p-[1rem]" onClick={() => {setfaq7(!faq7)}}>What can i do to sell better</h2>
+      
+      
+       <div className="px-[1rem] faq flex justify-between">
+       <h2 className=" py-[1rem]" onClick={() => {setfaq7(!faq7)}}>What can i do to sell better</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+       </div>
+      
        {faq7 ? <div className="p-[1rem] border-t"><p>We've prepared a few pieces of advice to help you sell like a pro:</p>
 
 <p className="mt-[1rem]">1.Pay attention to details</p>
@@ -99,7 +140,15 @@ Basically, whatever you need is here. Just type it in search</p> : ""}
 <p>If you really need to sell something fast, Premium Services are your way out! Whatever your item is, you’ll get the most effective and unbelievable promotion for it! To learn more about the different types of Premium Services we offer, click here.
 </p>
 </div> : ""}
-       <h2 className="border-y p-[1rem]" onClick={() => {setfaq8(!faq8)}}>Tips fo creating an effective ad</h2>
+
+
+
+<div className="px-[1rem] faq flex justify-between">
+<h2 className=" py-[1rem]" onClick={() => {setfaq8(!faq8)}}>Tips for creating an effective ad</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+</div>
+     
        {faq8 ? <div className="p-[1rem]"><p className="mb-[1rem]">If you really want to create a great ad, we highly recommend you following the tips below:
 </p>
 <p>1. Use a clear title which includes the name of the item you sell. Try to make your title appealing and eye-catching.
@@ -118,8 +167,15 @@ Basically, whatever you need is here. Just type it in search</p> : ""}
 </p>
 <p>8.Make your advert as risk-free as possible. Underline that no prepayments are required and be ready to list those delivery services which presuppose payment on the delivery of the product ordered.
 </p> </div> : ""}
+
+
+<div className="px-[1rem] faq flex justify-between">
+<h2 className="py-[1rem]" onClick={() => {setfaq12(!faq12)}}>My Advert has been Declined. Why?</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+</div>
        
-       <h2 className="border-y p-[1rem]" onClick={() => {setfaq12(!faq12)}}>My Advert has been Declined. Why?</h2>
+     
        {faq12 ? <p className="p-[1rem] border-b">No worries, it can be fixed! Our moderators could decline your ad for several reasons:
 
 You've tried to post a few items within one ad. Please post each item separately. We have a rule: 1 ad = 1 product.
@@ -128,12 +184,29 @@ You've set an irrelevant price. Make sure to carry out some investigation of mar
 Make the required edits and click on the "Post ad" button. If everything is fine, your ad will be live within an hour or two.
 
 We hope any issues you've faced will be resolved shortly.</p> : ""}
-       <h2 className=" p-[1rem]" onClick={() => {setfaq9(!faq9)}}>How long would my ads stay on Thrift Ng</h2>
+
+
+
+
+<div className="px-[1rem] faq flex justify-between">
+<h2 className=" py-[1rem]" onClick={() => {setfaq9(!faq9)}}>How long would my ads stay on Thrift Ng</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+</div>
+     
        { faq9 ? <p className="p-[1rem] border-t">Your ads remain on the site for 1-3 months (since the date of the last renewal) before they are automatically deleted or until you decide to deactivate them.
 
 Please note that you can always update your ad if you haven't sold your item.</p> : ""}
 
-       <h2 className="border-y p-[1rem]" onClick={() => {setfaq10(!faq10)}}>What are thre types of premium services on Thrift Ng</h2>
+      
+<div className="px-[1rem] faq flex justify-between">
+<h2 className=" py-[1rem]" onClick={() => {setfaq10(!faq10)}}>What are thre types of premium services on Thrift Ng</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+</div>
+      
+      
+     
        {faq10 ? <div className="p-[1rem] border-b"><p>Jiji offers 2 types of Premium Packages that can help you to promote your ads: Top and Boost Packages.</p>
 
 <p className="mt-[1rem]">1. With Top, your ad is placed at the top of the search results page for either 7 or 30 days, depending on the duration you have chosen. It means that your potential clients would be able to find your ad easier, so, as a result, you will get up to 15 times more customers.
@@ -167,7 +240,14 @@ Please note that you can always update your ad if you haven't sold your item.</p
 <p>10 VIP TOP+
 </p> 
 </div> : ""}
-       <h2 className=" p-[1rem]" onClick={() => { setfaq11(!faq11)}}>How to buy Premium Services</h2>
+
+
+<div className="px-[1rem] faq  flex justify-between">
+<h2 className=" py-[1rem]" onClick={() => { setfaq11(!faq11)}}>How to buy Premium Services</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+</div>
+     
        {faq11 ? <p className="p-[1rem] border-t">To buy Premium Services, click here, select the category that fits your product best and check out available Packages.
 
 As soon as you choose the Package and the duration of the promotion that meet your needs and budget, simply click on the "Buy" button to proceed with the purchase.
@@ -175,7 +255,14 @@ As soon as you choose the Package and the duration of the promotion that meet yo
 You can also pay for the Package via bank using an invoice. To get the invoice, click on the "Get payment details" button. The download will start shortly after that.
 
 If you feel unsure of the Package to choose, request a call from the Jiji Manager for a recommendation.</p> : ""}
-       <h2 className=" p-[1rem] pb-[5rem] border-t">How can I protect myself from being scammed?</h2>
+       
+<div className="px-[1rem] pb-[5rem]  flex justify-between">
+<h2 className=" py-[1rem]">How can I protect myself from being scammed?</h2>
+       <svg viewBox="0 0 1024 1024" width="15px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path></g></svg>
+     
+</div>
+       
+       
     </div> );
 }
 

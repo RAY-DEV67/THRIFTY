@@ -39,11 +39,11 @@ body{
   font-weight: 700;
   border-radius: 20px;
 }
-.sign-in-google:hover, .create-ad{
-  background-color: rgb(170, 54, 124);
+.sign-in-google:hover, .create-ad, .inviteSocial{
+  background-color: #00cc00;
   color: white;
 }
-.sign-in-google{
+.sign-in-google, .invite{
   border: 1px solid #00cc00;
 }
 .login-page{
@@ -51,15 +51,19 @@ body{
   border-radius: 20px;
   background-color:  #fffafa;
 }
-
+.notifications, .invitePage, .social, .faq{
+  border-bottom: 1px solid #00cc00;
+}
 .profile-details{
   border-radius: 10px;
   background-color: white;
-  box-shadow: 1px 1px 5px black;
   font-weight: 400;
 }
 .profile-details:hover{
-  color: rgb(170, 54, 124);
+  border: 2px solid #00cc00;
+}
+.faq1{
+  border-top: 1px solid #00cc00;
 }
 .overlay{
   height: 100vh;
@@ -303,7 +307,7 @@ input[type=text]:focus{
 }
 .landingloader{
   animation: front 1s linear infinite;
-  width: 35%;
+  width: 50%;
 }
 @keyframes front {
   0% {

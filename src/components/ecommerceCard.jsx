@@ -7,7 +7,7 @@ export function EcommerceCard (props) {
 
     return ( 
     
-   <div className="flex flex-col items-center">
+   <div className="flex flex-col items-center mt-[0.5rem]">
      <div className="ecommerceCard w-[95%] flex rounded-[10px]">
 <div className="w-[40%]">
 <img src={post.images} alt="Product" className="rounded-[10px] h-[162px]"/>
