@@ -118,12 +118,14 @@ background-color: white;
   background-color: #38A169;
 }
 .cloths{
-  background-image: url("assets/images/backgroundCloth.webp");
-  background-position: 50% 20%;
+  background-image: url("assets/images/newCloth.webp");
+  background-position: 50% 80%;
   border-radius: 15px;
   border: 2px solid #00cc00;
   grid-row: inherit;
   height: 400px;
+  background-size: 300px;
+  background-repeat: no-repeat;
 }
 .womenCloths{
   background-image: url("assets/images/women-cloth.webp"); 

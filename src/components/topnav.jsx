@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo1 from "../assets/images/thriftlogo1.webp"
+import mainlogo from "../assets/images/mainlogo.jpg"
 // import { NavLink } from "react-router-dom";
 import { DesktopNav } from "./desktopnav";
 
@@ -43,7 +44,7 @@ export function Topnav() {
 
   return (
     <div>
-      <div className="flex justify-between px-6 py-4 lg:fixed lg:top-0 lg:w-[100vw] topnav">
+      <div className="flex justify-between overflow-y-hidden px-6 py-4 lg:fixed lg:top-0 lg:w-[100vw] topnav">
         <div
           onClick={() => {
             setshowNav(true);
@@ -72,21 +73,21 @@ export function Topnav() {
                   <path
                     id="vector"
                     d="M3 6H21"
-                    stroke="#000000"
+                    stroke="#ffffff"
                     stroke-width="1.5"
                     stroke-linecap="round"
                   ></path>{" "}
                   <path
                     id="vector_2"
                     d="M5 12H19"
-                    stroke="#000000"
+                    stroke="#ffffff"
                     stroke-width="1.5"
                     stroke-linecap="round"
                   ></path>{" "}
                   <path
                     id="vector_3"
                     d="M7 18H17"
-                    stroke="#000000"
+                    stroke="#ffffff"
                     stroke-width="1.5"
                     stroke-linecap="round"
                   ></path>{" "}
@@ -95,7 +96,7 @@ export function Topnav() {
             </g>
           </svg>
         </div>
-        <p>LOGO</p>
+        <img alt="logo" className="w-[100px] -mt-[1.5rem] -mb-[2rem]" src={mainlogo}/>
         <div className="hidden lg:block">
         <DesktopNav/>
         </div>
