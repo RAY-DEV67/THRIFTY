@@ -69,11 +69,11 @@ export function HairPage() {
 
   return (
     <div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <Topnav />
       </div>
       <Sidebar />
-      <div className="md:absolute md:left-[40%] md:top-[13%] md:z-[-1]">
+      <div className="lg:absolute lg:left-[40%] lg:top-[13%] lg:z-[-1]">
         <h1 className="p-[1rem] productBorder text-center my-[1rem]">Hair</h1>
         <div className="mt-[1rem]">
           <h2 className="text-center heading p-2 mb-[2rem]">
@@ -143,7 +143,7 @@ export function HairPage() {
               See All
             </p>
           </div>
-          <div className="flex flex-wrap gap-3 justify-center md:mb-[5rem]">
+          <div className="flex flex-wrap gap-3 justify-center lg:mb-[5rem]">
             <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">
               {loading ? (
                 <img alt="Logo" className="loader mb-[-1rem]" src={logo1} />
@@ -173,7 +173,7 @@ export function HairPage() {
           </div>
         </div>
       </div>{" "}
-      <footer className="md:pb-[0rem] z-30 pb-[4rem] md:overflow-x-hidden  footer md:fixed md:bottom-0 pt-[1rem] md:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] md:w-[100vw] items-center">
+      <footer className="lg:pb-[0rem] z-30 pb-[4rem] lg:overflow-x-hidden  footer lg:fixed lg:bottom-0 pt-[1rem] lg:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] lg:w-[100vw] items-center">
           <img alt="logo" className="w-[70px]" src={logo2}/>
             <p className="motto text-[1.5rem]">Buy More ..... Pay Less</p>
           </footer>

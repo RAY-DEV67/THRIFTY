@@ -43,12 +43,12 @@ export function Topnav() {
 
   return (
     <div>
-      <div className="flex justify-between px-6 py-4 md:fixed md:top-0 md:w-[100vw] topnav">
+      <div className="flex justify-between px-6 py-4 lg:fixed lg:top-0 lg:w-[100vw] topnav">
         <div
           onClick={() => {
             setshowNav(true);
           }}
-          className="md:hidden"
+          className="lg:hidden"
         >
           <svg
             width="35px"
@@ -96,7 +96,7 @@ export function Topnav() {
           </svg>
         </div>
         <p>LOGO</p>
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
         <DesktopNav/>
         </div>
       </div>

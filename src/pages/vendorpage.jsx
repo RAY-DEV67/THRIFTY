@@ -74,7 +74,7 @@ export function VendorPage() {
 
 
   return (
-    <div className="md:absolute md:top-[13%] md:z-[-1]">
+    <div className="lg:absolute lg:top-[13%] lg:z-[-1]">
    <Topnav/>
    <h1 className="p-[1rem] productBorder text-center my-[1rem]">{vendor}</h1>
       <div>

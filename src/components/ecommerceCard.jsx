@@ -6,12 +6,12 @@ export function EcommerceCard(props) {
 
   return (
     <div className="flex flex-col items-center mt-[0.5rem] productfont">
-      <div className="ecommerceCard w-[95%] md:h-[190px] flex rounded-[10px]">
+      <div className="ecommerceCard w-[95%] lg:h-[190px] flex rounded-[10px]">
         <div className="w-[40%]">
           <img
             src={post.images}
             alt="Product"
-            className="rounded-[10px] h-[100%]"
+            className="rounded-[10px]"
           />
         </div>
         <div className="w-[60%]">
@@ -30,7 +30,7 @@ export function EcommerceCard(props) {
               </h1>
             </div>
 
-            <div className="flex mt-[2rem] md:mt-[3rem] mb-[0.5rem] items-center ">
+            <div className="flex mt-[2rem] lg:mt-[3rem] mb-[0.5rem] items-center ">
               <svg
                 width="20px"
                 viewBox="0 0 24 24"

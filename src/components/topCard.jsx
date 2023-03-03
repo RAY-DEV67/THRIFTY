@@ -2,7 +2,7 @@ export function TopCard(props) {
     const {post} = props
     return ( 
     
-    <div className="topcard md:w-[25vw] productfont" >
+    <div className="topcard lg:w-[25vw] productfont" >
 <div className="relative">
 <img src={post.images} alt="Product" className="w-[44vw] bg-white rounded-[10px] object-contain topimage"/>
 </div>

@@ -66,11 +66,11 @@ export function FragrancePage() {
 
   return (
     <div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
       <Topnav />
       </div>
       <Sidebar/>
-      <div className="md:absolute md:left-[40%] md:top-[13%] md:z-[-1]">
+      <div className="lg:absolute lg:left-[40%] lg:top-[13%] lg:z-[-1]">
       <h1 className="p-[1rem] productBorder text-center my-[1rem]">FRAGRANCE</h1>
       <div className="mt-[1rem]">
         <h2 className="text-center heading p-2 mb-[2rem]">

@@ -15,7 +15,7 @@ const [faq11, setfaq11] = useState(false);
 const [faq12, setfaq12] = useState(false);
 
 
-    return ( <div className="md:mt-[5rem] productfont">
+    return ( <div className="lg:mt-[5rem] productfont">
        <p className="faq text-center p-[1rem] mb-[1rem]">Frequently Asked Questions?</p>
        <div className="faq faq1 px-[1rem] flex justify-between">
        <h2 className="py-[1rem]" onClick={() => {setfaq1(!faq1)}}>How do i contact Support Team</h2>

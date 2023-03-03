@@ -40,7 +40,7 @@ export function Saved() {
   return (
     <div>
       {user ? (
-        <div className="md:absolute md:top-[13%] lg:left-[40%] md:w-[100vw] lg:w-[59vw]  md:z-[-1]">
+        <div className="lg:absolute lg:top-[13%] lg:left-[40%] lg:w-[59vw]  lg:z-[-1]">
           <p className="p-[1rem] border-y text-center mb-[1rem] contact">Saved Items</p>
           <div className="flex flex-wrap gap-3 justify-center">
           <p className="w-[100%] flex flex-col items-center loaderContainer">{loading ? <img alt="logo" className="loader mb-[-1rem]" src={logo1} /> : ""}</p>

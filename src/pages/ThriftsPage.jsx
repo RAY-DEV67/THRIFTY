@@ -80,10 +80,10 @@ export function ThriftPage() {
     <div className="lg:block hidden">
     <Sidebar/>
     </div>
-     <div className="md:absolute md:top-[13%] lg:left-[40%]  md:z-[-1]">
+     <div className="lg:absolute lg:top-[13%] lg:left-[40%]  lg:z-[-1]">
       <Search />
       <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">{loading ? <img alt="Logo" className="loader mb-[-1rem]" src={logo1}/> : ""}</p>
-      <p className="w-[100%] text-center text-xl md:w-[100vw]">{empty ? "No results found" : ""}</p>
+      <p className="w-[100%] text-center text-xl lg:w-[100vw]">{empty ? "No results found" : ""}</p>
 
       <div>
         <InfiniteScroll
@@ -116,7 +116,7 @@ export function ThriftPage() {
         </InfiniteScroll>
       </div>
     </div>
-    <footer className="md:pb-[0rem] z-30 pb-[4rem] md:overflow-x-hidden  footer md:fixed md:bottom-0 pt-[1rem] md:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] md:w-[100vw] items-center">
+    <footer className="lg:pb-[0rem] z-30 pb-[4rem] lg:overflow-x-hidden  footer lg:fixed lg:bottom-0 pt-[1rem] lg:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] lg:w-[100vw] items-center">
           <img alt="logo" className="w-[70px]" src={logo2}/>
             <p className="motto text-[1.5rem]">Buy More ..... Pay Less</p>
           </footer>

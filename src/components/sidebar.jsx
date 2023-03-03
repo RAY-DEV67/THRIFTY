@@ -42,7 +42,7 @@ export function Sidebar() {
 
     return ( <div>
         {/* DESKTOP VERSION//////////////////////// */}
-<div className="hidden md:block md:fixed md:w-[38%] md:left-5 md:top-[13%] md:bottom-[10%] md:bg-white md:z-10 md:border md:overflow-scroll">
+<div className="hidden lg:block lg:fixed lg:w-[38%] lg:left-5 lg:top-[13%] lg:bottom-[10%] lg:bg-white lg:z-10 lg:border lg:overflow-scroll">
         <div className="ml-[1rem] categories">
           <p className="mt-[1rem] font-bold categories pb-[1rem]">Our Categories</p>
           <div className="my-[1rem] flex">

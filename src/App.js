@@ -56,10 +56,10 @@ function App() {
             <SetProduct.Provider value={setproducts}>
               <Router>
                 <ScrollToTop>
-                <div className="md:hidden">
+                <div className="lg:hidden">
                 <NavBar />
                 </div>
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                   <Topnav/>
                 </div>
                 <Routes>
