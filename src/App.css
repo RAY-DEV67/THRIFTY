@@ -309,6 +309,16 @@ input[type=text]:focus{
   animation: front 1s linear infinite;
   width: 50%;
 }
+.landingpage{
+  overflow-x: hidden;
+}
+.contact{
+  border-bottom: 1px solid #00cc00;
+  border-top: 1px solid #00cc00;
+}
+.productfont{
+  font-family: 'Nunito Sans', sans-serif;
+}
 @keyframes front {
   0% {
       transform: translateZ(-10px);

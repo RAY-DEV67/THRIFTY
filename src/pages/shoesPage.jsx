@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { SetProduct, SetId} from "../App"
 import { TopCard } from "../components/topCard";
 import { Topnav } from "../components/topnav";
-import { Footer } from "../components/footer";
+// import { Footer } from "../components/footer";
 import logo1 from "../assets/images/thriftlogo1.webp"
+import { Sidebar } from "../components/sidebar";
+import logo2 from "../assets/images/logowhite.webp";
 
 
 export function ShoesPage() {
@@ -68,7 +70,11 @@ export function ShoesPage() {
 
   return (
     <div>
-      <Topnav/>
+      <div className="md:hidden">
+      <Topnav />
+      </div>
+      <Sidebar/>
+      <div  className="md:absolute md:left-[40%] md:top-[13%] md:z-[-1]">
       <h1 className="p-[1rem] productBorder text-center my-[1rem]">Shoes</h1>
       <div className="flex flex-col items-center">
       <div className="flex gap-3 w-[90%]">
@@ -146,20 +152,24 @@ navigate("/ThriftNg/Shoes/All-Shoes")
               }}>See All</p>
 
       </div>
-<div  className="flex flex-wrap gap-3 justify-center">
+<div  className="flex flex-wrap gap-3 justify-center md:mb-[5rem]">
 <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">{loading ? <img alt="Logo" className="loader mb-[-1rem]" src={logo1}/> : ""}</p>
 <p className="w-[100%] text-center">{empty && "Please Check Your Network Connection"}</p>
      
 {clothsList.map((post, index) => {
             return (
-              <div key={index} onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Shoes")} }>
+              <div key={index} className="lg:w-[95%] max-w-4xl" onClick={() => { setProductsId(post.id); navigate(`/ThriftNg/Buy/${post.category}/${post.id}`); setProducts("Shoes")} }>
                 <EcommerceCard post={post} />
               </div>
             );
           })}
 </div>
       </div>
-      <Footer/>
+      </div>
+      <footer className="md:pb-[0rem] z-30 pb-[4rem] md:overflow-x-hidden  footer md:fixed md:bottom-0 pt-[1rem] md:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] md:w-[100vw] items-center">
+          <img alt="logo" className="w-[70px]" src={logo2}/>
+            <p className="motto text-[1.5rem]">Buy More ..... Pay Less</p>
+          </footer>
     </div>
   );
 

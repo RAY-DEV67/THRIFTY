@@ -74,7 +74,7 @@ export function VendorPage() {
 
 
   return (
-    <div>
+    <div className="md:absolute md:top-[13%] md:z-[-1]">
    <Topnav/>
    <h1 className="p-[1rem] productBorder text-center my-[1rem]">{vendor}</h1>
       <div>
@@ -99,6 +99,7 @@ export function VendorPage() {
               onClick={() => {
                 navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
               }}
+              className="sm:w-[85vw] max-w-4xl"
             >
                 <EcommerceCard post={post} />
               </div>

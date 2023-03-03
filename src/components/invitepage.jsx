@@ -1,5 +1,5 @@
 export function Invite() {
-    return ( <div>
+    return ( <div className="md:mt-[5rem]">
         <h1 className="p-[1rem] invitePage text-center mb-[1rem]">Invite Your friends</h1>
       <div className="invite mx-[1rem] p-[1rem]">
       <div className="flex justify-between items-center social pb-[1rem]">

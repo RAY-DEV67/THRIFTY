@@ -9,7 +9,7 @@ export function Search() {
   const [search, setsearch] = useState("");
  
 
-    return ( <div>
+    return ( <div >
       <Topnav/>
 
       <form className="flex flex-col items-center relative" onSubmit={() => { navigate(`/ThriftNg/Search/Cloths/${search}`)}}>

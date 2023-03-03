@@ -2,14 +2,14 @@ export function TopCard(props) {
     const {post} = props
     return ( 
     
-    <div className="topcard" >
+    <div className="topcard md:w-[25vw] productfont" >
 <div className="relative">
 <img src={post.images} alt="Product" className="w-[44vw] bg-white rounded-[10px] object-contain topimage"/>
 </div>
 
 <div className="ml-[1rem]">
 <div>
-<h1 className="text-[#00CC00]">#{post.price}</h1>
+<h1 className="text-[#00CC00] mt-[0.5rem]">#{post.price}</h1>
 </div>
 
 <div>

@@ -1,7 +1,7 @@
 export function PrivacyPolicy() {
-    return ( <div>
+    return ( <div className="md:mt-[5rem] productfont">
         <div className="mx-[1rem]">
-        <h1 className="p-[1rem] border-y text-center mb-[1rem] text-[2rem] font-bold">Privacy Policy for Thriftng</h1>
+        <h1 className="p-[1rem] contact text-center mb-[1rem] text-[2rem] font-bold">Privacy Policy for Thriftng</h1>
 
 <h2 className="text-[1.5rem] font-bold my-[1rem]">Privacy Policy</h2>
 <p className="mb-[1rem]">Last updated: February 13, 2023</p>

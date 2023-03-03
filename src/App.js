@@ -29,6 +29,8 @@ import { FragrancePage } from "./pages/FragrancePage";
 import { GenderPage } from "./pages/genderpage";
 import { Page404 } from "./pages/404Page";
 import { VendorPage } from "./pages/vendorpage";
+// import { DesktopNav } from "./components/desktopnav";
+import { Topnav } from "./components/topnav";
 
 export const Product = React.createContext();
 export const SetProduct = React.createContext();
@@ -45,33 +47,6 @@ function App() {
     return tempProducts || "";
   });
 
-  // useEffect(() => {
-  //   if (!fetched.current) {
-  //     fetched.current = true;
-  //     const data = window.localStorage.getItem("Product");
-  //     setproducts(data);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!fetchedID.current) {
-  //     fetchedID.current = true;
-  //     const dataId = window.localStorage.getItem("ID");
-  //     setid(dataId);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (fetched.current) {
-  //     window.localStorage.setItem("Product", products);
-  //   }
-  // }, [products]);
-
-  // useEffect(() => {
-  //   if (fetchedID.current) {
-  //     window.localStorage.setItem("ID", id);
-  //   }
-  // }, [id]);
 
   return (
     <div className="App">
@@ -81,7 +56,12 @@ function App() {
             <SetProduct.Provider value={setproducts}>
               <Router>
                 <ScrollToTop>
+                <div className="md:hidden">
                 <NavBar />
+                </div>
+                <div className="hidden md:block">
+                  <Topnav/>
+                </div>
                 <Routes>
                   <Route path="/" element={<LandingPage />} />
                   <Route path="/profile" element={<Profile />} />

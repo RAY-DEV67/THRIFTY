@@ -17,11 +17,11 @@ export function Profile() {
   };
 
   return (
-    <div className="overflow-hidden profile">
+    <div className="profile">
       {user ? (
         <div>
- <div className="flex flex-col items-center topnav mb-[1rem]">
- <p className="mt-[1rem]">LOGO</p>
+ <div className="flex flex-col items-center topnav mb-[1rem] md:mt-[4.5rem]">
+ <p className="mt-[1rem] md:hidden">LOGO</p>
  <p className="mr-[0.5rem] mb-[0.5rem] text-[2rem] text-white motto tracking-widest">Welcome Back</p>
          <div className="flex items-center">
            <p className="mr-[0.5rem] mb-[0.5rem] text-[1.5rem] text-white"> {user?.displayName}</p>

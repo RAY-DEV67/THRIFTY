@@ -1,129 +1,48 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo1 from "../assets/images/thriftlogo1.webp"
-// import { NavLink } from "react-router-dom";
-import { DesktopNav } from "./desktopnav";
 
-export function Topnav() {
-  const [showNav, setshowNav] = useState(false);
-  const [Stores, setStores] = useState(false);
-  const [accessoriesStores, setaccessoriesStores] = useState(false);
-  const [hairStores, sethairStores] = useState(false);
-  const [shoesStores, setshoesStores] = useState(false);
-  const [bagsStores, setbagsStores] = useState(false);
-  const [skinCareStores, setskinCareStores] = useState(false);
-  const [pastriesStores, setpastriesStores] = useState(false);
-  const [fragranceStores, setfragranceStores] = useState(false);
-  // const [path, setpath] = useState("");
 
-  const setCloths = () => {
-    setStores(!Stores)
-  }
-  const setaccessories = () => {
-    setaccessoriesStores(!accessoriesStores)
-  }
-  const sethair = () => {
-    sethairStores(!hairStores)
-  }
-  const setshoes = () => {
-    setshoesStores(!shoesStores)
-  }
-  const setbags = () => {
-    setbagsStores(!bagsStores)
-  }
-  const setskinCare = () => {
-    setskinCareStores(!skinCareStores)
-  }
-  const setpastries = () => {
-    setpastriesStores(!pastriesStores)
-  }
-  const setfragrance = () => {
-    setfragranceStores(!fragranceStores)
-  }
+export function Sidebar() {
 
-  return (
-    <div>
-      <div className="flex justify-between px-6 py-4 md:fixed md:top-0 md:w-[100vw] topnav">
-        <div
-          onClick={() => {
-            setshowNav(true);
-          }}
-          className="md:hidden"
-        >
-          <svg
-            width="35px"
-            height="35px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              {" "}
-              <g id="style=linear">
-                {" "}
-                <g id="menu-strawberry">
-                  {" "}
-                  <path
-                    id="vector"
-                    d="M3 6H21"
-                    stroke="#000000"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  ></path>{" "}
-                  <path
-                    id="vector_2"
-                    d="M5 12H19"
-                    stroke="#000000"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  ></path>{" "}
-                  <path
-                    id="vector_3"
-                    d="M7 18H17"
-                    stroke="#000000"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  ></path>{" "}
-                </g>{" "}
-              </g>{" "}
-            </g>
-          </svg>
-        </div>
-        <p>LOGO</p>
-        <div className="hidden md:block">
-        <DesktopNav/>
-        </div>
-      </div>
-      {showNav ? (
-        <div
-          className="overlay z-10"
-          onClick={() => {
-            setshowNav(false);
-          }}
-        ></div>
-      ) : (
-        ""
-      )}
-      <div
-        className={
-          showNav
-            ? "w-[70%] bg-white mobile-nav h-[100vh] fixed top-0 z-[39] showNav translate-x-[0%]"
-            : "w-[70%] fixed top-0 z-[39] h-[100vh] showNav translate-x-[-100%]"
-        }
-      >
-        <div className="flex categories items-center justify-between">
-          <svg viewBox="0 0 24 24" className="mx-[1rem]"
-            onClick={() => {
-              setshowNav(false);
-            }} width="30px" height="30px" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.16998 14.83L14.83 9.17004" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14.83 14.83L9.16998 9.17004" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-         <img alt="logo" className="w-[60px]" src={logo1}/>
-        </div>
+    const [Stores, setStores] = useState(false);
+    const [accessoriesStores, setaccessoriesStores] = useState(false);
+    const [hairStores, sethairStores] = useState(false);
+    const [shoesStores, setshoesStores] = useState(false);
+    const [bagsStores, setbagsStores] = useState(false);
+    const [skinCareStores, setskinCareStores] = useState(false);
+    const [pastriesStores, setpastriesStores] = useState(false);
+    const [fragranceStores, setfragranceStores] = useState(false);
+
+    const setCloths = () => {
+        setStores(!Stores)
+      }
+      const setaccessories = () => {
+        setaccessoriesStores(!accessoriesStores)
+      }
+      const sethair = () => {
+        sethairStores(!hairStores)
+      }
+      const setshoes = () => {
+        setshoesStores(!shoesStores)
+      }
+      const setbags = () => {
+        setbagsStores(!bagsStores)
+      }
+      const setskinCare = () => {
+        setskinCareStores(!skinCareStores)
+      }
+      const setpastries = () => {
+        setpastriesStores(!pastriesStores)
+      }
+      const setfragrance = () => {
+        setfragranceStores(!fragranceStores)
+      }
+    
+
+    return ( <div>
+        {/* DESKTOP VERSION//////////////////////// */}
+<div className="hidden md:block md:fixed md:w-[38%] md:left-5 md:top-[13%] md:bottom-[10%] md:bg-white md:z-10 md:border md:overflow-scroll">
         <div className="ml-[1rem] categories">
           <p className="mt-[1rem] font-bold categories pb-[1rem]">Our Categories</p>
           <div className="my-[1rem] flex">
@@ -674,7 +593,6 @@ export function Topnav() {
         </div>
       </div>
 
-
-    </div>
-  );
+    </div> );
 }
+

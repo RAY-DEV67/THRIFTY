@@ -3,10 +3,12 @@ import { EcommerceCard } from "../components/ecommerceCard";
 import db from "../config/firebase";
 import { Search } from "../components/search";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Footer } from "../components/footer";
+// import { Footer } from "../components/footer";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import logo1 from "../assets/images/thriftlogo1.webp"
+import { Sidebar } from "../components/sidebar";
+import logo2 from "../assets/images/logowhite.webp";
 
 
 export function GenderPage() {
@@ -82,6 +84,10 @@ export function GenderPage() {
 
   return (
     <div>
+       <div className="lg:block mg:mb-[1rem] hidden">
+    <Sidebar/>
+    </div>
+      <div className="md:absolute md:top-[13%] lg:left-[40%] md:z-[-1]">
       <Search />
       <div>
         <InfiniteScroll
@@ -107,6 +113,7 @@ export function GenderPage() {
             onClick={() => {
               navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
             }}
+            className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
           >
                 <EcommerceCard post={post} />
               </div>
@@ -115,7 +122,10 @@ export function GenderPage() {
           })}
         </InfiniteScroll>
       </div>
-      <Footer/>
     </div>
-  );
+    <footer className="md:pb-[0rem] z-30 pb-[4rem] md:overflow-x-hidden  footer md:fixed md:bottom-0 pt-[1rem] md:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] md:w-[100vw] items-center">
+          <img alt="logo" className="w-[70px]" src={logo2}/>
+            <p className="motto text-[1.5rem]">Buy More ..... Pay Less</p>
+          </footer>
+    </div>  );
 }

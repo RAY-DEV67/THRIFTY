@@ -3,10 +3,12 @@ import { EcommerceCard } from "../components/ecommerceCard";
 import db from "../config/firebase";
 import { Search } from "../components/search";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Footer } from "../components/footer";
+// import { Footer } from "../components/footer";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo1 from "../assets/images/thriftlogo1.webp"
+import { Sidebar } from "../components/sidebar";
+import logo2 from "../assets/images/logowhite.webp";
 
 export function ThriftPage() {
   
@@ -18,10 +20,12 @@ export function ThriftPage() {
   const [hasmore, sethasmore] = useState(true);
   const [loading, setloading] = useState(false);
   const [error, seterror] = useState("");
+  const [empty, setempty] = useState(false);
 
   console.log(loading)
   console.log(isEmpty)
   useEffect(() => {
+    setloading(true)
    try{
     db.collection("Products")
     .where("condition", "==", "Thrift")
@@ -34,7 +38,8 @@ export function ThriftPage() {
         const lastDoc = collections.docs[collections.docs.length - 1];
         setclothsList(cloths);
         setlastDocuments(lastDoc);
-        console.log(lastDoc);
+        setloading(false)
+        if(cloths.length === 0){setempty(true)}
       });
    } catch (err) {
         seterror(err)
@@ -61,7 +66,6 @@ export function ThriftPage() {
           setclothsList((clothsList) => [...clothsList, ...newcloths]);
           setlastDocuments(lastDoc);
           setloading(false)
-          // sethasmore(true);
         } else {
           setisEmpty(true);
           sethasmore(false);
@@ -72,8 +76,15 @@ export function ThriftPage() {
 
 
   return (
-    <div>
+   <div>
+    <div className="lg:block hidden">
+    <Sidebar/>
+    </div>
+     <div className="md:absolute md:top-[13%] lg:left-[40%]  md:z-[-1]">
       <Search />
+      <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">{loading ? <img alt="Logo" className="loader mb-[-1rem]" src={logo1}/> : ""}</p>
+      <p className="w-[100%] text-center text-xl md:w-[100vw]">{empty ? "No results found" : ""}</p>
+
       <div>
         <InfiniteScroll
           dataLength={clothsList.length}
@@ -96,6 +107,7 @@ export function ThriftPage() {
               onClick={() => {
                 navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
               }}
+              className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
             >
                 <EcommerceCard post={post} />
               </div>
@@ -103,7 +115,11 @@ export function ThriftPage() {
           })}
         </InfiniteScroll>
       </div>
-      <Footer/>
     </div>
+    <footer className="md:pb-[0rem] z-30 pb-[4rem] md:overflow-x-hidden  footer md:fixed md:bottom-0 pt-[1rem] md:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] md:w-[100vw] items-center">
+          <img alt="logo" className="w-[70px]" src={logo2}/>
+            <p className="motto text-[1.5rem]">Buy More ..... Pay Less</p>
+          </footer>
+   </div>
   );
 }

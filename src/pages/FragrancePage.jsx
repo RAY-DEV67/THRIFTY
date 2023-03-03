@@ -5,9 +5,11 @@ import { EcommerceCard } from "../components/ecommerceCard";
 import { useNavigate } from "react-router-dom";
 import { SetProduct, SetId } from "../App";
 import { TopCard } from "../components/topCard";
-import { Footer } from "../components/footer";
+// import { Footer } from "../components/footer";
 import { Topnav } from "../components/topnav";
 import logo1 from "../assets/images/thriftlogo1.webp"
+import { Sidebar } from "../components/sidebar";
+import logo2 from "../assets/images/logowhite.webp";
 
 export function FragrancePage() {
   const setProducts = useContext(SetProduct);
@@ -64,7 +66,11 @@ export function FragrancePage() {
 
   return (
     <div>
+      <div className="md:hidden">
       <Topnav />
+      </div>
+      <Sidebar/>
+      <div className="md:absolute md:left-[40%] md:top-[13%] md:z-[-1]">
       <h1 className="p-[1rem] productBorder text-center my-[1rem]">FRAGRANCE</h1>
       <div className="mt-[1rem]">
         <h2 className="text-center heading p-2 mb-[2rem]">
@@ -126,7 +132,7 @@ export function FragrancePage() {
             See All
           </p>
         </div>
-        <div className="flex flex-wrap gap-3 justify-center">
+        <div className="flex flex-wrap gap-3 justify-center md:mb-[5rem]">
         <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">{loading ? <img alt="Logo" className="loader mb-[-1rem]" src={logo1}/> : ""}</p>
         <p className="w-[100%] text-center">{empty && "Please Check Your Network Connection"}</p>
       
@@ -139,6 +145,7 @@ export function FragrancePage() {
                   navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
                   setProducts("Accessories");
                 }}
+                className="lg:w-[95%] max-w-4xl"
               >
                 <EcommerceCard post={post} />
               </div>
@@ -146,7 +153,12 @@ export function FragrancePage() {
           })}
         </div>
       </div>
-      <Footer />
+</div> 
+
+<footer className="md:pb-[0rem] z-30 pb-[4rem] md:overflow-x-hidden  footer md:fixed md:bottom-0 pt-[1rem] md:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] md:w-[100vw] items-center">
+          <img alt="logo" className="w-[70px]" src={logo2}/>
+            <p className="motto text-[1.5rem]">Buy More ..... Pay Less</p>
+          </footer>
     </div>
   );
 }

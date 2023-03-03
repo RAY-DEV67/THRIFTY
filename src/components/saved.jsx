@@ -40,8 +40,8 @@ export function Saved() {
   return (
     <div>
       {user ? (
-        <div>
-          <p className="p-[1rem] border-y text-center mb-[1rem]">Saved Items</p>
+        <div className="md:absolute md:top-[13%] lg:left-[40%] md:w-[100vw] lg:w-[59vw]  md:z-[-1]">
+          <p className="p-[1rem] border-y text-center mb-[1rem] contact">Saved Items</p>
           <div className="flex flex-wrap gap-3 justify-center">
           <p className="w-[100%] flex flex-col items-center loaderContainer">{loading ? <img alt="logo" className="loader mb-[-1rem]" src={logo1} /> : ""}</p>
           <p className="w-[100%] text-center font-bold">{empty && "YOU HAVE NO SAVED ITEMS"}</p>
@@ -55,6 +55,7 @@ export function Saved() {
                       setProducts("Top-Accessories");
                       navigate(`/ThriftNg/Buy/${post.category}/${post.postId}`);
                     }}
+                    className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
                   >
                     <EcommerceCard post={post} />
                   </div>
@@ -62,6 +63,9 @@ export function Saved() {
               }
               return ""
             })}
+          </div>
+          <div className="hidden lg:block lg:rounded-[15px] lg:fixed lg:w-[38%] lg:left-5 lg:top-[13%] lg:bottom-[5%] lg:bg-white lg:z-10 lg:border lg:overflow-scroll">
+            <Profile/>
           </div>
         </div>
       ) : (

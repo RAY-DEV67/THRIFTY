@@ -1,9 +1,9 @@
 import { Topnav } from "../components/topnav";
 
 export function ContactUs() {
-    return ( <div>
+    return ( <div className="md:mt-[5rem]">
         <Topnav/>
-        <h1 className="p-[1rem] border-y text-center mb-[1rem]">How To Contact Us</h1>
+        <h1 className="p-[1rem] contact text-center mb-[1rem]">How To Contact Us</h1>
         <div className="px-[1rem]">
         <p>To contact our Support Team, choose the most convenient channel for yourself: Whatsapp chat or email.
 
