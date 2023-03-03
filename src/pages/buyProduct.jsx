@@ -351,7 +351,7 @@ const removesave = async () => {
               onClick={() => {
                 navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
               }}
-              // className="sm:w-[85vw] lg:w-[90%]"
+              className="sm:w-[85vw] lg:w-[90%]"
             >
                 <EcommerceCard post={post} />
               </div>

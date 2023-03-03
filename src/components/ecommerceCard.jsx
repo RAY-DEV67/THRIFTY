@@ -11,7 +11,7 @@ export function EcommerceCard(props) {
           <img
             src={post.images}
             alt="Product"
-            className="rounded-[10px]"
+            className="rounded-[10px] h-[162px]"
           />
         </div>
         <div className="w-[60%]">
