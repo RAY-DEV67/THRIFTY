@@ -175,7 +175,7 @@ export function HairPage() {
       </div>{" "}
       <footer className="lg:pb-[0rem] z-30 pb-[4rem] lg:overflow-x-hidden  footer lg:fixed lg:bottom-0 pt-[1rem] lg:pt-[0.5rem] mt-[2rem] flex justify-between px-[2rem] lg:w-[100vw] items-center">
           <img alt="logo" className="w-[70px]" src={logo2}/>
-            <p className="motto text-[1.5rem]">Buy More ..... Pay Less</p>
+            <p className="motto text-[1.5rem] text-white">Buy More ..... Pay Less</p>
           </footer>
     </div>
   );

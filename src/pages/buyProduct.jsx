@@ -1,5 +1,5 @@
 import { getDoc,getDocs, collection, doc, addDoc, where, query, deleteDoc } from "firebase/firestore";
-// import { Product, Id } from "../App";
+import ImageSlider, { Slide } from "react-auto-image-slider";
 import db from "../config/firebase";
 import { useState, useEffect} from "react";
 import { Topnav } from "../components/topnav";
@@ -27,6 +27,7 @@ export function BuyProduct() {
   const [loading, setloading] = useState(false);
   const [saves, setsaves] = useState([]);
   const [error, seterror] = useState();
+  // const [currentImage, setcurrentImage] = useState(null);
 
   console.log(isEmpty)
   console.log(loading)
@@ -155,22 +156,45 @@ const removesave = async () => {
  }
 
 
+//  const images = [buyProduct?.images, buyProduct?.images2, buyProduct?.images3, buyProduct?.images4, buyProduct?.images5]
+
+//  setInterval(() => {
+//   setcurrentImage(images[Math.floor(Math.random())])
+// }, 5000)
 
   return (
     <div className="lg:mt-[7rem] productfont">
       <Topnav />
-      <div className="flex justify-center relative mt-[1rem] lg:-z-10">
-      <img src={buyProduct?.images} alt="Product" className="rounded-[1rem] w-[90%] h-[90%]" />
+      <div className="flex justify-center relative mt-[1rem] mx-[0.5rem] lg:-z-10">
+      {/* <img src={currentImage} alt="Product" className="transition-all rounded-[1rem] w-[90%] h-[90%]" /> */}
+      <ImageSlider effectDelay={800} autoPlayDelay={2000} className="h-[300px]" >
+      <Slide className="h-[100px]">
+        <img alt="img2" src={buyProduct?.images} className="object-contain productborder rounded-[1rem]" />
+      </Slide>
+      <Slide>
+        <img alt="img2" src={buyProduct?.images2} className="object-contain productborder rounded-[1rem]" />
+      </Slide>
+      <Slide>
+        <img alt="img1" src={buyProduct?.images3} className="object-contain productborder rounded-[1rem]" />
+      </Slide>
+      <Slide>
+        <img alt="img1" src={buyProduct?.images4} className="object-contain productborder rounded-[1rem]" />
+      </Slide>
+      <Slide>
+        <img alt="img1" src={buyProduct?.images5} className="object-contain productborder rounded-[1rem]" />
+      </Slide>
+    </ImageSlider>
+      
       <svg viewBox="0 0 24 24" onClick={() => {!user ? navigate("/profile") : hasProductBeenSaved ? removesave() : addsave()}} className="absolute top-2 left-[80%]" width="25px" fill={hasProductBeenSaved ? "#000000" : "none"} xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.89 5.87988H5.10999C3.39999 5.87988 2 7.27987 2 8.98987V20.3499C2 21.7999 3.04 22.4199 4.31 21.7099L8.23999 19.5199C8.65999 19.2899 9.34 19.2899 9.75 19.5199L13.68 21.7099C14.95 22.4199 15.99 21.7999 15.99 20.3499V8.98987C16 7.27987 14.6 5.87988 12.89 5.87988Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16 8.98987V20.3499C16 21.7999 14.96 22.4099 13.69 21.7099L9.76001 19.5199C9.34001 19.2899 8.65999 19.2899 8.23999 19.5199L4.31 21.7099C3.04 22.4099 2 21.7999 2 20.3499V8.98987C2 7.27987 3.39999 5.87988 5.10999 5.87988H12.89C14.6 5.87988 16 7.27987 16 8.98987Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="0.4" d="M22 5.10999V16.47C22 17.92 20.96 18.53 19.69 17.83L16 15.77V8.98999C16 7.27999 14.6 5.88 12.89 5.88H8V5.10999C8 3.39999 9.39999 2 11.11 2H18.89C20.6 2 22 3.39999 22 5.10999Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
       <p className="absolute top-2 left-[88%]">{saves.length}</p>
         </div>   
 
 
-        <div className="slider lg:-z-10">
-                <div className="slide-track">
+        {/* <div className="slider lg:-z-10">
+                <div className="slide-track"> */}
                   {/* SLIDES///// */}
 
-                  <div className="slide softtools">
+                  {/* <div className="slide softtools">
                   <img src={buyProduct?.images} alt="Product" className="lg:h-[180px] buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
                   </div>
@@ -193,11 +217,11 @@ const removesave = async () => {
                   <div className="slide softtools">
                   <img src={buyProduct?.images5} alt="Product" className="lg:h-[180px] buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
-                  </div>
+                  </div> */}
 
                   {/* SAME SLIDES (DOUBLED)//////// */}
 
-
+{/* 
                   <div className="slide softtools">
                   <img src={buyProduct?.images} alt="Product" className="lg:h-[180px] buyProduct rounded-[1rem] w-[90%] h-[90%]" />
       
@@ -224,15 +248,14 @@ const removesave = async () => {
                   </div>
                 </div>
               </div>
+ */}
 
 
 
 
 
-
-      <div className="buyProductBorder mb-[1rem] pb-[1rem] text-center">
-        <p className="text-2xl mb-[1rem]">THRIFT NG</p>
-        <p className="text-xl font-bold mb-[0.5rem]">{buyProduct?.title}</p>
+      <div className="buyProductBorder mb-[1rem] mt-[1rem] pb-[1rem] text-center">
+        <p className="text-2xl font-bold mb-[0.5rem]">{buyProduct?.title}</p>
         <div className="flex justify-center">
           <svg
             fill="#00cc00"

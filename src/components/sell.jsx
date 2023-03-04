@@ -17,6 +17,8 @@ export function Sell() {
   const [isfile, setfile1] = useState("");
   const [file2, setfile2] = useState("");
   const [file3, setfile3] = useState("");
+  const [file4, setfile4] = useState("");
+  const [file5, setfile5] = useState("");
   const [vendorlogo, setvendorlogo] = useState("");
   const [url, seturl] = useState("");
   const [top, settop] = useState(false);
@@ -25,8 +27,6 @@ export function Sell() {
   // settop()
 
   console.log(url);
-
-  
 
   const [values, setvalues] = useState({
     title: "",
@@ -43,6 +43,7 @@ export function Sell() {
     madeInNigeria: false,
     handmade: false,
     warranty: false,
+    under5k: false,
     Top: top,
     brand: "",
     color: "",
@@ -87,9 +88,9 @@ export function Sell() {
     if (values.price > 20000) {
       tempErrors.price = "Maximum price on Thrift NG is 20,000 NGN";
     }
-    if (isNaN(values.price)) {
-      tempErrors.price = "Please input a number";
-    }
+    // if (isNaN(values.price)) {
+    //   tempErrors.price = "Please input a number";
+    // }
 
     if (values.category === "Categories") {
       tempErrors.category = "Please select category";
@@ -149,7 +150,7 @@ export function Sell() {
     storage
       .ref("/images/" + file2.name)
       .put(file2)
-      .on("state_changed", alert("success"), alert, () => {
+      .on("state_changed", () => {
         storage
           .ref("images")
           .child(file2.name)
@@ -166,7 +167,7 @@ export function Sell() {
     storage
       .ref("/images/" + file3.name)
       .put(file3)
-      .on("state_changed", alert("success"), alert, () => {
+      .on("state_changed", () => {
         storage
           .ref("images")
           .child(file3.name)
@@ -178,12 +179,46 @@ export function Sell() {
           });
       });
 
+      if (file4 == null) return;
+    seturl("getting link");
+    storage
+      .ref("/images/" + file4.name)
+      .put(file4)
+      .on("state_changed", () => {
+        storage
+          .ref("images")
+          .child(file4.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              images4: imgUrl,
+            });
+          });
+      });
+
+      if (file5 == null) return;
+    seturl("getting link");
+    storage
+      .ref("/images/" + file5.name)
+      .put(file5)
+      .on("state_changed", () => {
+        storage
+          .ref("images")
+          .child(file5.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              images5: imgUrl,
+            });
+          });
+      });
+
     if (vendorlogo == null) return;
     seturl("getting link");
     storage
       .ref("/images/" + vendorlogo.name)
       .put(vendorlogo)
-      .on("state_changed", alert("success"), alert, () => {
+      .on("state_changed", () => {
         storage
           .ref("images")
           .child(vendorlogo.name)
@@ -357,6 +392,32 @@ export function Sell() {
                       }}
                     />
                     {errors.file3 && <p>{errors.file3}</p>}
+                  </div>
+
+                  <div>
+                    <input
+                      className="mt-[1rem]"
+                      multiple
+                      type="file"
+                      accept="image/png , image/jpg"
+                      name="photos4"
+                      onChange={(event) => {
+                        setfile4(event.target.files[0]);
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      className="mt-[1rem]"
+                      multiple
+                      type="file"
+                      accept="image/png , image/jpg"
+                      name="photos5"
+                      onChange={(event) => {
+                        setfile5(event.target.files[0]);
+                      }}
+                    />
                   </div>
                 </div>
                 <p className="text-[12px] mt-[1rem]">
@@ -938,6 +999,20 @@ export function Sell() {
                   className="mr-[0.5rem]"
                   onChange={() => {
                     values.warranty = !values.warranty;
+                  }}
+                />
+                <label for="MIN">YES</label>
+              </div>
+
+              <h2 className="mt-[1rem]">Under 5 kay</h2>
+              <div>
+                <input
+                  type="checkbox"
+                  id="MIN"
+                  name="MIN"
+                  className="mr-[0.5rem]"
+                  onChange={() => {
+                    values.under5k = !values.under5k;
                   }}
                 />
                 <label for="MIN">YES</label>
