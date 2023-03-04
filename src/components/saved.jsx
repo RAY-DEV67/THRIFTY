@@ -2,15 +2,15 @@ import { Profile } from "./profile";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import logo1 from "../assets/images/thriftlogo1.webp"
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import db from "../config/firebase";
 import { EcommerceCard } from "./ecommerceCard";
 import { useNavigate } from "react-router-dom";
-import { SetProduct, SetId } from "../App";
+// import { SetProduct, SetId } from "../App";
 
 export function Saved() {
-  const setProducts = useContext(SetProduct);
-  const setProductsId = useContext(SetId);
+  // const setProducts = useContext(SetProduct);
+  // const setProductsId = useContext(SetId);
 
   const [user] = useAuthState(auth);
   const [saved, setsaved] = useState([]);
@@ -51,8 +51,8 @@ export function Saved() {
                   <div
                     key={index}
                     onClick={() => {
-                      setProductsId(post.id);
-                      setProducts("Top-Accessories");
+                      // setProductsId(post.id);
+                      // setProducts("Top-Accessories");
                       navigate(`/ThriftNg/Buy/${post.category}/${post.postId}`);
                     }}
                     className="sm:w-[85vw] lg:w-[95%] max-w-4xl"

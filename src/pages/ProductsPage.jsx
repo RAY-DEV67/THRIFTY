@@ -15,9 +15,9 @@ export function ProductsPage() {
   const navigate = useNavigate();
 
   const [clothsList, setclothsList] = useState([]);
-  const [under5list, setunder5list] = useState([]);
-  const [location2list, setlocation2list] = useState([]);
-  const [locationlist, setlocationlist] = useState([]);
+  // const [under5list, setunder5list] = useState([]);
+  // const [location2list, setlocation2list] = useState([]);
+  // const [locationlist, setlocationlist] = useState([]);
   const [lastDocuments, setlastDocuments] = useState(null);
   const [isEmpty, setisEmpty] = useState(false);
   const [hasmore, sethasmore] = useState(true);
@@ -35,11 +35,17 @@ export function ProductsPage() {
   console.log(isEmpty);
   console.log(loading);
 
-  console.log(locationlist);
+  // console.log(locationlist);
 
   useEffect(() => {
+    if (under5 && Locationfilter) {
+      setdual(true);
+      console.log(Locationfilter)
+    } else {
+      setdual(false);
+    }
     setloading(true);
-    setempty(false)
+    setempty(false);
     db.collection("Products")
       .where("category", "==", product)
       .limit(10)
@@ -52,14 +58,14 @@ export function ProductsPage() {
         setclothsList(cloths);
         setlastDocuments(lastDoc);
         setloading(false);
-        if(cloths.length === 0){
-          setempty(true)
+        if (cloths.length === 0) {
+          setempty(true);
         }
       });
-  }, [product, allProducts]);
+  }, [product, allProducts, under5, Locationfilter]);
 
   const fetchmore = () => {
-    setempty(false)
+    setempty(false);
     db.collection("Products")
       .where("category", "==", product)
       .startAfter(lastDocuments)
@@ -85,162 +91,7 @@ export function ProductsPage() {
       });
   };
 
-  // FOR THRIFT//////////
-
-  useEffect(() => {
-    setloading(true);
-    setempty(false)
-    db.collection("Products")
-      .where("category", "==", product)
-      .where("under5k", "==", true)
-      .limit(10)
-      .get()
-      .then((collections) => {
-        const cloths = collections.docs.map((cloths) => {
-          return { ...cloths.data(), id: cloths.id };
-        });
-        const lastDoc = collections.docs[collections.docs.length - 1];
-        setunder5list(cloths);
-        setlastDocuments(lastDoc);
-        setloading(false);
-        if(cloths.length === 0 && under5){
-          setempty(true)
-        }
-      });
-  }, [under5, product]);
-
-  console.log(empty)
-
-  const fetchmore2 = () => {
-    db.collection("Products")
-    setempty(false)
-      .where("category", "==", product)
-      .where("under5", "==", true)
-      .startAfter(lastDocuments)
-      .limit(10)
-      .get()
-      .then((collections) => {
-        const isCollectionEmpty = collections.size === 0;
-        if (!isCollectionEmpty) {
-          const newcloths = collections.docs.map((cloths) => {
-            return { ...cloths.data(), id: cloths.id };
-          });
-          const lastDoc = collections.docs[collections.docs.length - 1];
-          setunder5list((clothsList) => [...clothsList, ...newcloths]);
-          setlastDocuments(lastDoc);
-          // if(newcloths.length === 0){
-          //   setempty(true)
-          // }
-        } else {
-          setisEmpty(true);
-          sethasmore(false);
-        }
-        // console.log(clothsList)
-      });
-  };
-
-  // FOR THRIFT AND LOCATION//////////
-
-  useEffect(() => {
-    setloading(true);
-    setempty(false)
-    db.collection("Products")
-      .where("category", "==", product)
-      .where("under5", "==", true)
-      .where("location", "==", state)
-      .limit(10)
-      .get()
-      .then((collections) => {
-        const cloths = collections.docs.map((cloths) => {
-          return { ...cloths.data(), id: cloths.id };
-        });
-        const lastDoc = collections.docs[collections.docs.length - 1];
-        setlocationlist(cloths);
-        setlastDocuments(lastDoc);
-        setloading(false);
-        if (under5 && Locationfilter) {
-          setdual(true);
-        } else {
-          setdual(false);
-        }
-      });
-  }, [under5, state, product,Locationfilter]);
-
-  const fetchmore3 = () => {
-    db.collection("Products")
-      .where("category", "==", product)
-      .where("under5", "==", true)
-      .where("location", "==", state)
-      .startAfter(lastDocuments)
-      .limit(10)
-      .get()
-      .then((collections) => {
-        const isCollectionEmpty = collections.size === 0;
-        if (!isCollectionEmpty) {
-          const newcloths = collections.docs.map((cloths) => {
-            return { ...cloths.data(), id: cloths.id };
-          });
-          const lastDoc = collections.docs[collections.docs.length - 1];
-          setlocationlist((clothsList) => [...clothsList, ...newcloths]);
-          setlastDocuments(lastDoc);
-        } else {
-          setisEmpty(true);
-          sethasmore(false);
-        }
-        // console.log(clothsList)
-      });
-  };
-
-  // FOR LOCATION//////////
-
-  useEffect(() => {
-    setloading(true);
-    setempty(false)
-    db.collection("Products")
-      .where("category", "==", product)
-      .where("location", "==", state)
-      .limit(10)
-      .get()
-      .then((collections) => {
-        const cloths = collections.docs.map((cloths) => {
-          return { ...cloths.data(), id: cloths.id };
-        });
-        const lastDoc = collections.docs[collections.docs.length - 1];
-        setlocation2list(cloths);
-        setlastDocuments(lastDoc);
-        setloading(false);
-        // if(cloths.length === 0 && state !== "Location"){
-        //   setempty(true)
-        // }
-      });
-  }, [state, product]);
-
-  const fetchmore4 = () => {
-    db.collection("Products")
-      .where("category", "==", product)
-      .where("location", "==", state)
-      .startAfter(lastDocuments)
-      .limit(10)
-      .get()
-      .then((collections) => {
-        const isCollectionEmpty = collections.size === 0;
-        if (!isCollectionEmpty) {
-          const newcloths = collections.docs.map((cloths) => {
-            return { ...cloths.data(), id: cloths.id };
-          });
-          const lastDoc = collections.docs[collections.docs.length - 1];
-          setlocation2list((clothsList) => [...clothsList, ...newcloths]);
-          setlastDocuments(lastDoc);
-        } else {
-          setisEmpty(true);
-          sethasmore(false);
-        }
-        // console.log(clothsList)
-      });
-  };
-
-  console.log(allProducts);
-
+ 
   return (
     <div>
       <div className="lg:block hidden">
@@ -254,7 +105,7 @@ export function ProductsPage() {
               setallProducts(false);
               setunder5(!under5);
               setactiveThrift(!activeThrift);
-              setactiveProduct(false)
+              setactiveProduct(false);
             }}
             className={
               activeThrift
@@ -275,13 +126,13 @@ export function ProductsPage() {
             <p className="mt-[-0.5rem]">&#8964;</p>
           </div>
 
-
           <p
             onClick={() => {
               setallProducts(true);
               setunder5(false);
               setactiveProduct(!activeProduct);
-              setactiveThrift(false)
+              setactiveThrift(false);
+              setLocationfilter(false);
             }}
             className={
               activeProduct
@@ -302,6 +153,7 @@ export function ProductsPage() {
                   setstate("Abia State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center pb-[0.5rem]"
               >
@@ -313,6 +165,7 @@ export function ProductsPage() {
                   setstate("Adamawa State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -324,6 +177,7 @@ export function ProductsPage() {
                   setstate("AkwaIbom State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center py-[0.5rem]"
               >
@@ -335,6 +189,7 @@ export function ProductsPage() {
                   setstate("Anambra State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -346,6 +201,7 @@ export function ProductsPage() {
                   setstate("Bauchi State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center py-[0.5rem]"
               >
@@ -357,6 +213,7 @@ export function ProductsPage() {
                   setstate("Bayelsa State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -368,6 +225,7 @@ export function ProductsPage() {
                   setstate("Benue State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -379,6 +237,7 @@ export function ProductsPage() {
                   setstate("Borno State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center py-[0.5rem]"
               >
@@ -390,6 +249,7 @@ export function ProductsPage() {
                   setstate("Cross River State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -401,6 +261,7 @@ export function ProductsPage() {
                   setstate("Delta State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center pt-[0.5rem]"
               >
@@ -412,6 +273,7 @@ export function ProductsPage() {
                   setstate("Ebonyi State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -423,6 +285,7 @@ export function ProductsPage() {
                   setstate("Edo State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -434,6 +297,7 @@ export function ProductsPage() {
                   setstate("Ekiti State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center py-[0.5rem]"
               >
@@ -445,6 +309,7 @@ export function ProductsPage() {
                   setstate("Enugu State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -456,6 +321,7 @@ export function ProductsPage() {
                   setstate("Gombe State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center pt-[0.5rem]"
               >
@@ -468,6 +334,7 @@ export function ProductsPage() {
                   setstate("Imo State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -479,6 +346,7 @@ export function ProductsPage() {
                   setstate("Jigawa State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -490,6 +358,7 @@ export function ProductsPage() {
                   setstate("Kaduna State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center py-[0.5rem]"
               >
@@ -501,6 +370,7 @@ export function ProductsPage() {
                   setstate("Kano State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -512,6 +382,7 @@ export function ProductsPage() {
                   setstate("Kastina State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center pt-[0.5rem] py-[0.5rem]"
               >
@@ -524,6 +395,7 @@ export function ProductsPage() {
                   setstate("Kebbi State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -535,6 +407,7 @@ export function ProductsPage() {
                   setstate("Kogi State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -546,6 +419,7 @@ export function ProductsPage() {
                   setstate("Kwara State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] border-b-[2px] text-center py-[0.5rem]"
               >
@@ -557,6 +431,7 @@ export function ProductsPage() {
                   setstate("Lagos State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center py-[0.5rem]"
               >
@@ -568,6 +443,7 @@ export function ProductsPage() {
                   setstate("Nasarawa State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -579,6 +455,7 @@ export function ProductsPage() {
                   setstate("Niger State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center pt-[0.5rem]"
               >
@@ -591,6 +468,7 @@ export function ProductsPage() {
                   setstate("Ondo State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -602,6 +480,7 @@ export function ProductsPage() {
                   setstate("Osun State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -613,6 +492,7 @@ export function ProductsPage() {
                   setstate("Plateau State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center py-[0.5rem]"
               >
@@ -624,6 +504,7 @@ export function ProductsPage() {
                   setstate("Sokoto State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -635,6 +516,7 @@ export function ProductsPage() {
                   setstate("Taraba State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center pt-[0.5rem]"
               >
@@ -646,6 +528,7 @@ export function ProductsPage() {
                   setstate("Yobe State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -657,6 +540,7 @@ export function ProductsPage() {
                   setstate("Zamfara State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="border-b-[2px] border-t-[2px] w-[100%] text-center py-[0.5rem]"
               >
@@ -668,6 +552,7 @@ export function ProductsPage() {
                   setstate("Abuja State");
                   setLocationfilter(true);
                   setallProducts(false);
+                  setactiveProduct(false);
                 }}
                 className="w-[100%] text-center pt-[0.5rem]"
               >
@@ -679,6 +564,10 @@ export function ProductsPage() {
           ""
         )}
 
+<div className="flex">
+     {Locationfilter ? <p className="ml-[1rem] mr-[0.3rem]">{state} </p> : ""}{under5 ? <p> / under 5k</p> : ""}
+      </div> 
+
         <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">
           {loading ? (
             <img alt="Logo" className="loader mb-[-1rem]" src={logo1} />
@@ -687,7 +576,9 @@ export function ProductsPage() {
           )}
         </p>
 
-        <p className="w-[100%] text-center text-2xl">{empty ? "No Results Found!!" : ""}</p>
+        <p className="w-[100%] text-center text-2xl">
+          {empty ? "No Results Found!!" : ""}
+        </p>
 
         <div className="mb-[5rem]">
           <InfiniteScroll
@@ -698,17 +589,7 @@ export function ProductsPage() {
                 {<img alt="Logo" className="loader mb-[-1rem]" src={logo1} />}
               </p>
             }
-            next={
-              allProducts
-                ? fetchmore
-                : under5
-                ? fetchmore2
-                : Locationfilter && under5
-                ? fetchmore3
-                : Locationfilter
-                ? fetchmore4
-                : ""
-            }
+            next={fetchmore}
             endMessage={
               <p style={{ textAlign: "center" }}>
                 <b>Yay! You have seen it all</b>
@@ -716,70 +597,64 @@ export function ProductsPage() {
             }
             className="pb-[5rem] flex flex-wrap gap-3 justify-center"
           >
-            {allProducts &&
-              clothsList.map((post, index) => {
-                return (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                    }}
-                    className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
-                  >
-                    <EcommerceCard post={post} />
-                  </div>
-                );
-              })}
+            {allProducts && clothsList.map((post, index) => {
+            return (
+              <div
+              key={index}
+              onClick={() => {
+                navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
+              }}
+              className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
+            >
+                <EcommerceCard post={post} />
+              </div>
+            );
+          })}
 
-            {under5 &&
-              under5list.map((post, index) => {
-                if (!dual)
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                      }}
-                      className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
-                    >
-                      <EcommerceCard post={post} />
-                    </div>
-                  );
-                  return ""
-              })}
-            {under5
-              ? Locationfilter &&
-                location2list.map((post, index) => {
-                  // if(!location2list){<p>No Result</p>}
-                  if (post.under5k && post.location === state) {
-                    return (
-                      <div
-                        key={index}
-                        onClick={() => {
-                          navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                        }}
-                        className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
-                      >
-                        <EcommerceCard post={post} />
-                      </div>
-                    );
-                  }
-                  return ""
-                })
-              : Locationfilter &&
-                location2list.map((post, index) => {
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                      }}
-                      className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
-                    >
-                      <EcommerceCard post={post} />
-                    </div>
-                  );
-                })}
+{under5 && clothsList.map((post, index) => {
+           if (!dual && post.under5k ){ return (
+              <div
+              key={index}
+              onClick={() => {
+                navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
+              }}
+              className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
+            >
+                  <EcommerceCard post={post} />
+                </div>
+              ); }
+            return ""
+          })}
+
+{Locationfilter && clothsList.map((post, index) => {
+           if (post.location === state && !dual){ return (
+              <div
+              key={index}
+              onClick={() => {
+                navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
+              }}
+              className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
+            >
+                  <EcommerceCard post={post} />
+                </div>
+              ); }
+              return ""
+          })}
+
+{under5 && Locationfilter && clothsList.map((post, index) => {
+           if (post.under5k && post.location === state ){ return (
+              <div
+              key={index}
+              onClick={() => {
+                navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
+              }}
+              className="sm:w-[85vw] lg:w-[95%] max-w-4xl"
+            >
+                  <EcommerceCard post={post} />
+                </div>
+              ); }
+              return ""
+          })}
           </InfiniteScroll>
         </div>
       </div>

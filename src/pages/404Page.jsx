@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+
 export function Page404() {
     return ( <div className="flex flex-col items-center">
         <div className="h-[100vh] flex flex-col items-center justify-center w-[80%] mt-[-3rem]">
@@ -11,4 +13,7 @@ export function Page404() {
         </div>
     </div> );
 }
+
+
+
 

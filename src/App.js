@@ -7,7 +7,7 @@ import { Profile } from "./components/profile";
 import { Sell } from "./components/sell";
 import { Saved } from "./components/saved";
 import { ProductsPage } from "./pages/ProductsPage";
-import { useState} from "react";
+// import { useState} from "react";
 import { FAQ } from "./components/faqpage";
 import { Invite } from "./components/invitepage";
 import { Notifications } from "./components/notificationPage";
@@ -29,31 +29,30 @@ import { FragrancePage } from "./pages/FragrancePage";
 import { GenderPage } from "./pages/genderpage";
 import { Page404 } from "./pages/404Page";
 import { VendorPage } from "./pages/vendorpage";
-// import { DesktopNav } from "./components/desktopnav";
 import { Topnav } from "./components/topnav";
 
-export const Product = React.createContext();
-export const SetProduct = React.createContext();
-export const Id = React.createContext();
-export const SetId = React.createContext();
+// export const Product = React.createContext();
+// export const SetProduct = React.createContext();
+// export const Id = React.createContext();
+// export const SetId = React.createContext();
 
 function App() {
-  const [products, setproducts] = useState(() => {
-    let tempProducts = JSON.stringify(localStorage.getItem("Product"));
-    return tempProducts || "";
-  });
-  const [id, setid] = useState(() => {
-    let tempProducts = JSON.stringify(localStorage.getItem("ID"));
-    return tempProducts || "";
-  });
+  // const [products, setproducts] = useState(() => {
+  //   let tempProducts = JSON.stringify(localStorage.getItem("Product"));
+  //   return tempProducts || "";
+  // });
+  // const [id, setid] = useState(() => {
+  //   let tempProducts = JSON.stringify(localStorage.getItem("ID"));
+  //   return tempProducts || "";
+  // });
 
 
   return (
     <div className="App">
-      <Id.Provider value={id}>
+      {/* <Id.Provider value={id}>
         <SetId.Provider value={setid}>
           <Product.Provider value={products}>
-            <SetProduct.Provider value={setproducts}>
+            <SetProduct.Provider value={setproducts}> */}
               <Router>
                 <ScrollToTop>
                 <div className="lg:hidden">
@@ -124,10 +123,10 @@ function App() {
                 </Routes>
                 </ScrollToTop>
               </Router>
-            </SetProduct.Provider>
+            {/* </SetProduct.Provider>
           </Product.Provider>
         </SetId.Provider>
-      </Id.Provider>
+      </Id.Provider> */}
     </div>
   );
 }

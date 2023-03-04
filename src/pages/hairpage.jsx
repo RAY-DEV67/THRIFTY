@@ -1,9 +1,9 @@
 import store from "../assets/images/store.webp";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import db from "../config/firebase";
 import { EcommerceCard } from "../components/ecommerceCard";
 import { useNavigate } from "react-router-dom";
-import { SetProduct, SetId } from "../App";
+// import { SetProduct, SetId } from "../App";
 import { TopCard } from "../components/topCard";
 // import { Footer } from "../components/footer";
 import { Topnav } from "../components/topnav";
@@ -12,8 +12,8 @@ import { Sidebar } from "../components/sidebar";
 import logo2 from "../assets/images/logowhite.webp";
 
 export function HairPage() {
-  const setProducts = useContext(SetProduct);
-  const setProductsId = useContext(SetId);
+  // const setProducts = useContext(SetProduct);
+  // const setProductsId = useContext(SetId);
   const navigate = useNavigate();
 
   const [clothsList, setclothsList] = useState([]);
@@ -116,9 +116,9 @@ export function HairPage() {
                     <div
                       key={index}
                       onClick={() => {
-                        setProductsId(post.id);
+                        // setProductsId(post.id);
                         navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                        setProducts("Top-Hair");
+                        // setProducts("Top-Hair");
                       }}
                     >
                       <TopCard post={post} />
@@ -136,7 +136,7 @@ export function HairPage() {
             <h2>Hair</h2>
             <p
               onClick={() => {
-                setProducts("Hair");
+                // setProducts("Hair");
                 navigate("/ThriftNg/Hair/All-Hairs");
               }}
             >
@@ -160,9 +160,9 @@ export function HairPage() {
                 <div
                   key={index}
                   onClick={() => {
-                    setProductsId(post.id);
+                    // setProductsId(post.id);
                     navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                    setProducts("Hair");
+                    // setProducts("Hair");
                   }}
                   className="lg:w-[95%] max-w-4xl"
                 >

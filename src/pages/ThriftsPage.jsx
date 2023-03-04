@@ -50,7 +50,7 @@ export function ThriftPage() {
 
 
   const fetchmore = () => {
-    setloading(true)
+    // setloading(true)
     db.collection("Products")
     .where("condition", "==", "Thrift")
       .startAfter(lastDocuments)
@@ -65,7 +65,7 @@ export function ThriftPage() {
           const lastDoc = collections.docs[collections.docs.length - 1];
           setclothsList((clothsList) => [...clothsList, ...newcloths]);
           setlastDocuments(lastDoc);
-          setloading(false)
+          // setloading(false)
         } else {
           setisEmpty(true);
           sethasmore(false);

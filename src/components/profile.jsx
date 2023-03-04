@@ -3,6 +3,7 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import logo1 from "../assets/images/thriftlogo1.webp"
+import logo2 from "../assets/images/logowhite.webp";
 
 export function Profile() {
   const [user] = useAuthState(auth);
@@ -21,7 +22,7 @@ export function Profile() {
       {user ? (
         <div>
  <div className="flex flex-col items-center topnav mb-[1rem] lg:mt-[4.5rem]">
- <p className="mt-[1rem] lg:hidden">LOGO</p>
+ <img alt="logo" className="w-[70px] mt-[1rem] lg:hidden" src={logo2}/>
  <p className="mr-[0.5rem] mb-[0.5rem] text-[2rem] text-white motto tracking-widest">Welcome Back</p>
          <div className="flex items-center">
            <p className="mr-[0.5rem] mb-[0.5rem] text-[1.5rem] text-white"> {user?.displayName}</p>

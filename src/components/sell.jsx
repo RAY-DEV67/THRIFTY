@@ -121,7 +121,7 @@ export function Sell() {
       useid: id,
       userId: user?.uid,
       searchKeywords:
-        `${values.title.toLowerCase()} ${values.description.toLowerCase()} ${values.brand.toLowerCase()} ${values.vendor?.toLowerCase()}`.split(
+        `${values.title.toLowerCase()} ${values.description.toLowerCase()} ${values.brand.toLowerCase()} ${values.vendor?.toLowerCase()} ${values.category?.toLowerCase()}`.split(
           " "
         ),
     });

@@ -1,10 +1,10 @@
 import store from "../assets/images/store.webp";
 import { Sidebar } from "../components/sidebar";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import db from "../config/firebase";
 import { EcommerceCard } from "../components/ecommerceCard";
 import { useNavigate } from "react-router-dom";
-import { SetProduct, SetId } from "../App";
+// import { SetProduct, SetId } from "../App";
 import { TopCard } from "../components/topCard";
 // import { Footer } from "../components/footer";
 import { Topnav } from "../components/topnav";
@@ -12,8 +12,8 @@ import logo1 from "../assets/images/thriftlogo1.webp";
 import logo2 from "../assets/images/logowhite.webp";
 
 export function BagsPage() {
-  const setProducts = useContext(SetProduct);
-  const setProductsId = useContext(SetId);
+  // const setProducts = useContext(SetProduct);
+  // const setProductsId = useContext(SetId);
 
   const navigate = useNavigate();
 
@@ -120,9 +120,9 @@ export function BagsPage() {
                     <div
                       key={index}
                       onClick={() => {
-                        setProductsId(post.id);
+                        // setProductsId(post.id);
                         navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                        setProducts("Top-Bags");
+                        // setProducts("Top-Bags");
                       }}
                     >
                       <TopCard post={post} />
@@ -140,7 +140,7 @@ export function BagsPage() {
             <h2>Bags</h2>
             <p
               onClick={() => {
-                setProducts("Bags");
+                // setProducts("Bags");
                 navigate("/ThriftNg/Bags/All-Bags");
               }}
             >
@@ -165,9 +165,9 @@ export function BagsPage() {
                 <div
                   key={index}
                   onClick={() => {
-                    setProductsId(post.id);
+                    // setProductsId(post.id);
                     navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                    setProducts("Bags");
+                    // setProducts("Bags");
                   }}
                   className="lg:w-[95%] max-w-4xl"
                 >

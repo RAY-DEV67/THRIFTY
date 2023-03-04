@@ -1,7 +1,7 @@
 import store from "../assets/images/store.webp";
 import { Link } from "react-router-dom";
-import { SetProduct, SetId } from "../App";
-import { useContext } from "react";
+// import { SetProduct, SetId } from "../App";
+// import { useContext } from "react";
 import { Topnav } from "../components/topnav";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -12,8 +12,8 @@ import logo2 from "../assets/images/logowhite.webp";
 import { Sidebar } from "../components/sidebar";
 
 export function LandingPage() {
-  const setProducts = useContext(SetProduct);
-  const setProductsId = useContext(SetId);
+  // const setProducts = useContext(SetProduct);
+  // const setProductsId = useContext(SetId);
   const navigate = useNavigate();
 
   const [search, setsearch] = useState("");
@@ -204,7 +204,7 @@ export function LandingPage() {
                 <h2>TOP PRODUCTS</h2>
                 <p
                   onClick={() => {
-                    setProducts("Bags");
+                    // setProducts("Bags");
                     navigate("/ThriftNg/All/Products");
                   }}
                 >
@@ -233,11 +233,11 @@ export function LandingPage() {
                         <div
                           key={index}
                           onClick={() => {
-                            setProductsId(post.id);
+                            // setProductsId(post.id);
                             navigate(
                               `/ThriftNg/Buy/${post.category}/${post.id}`
                             );
-                            setProducts("Top-Accessories");
+                            // setProducts("Top-Accessories");
                           }}
                         >
                           <TopCard post={post} key={index} />
@@ -285,11 +285,11 @@ export function LandingPage() {
                         <div
                           key={index}
                           onClick={() => {
-                            setProductsId(post.id);
+                            // setProductsId(post.id);
                             navigate(
                               `/ThriftNg/Buy/${post.category}/${post.id}`
                             );
-                            setProducts("Top-Accessories");
+                            // setProducts("Top-Accessories");
                           }}
                         >
                           <TopCard post={post} key={index} />

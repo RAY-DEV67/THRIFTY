@@ -27,7 +27,7 @@ export function BuyProduct() {
   const [loading, setloading] = useState(false);
   const [saves, setsaves] = useState([]);
   const [error, seterror] = useState();
-  // const [currentImage, setcurrentImage] = useState(null);
+  
 
   console.log(isEmpty)
   console.log(loading)
@@ -80,12 +80,10 @@ export function BuyProduct() {
           setclothsList((clothsList) => [...clothsList, ...newcloths]);
           setlastDocuments(lastDoc);
           setloading(false)
-          // sethasmore(true);
         } else {
           setisEmpty(true);
           sethasmore(false);
         }
-        // console.log(clothsList)
       });
     }
       catch (err) {
@@ -155,18 +153,10 @@ const removesave = async () => {
   }
  }
 
-
-//  const images = [buyProduct?.images, buyProduct?.images2, buyProduct?.images3, buyProduct?.images4, buyProduct?.images5]
-
-//  setInterval(() => {
-//   setcurrentImage(images[Math.floor(Math.random())])
-// }, 5000)
-
   return (
     <div className="lg:mt-[7rem] productfont">
       <Topnav />
       <div className="flex justify-center relative mt-[1rem] mx-[0.5rem] lg:-z-10">
-      {/* <img src={currentImage} alt="Product" className="transition-all rounded-[1rem] w-[90%] h-[90%]" /> */}
       <ImageSlider effectDelay={800} autoPlayDelay={2000} className="h-[300px]" >
       <Slide className="h-[100px]">
         <img alt="img2" src={buyProduct?.images} className="object-contain productborder rounded-[1rem]" />

@@ -1,9 +1,9 @@
 import store from "../assets/images/store.webp";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import db from "../config/firebase";
 import { EcommerceCard } from "../components/ecommerceCard";
 import { useNavigate } from "react-router-dom";
-import { SetProduct, SetId } from "../App";
+// import { SetProduct, SetId } from "../App";
 import { TopCard } from "../components/topCard";
 // import { Footer } from "../components/footer";
 import { Topnav } from "../components/topnav";
@@ -12,8 +12,8 @@ import { Sidebar } from "../components/sidebar";
 import logo2 from "../assets/images/logowhite.webp";
 
 export function FragrancePage() {
-  const setProducts = useContext(SetProduct);
-  const setProductsId = useContext(SetId);
+  // const setProducts = useContext(SetProduct);
+  // const setProductsId = useContext(SetId);
 
   const navigate = useNavigate();
 
@@ -107,7 +107,7 @@ export function FragrancePage() {
                 <div
                   key={index}
                   onClick={() => {
-                    setProductsId(post.id);
+                    // setProductsId(post.id);
                     navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
                   }}
                 >
@@ -141,9 +141,9 @@ export function FragrancePage() {
               <div
                 key={index}
                 onClick={() => {
-                  setProductsId(post.id);
+                  // setProductsId(post.id);
                   navigate(`/ThriftNg/Buy/${post.category}/${post.id}`);
-                  setProducts("Accessories");
+                  // setProducts("Accessories");
                 }}
                 className="lg:w-[95%] max-w-4xl"
               >
