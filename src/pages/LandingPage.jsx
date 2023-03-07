@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import { useContext } from "react";
 import { Topnav } from "../components/topnav";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import db from "../config/firebase";
 import { TopCard } from "../components/topCard";
 import logo1 from "../assets/images/logobuy.webp";
@@ -21,6 +21,43 @@ export function LandingPage() {
   const [error, seterror] = useState("");
   const [loading, setloading] = useState(false);
   const [empty, setempty] = useState(false);
+  const [loopNumber, setloopNumber] = useState(0);
+  const [isDeleting, setisDeleting] = useState(false);
+  const [text, settext] = useState(" ");
+  const [delta, setdelta] = useState(300 - Math.random() * 100);
+  const period = 2000
+  const toChange = ["Shoes", "Clothes", "Accessories", "Pastries", "Skin Care", "Bags", "Fragrance"]
+
+  let i = loopNumber % toChange.length
+  let fulltext = toChange[i]
+
+const tick = useCallback(() => {
+
+  let updatedText = isDeleting ? fulltext.substring(0, text.length - 1) : fulltext.substring(0, text.length + 1)
+  settext(updatedText)
+
+  if(isDeleting){
+    setdelta(prevdelta => prevdelta / 2)
+  }
+
+  if(!isDeleting && updatedText === fulltext){
+    setisDeleting(true)
+    setdelta(period)
+  }else if(isDeleting && updatedText === ""){
+    setisDeleting(false)
+    setloopNumber(loopNumber + 1)
+    setdelta(500)
+  }
+}, [isDeleting, loopNumber, text.length, fulltext]) 
+
+useEffect(() => {
+  const ticker = setInterval(() => {
+tick()
+  }, delta)
+
+  return () => (clearInterval(ticker))
+}, [text, delta, tick]);
+
 
   useEffect(() => {
     setloading(true);
@@ -83,7 +120,7 @@ export function LandingPage() {
             >
               <input
                 type="text"
-                placeholder="What are you looking for..."
+                placeholder={text}
                 onChange={(e) => {
                   setsearch(e.target.value);
                 }}
@@ -213,7 +250,6 @@ export function LandingPage() {
               </div>
               <div>
                 <div className="flex flex-wrap gap-3 justify-center ">
-                  {error ? { error } : ""}
                   <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">
                     {loading && (
                       <img

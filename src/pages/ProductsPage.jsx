@@ -565,7 +565,7 @@ export function ProductsPage() {
         )}
 
 <div className="flex">
-     {Locationfilter ? <p className="ml-[1rem] mr-[0.3rem]">{state} </p> : ""}{under5 ? <p> / under 5k</p> : ""}
+     {Locationfilter ? <p className="ml-[1rem]">{state} </p> : ""}{Locationfilter && under5 ? <p className="mx-[0.3rem]">/</p> : ""}{under5 ? <p className={under5 && !Locationfilter ? "ml-[1rem]" : ""}> under 5k</p> : ""}
       </div> 
 
         <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">

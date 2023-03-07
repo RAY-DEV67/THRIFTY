@@ -578,9 +578,9 @@ query.get().then((querySnapshot) => {
         )}
 
 
-      <p className="ml-[1rem]">Search Results for {search}:</p>
-     <div className="flex">
-     {Locationfilter ? <p className="ml-[1rem] mr-[0.3rem]">{state} </p> : ""}{under5 ? <p> / under 5k</p> : ""}
+      <p className="mx-[1rem]">Search Results for {search}:</p>
+      <div className="flex">
+     {Locationfilter ? <p className="ml-[1rem]">{state} </p> : ""}{Locationfilter && under5 ? <p className="mx-[0.3rem]">/</p> : ""}{under5 ? <p className={under5 && !Locationfilter ? "ml-[1rem]" : ""}> under 5k</p> : ""}
       </div> 
       <p className="w-[100%] flex flex-col items-center my-[1rem] loaderContainer">{loading ? <img alt="Logo" className="loader mb-[-1rem]" src={logo1}/> : ""}</p>
       <p className="w-[100%] text-xl md:w-[100vw]">{empty ? <div className="flex flex-col items-center justify-center">

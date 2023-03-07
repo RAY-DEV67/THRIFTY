@@ -31,6 +31,7 @@ export function TopProductsPage() {
   const [empty, setempty] = useState(false);
 
   console.log(isEmpty)
+  console.log(error)
 
   useEffect(() => {
     if (under5 && Locationfilter) {
@@ -584,7 +585,7 @@ export function TopProductsPage() {
             </p>
           }
           className="mb-[10rem] flex flex-wrap gap-3 justify-center"
-        > {error ? {error} : ""}
+        > 
           {allProducts ? clothsList.map((post, index) => {
             return (
               <div

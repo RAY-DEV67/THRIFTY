@@ -291,6 +291,9 @@ input[type=text]{
 input[type=text]:focus{
   border: 2px solid #00cc00;
 }
+input[type=text]::placeholder{
+  color: #00cc00;
+}
 .buyProductBorder{
   border-bottom:  1px solid #00cc00;
 }
