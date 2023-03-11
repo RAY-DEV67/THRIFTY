@@ -151,68 +151,68 @@ tick()
             </form>
             <div className="flex flex-col items-center">
               <div className="w-[90%] productsContainer relative">
-                <Link to="/ThriftNg/Clothes">
+                <Link to="/ThriftNg/Clothes" className="relative productsJar">
                   <div className="relative cloths">
-                    <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
+                  </div>
+                  <p className="tag absolute top-0 w-[100%] rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
                       Clothes
                     </p>
-                  </div>
                 </Link>
 
-                <Link to="/ThriftNg/Accessories">
+                <Link to="/ThriftNg/Accessories" className="relative accessoriesJar productsJar">
                   <div className="accessories">
-                    <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
+                  </div>
+                  <p className="tag absolute top-0 w-[100%] rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
                       Accessories
                     </p>
-                  </div>
                 </Link>
 
-                <Link to="/ThriftNg/Shoes">
+                <Link to="/ThriftNg/Shoes" className="relative shoesJar productsJar">
                   <div className="shoes">
-                    <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
+                  </div>
+                  <p className="tag absolute top-0 w-[100%] rounded-[0.5rem] px-[1rem] py-[0.5rem] w-[100%] text-[12px]">
                       Shoes
                     </p>
-                  </div>
                 </Link>
 
-                <Link to="/ThriftNg/Hair">
+                <Link to="/ThriftNg/Hair" className="relative hairJar productsJar">
                   <div className=" hair w-[48%]">
-                    <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px] ">
+                  </div>
+                  <p className="tag absolute top-0 w-[100%] rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px] ">
                       Hair
                     </p>
-                  </div>
                 </Link>
 
-                <Link to="/ThriftNg/Bags">
+                <Link to="/ThriftNg/Bags" className="relative bagsJar productsJar">
                   <div className="bags w-[48%]">
-                    <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
+                  </div>
+                  <p className="tag absolute top-0 w-[100%] rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
                       Bags
                     </p>
-                  </div>
                 </Link>
 
-                <Link to="/ThriftNg/Skin-Care">
+                <Link to="/ThriftNg/Skin-Care" className="relative skinJar productsJar">
                   <div className="skin  w-[48%]">
-                    <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
+                  </div>
+                  <p className="tag absolute top-0 w-[100%] rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
                       Skin Care
                     </p>
-                  </div>
                 </Link>
 
-                <Link to="/ThriftNg/Pastries">
+                <Link to="/ThriftNg/Pastries" className="relative pastriesJar productsJar">
                   <div className="pastries w-[48%]">
-                    <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
+                  </div>
+                  <p className="tag absolute top-0 w-[100%] rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
                       Pastries
                     </p>
-                  </div>
                 </Link>
 
-                <Link to="/ThriftNg/Fragrance">
+                <Link to="/ThriftNg/Fragrance" className="relative fragranceJar productsJar">
                   <div className="fragrance w-[48%]">
-                    <p className="tag rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
+                  </div>
+                  <p className="tag absolute top-0 w-[100%] rounded-[0.5rem] px-[1rem] py-[0.5rem] text-[12px]">
                       Fragrance
                     </p>
-                  </div>
                 </Link>
               </div>
             </div>
